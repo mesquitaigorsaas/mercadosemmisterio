@@ -170,3 +170,34 @@ footer .marca img { width: 72px; height: 72px; }
 .dica .pe { margin-top: auto; padding-top: 8px; font-size: 13px; color: var(--soft2); display: flex; justify-content: space-between; } .dica .pe b { color: var(--gold); }
 .artigo { max-width: 760px; margin: 0 auto; } .artigo h1 { font-size: clamp(30px, 5vw, 44px); margin: 12px 0; }
 .artigo .corpo p, .artigo .corpo li { font-size: 18px; line-height: 1.75; color: #dbe4f0; } .artigo .corpo b { color: #fff; } .artigo .corpo ul { padding-left: 22px; }
+
+/* celular e tablet */
+html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o lado (não quebra o menu fixo) */
+.hero-grid > *, .grade2 > *, .grade3 > *, .grade4 > *, .faixa-curso > *, .noticias > *, .dicas > * { min-width: 0; } /* itens da grade nunca ficam mais largos que a tela */
+.form-contato .consent { display: flex; font: 500 13.5px/1.5 Inter; letter-spacing: 0; color: var(--soft); }
+@media (max-width: 640px) {
+  .so-pc { display: none; }
+  .marca { font-size: 17px; gap: 10px; line-height: 1.15; }
+  .marca small { font-size: 10.5px; }
+  .hero { padding: 40px 0 48px; }
+  .hero .acoes, .acoes { flex-direction: column; align-items: stretch; }
+  .btn { white-space: normal; text-align: center; }
+  .btn-g { padding: 16px 22px; font-size: 17px; }
+  .eyebrow { letter-spacing: .1em; }
+  .sec-titulo h2 { font-size: clamp(26px, 7.4vw, 34px); }
+}
+@media (max-width: 380px) { .wrap { padding: 0 16px; } .marca { font-size: 15.5px; } .marca img { width: 44px; height: 44px; } }
+
+/* Instagram no cabeçalho */
+.insta { display: inline-flex; flex: none; width: 40px; height: 40px; border-radius: 12px; transition: transform .15s, box-shadow .2s; }
+.insta:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 22px rgba(214,36,159,.35); }
+.insta svg { display: block; }
+@media (max-width: 860px) { .insta { margin-left: auto; width: 36px; height: 36px; } .insta svg { width: 36px; height: 36px; } .insta + .burger { margin-left: 4px; } }
+
+/* rodapé: linha final com Instagram e crédito */
+.rodape-fim { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; font-size: 13px; }
+.rodape-fim p { margin: 0; } .rodape-fim p a { display: inline; padding: 0; }
+.rodape-fim .rodape-insta { display: inline-flex; align-items: center; gap: 10px; padding: 0; color: #fff; font-weight: 700; }
+.rodape-fim .rodape-insta svg { flex: none; transition: transform .15s; } .rodape-fim .rodape-insta:hover svg { transform: scale(1.08); }
+.rodape-fim .credito b { color: var(--gold); }
+@media (max-width: 640px) { .rodape-fim { flex-direction: column; align-items: flex-start; } }
