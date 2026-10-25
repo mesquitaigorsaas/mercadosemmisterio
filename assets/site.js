@@ -2,7 +2,7 @@
 const CONFIG = {
   supabaseUrl: "https://kgyhgfxkhrdeucvsvehk.supabase.co",
   supabaseKey: "sb_publishable_tqDOSHFcYthq7tHKzpHp-A_9Lstfpqz", // chave pública (só lê notícias e cadastra contatos)
-  checkoutUrl: "", // link do checkout da Hotmart/Kiwify — enquanto vazio, os botões levam à lista de espera
+  checkoutUrl: "https://pay.kiwify.com.br/2umv258", // checkout da Kiwify — vazio = botões levam à lista de espera
   precoDe: "R$ 497", precoPor: "R$ 297", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
 };
 
