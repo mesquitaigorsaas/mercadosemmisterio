@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercado Sem Mistério — o mercado financeiro em tempo real, explicado</title>
+<meta name="description" content="Cotações, notícias do Brasil e do mundo e a agenda econômica da semana, num só lugar. E o curso Trader — O Mercado Sem Mistério, do básico ao avançado.">
+<meta property="og:title" content="Mercado Sem Mistério">
+<meta property="og:description" content="O mercado financeiro em tempo real, explicado sem promessas e sem economês.">
+<meta property="og:image" content="https://mercadosemmisterio.com.br/assets/img/og.png">
+<meta name="theme-color" content="#050e1f">
+<link rel="icon" href="assets/img/emblema-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="./"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a>
+  <nav class="menu"><a href="#mercado">Mercado</a><a href="#sobe-desce">Sobe e desce</a><a href="#noticias">Notícias</a><a href="dicas.html">Dicas</a><a href="#agenda">Agenda</a><a href="curso.html">Curso</a><a href="#ferramentas">Ferramentas</a></nav>
+  <a class="btn btn-ouro" href="curso.html">Conheça o curso</a>
+  <button class="burger" aria-label="Menu">☰</button>
+</div></header>
+<div class="fita" data-fita></div>
+
+<section class="hero"><canvas data-velas aria-hidden="true"></canvas><span class="brilho" style="background:#3b82f6;top:-120px;right:-80px"></span><span class="brilho" style="background:#f5b301;bottom:-160px;left:-120px;opacity:.18"></span><div class="wrap hero-grid"><div>
+  <img class="logo-hero" src="assets/img/logo-460.png" alt="Trader — O Mercado Sem Mistério" width="460" height="460">
+  <span class="eyebrow" style="display:block">O mercado financeiro, em tempo real</span>
+  <h1>Entenda o que move o<br>seu dinheiro — <em>sem mistério</em>.</h1>
+  <p class="lead">Cotações, as notícias do Brasil e do mundo e a agenda econômica da semana, num só lugar. Com explicação de verdade, sem promessa de ganho e sem economês.</p>
+  <div class="acoes"><a class="btn btn-ouro btn-g" href="#mercado">Ver o mercado agora</a><a class="btn btn-sec btn-g" href="curso.html">Aprender a operar com método</a></div>
+</div>
+  <div class="painel-vivo">
+    <div class="rotulo"><span>Dólar hoje</span><span class="ao-vivo"><i></i>ao vivo</span></div>
+    <div class="mini" data-mini="FX_IDC:USDBRL"></div>
+    <div class="ls" data-linha-sessoes></div>
+  </div>
+</div></section>
+
+<section id="mercado"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Painel do mercado</span><h2>Como estão os mercados agora</h2><p>Dólar, Ibovespa, as principais moedas, índices e commodities. Moedas e ouro atualizam praticamente na hora; dados da B3 podem ter atraso de até 15 minutos.</p></div>
+  <div class="widget surge" data-painel style="height:520px"></div>
+</div></section>
+
+<section id="sobe-desce"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Sobe e desce agora</span><h2>O que está subindo e caindo no mercado</h2><p>As maiores altas e baixas da bolsa brasileira e as principais bolsas do mundo, em tempo real. Ações da B3 podem ter atraso de até 15 minutos.</p></div>
+  <div class="grade2">
+    <div class="widget surge" data-hotlists style="height:560px"></div>
+    <div class="widget surge" data-bolsas style="height:560px"></div>
+  </div>
+  <div class="grade3" style="margin-top:20px">
+    <div class="card surge" style="padding:20px"><b style="display:block;margin-bottom:6px">🔥 Subiu muito? Cuidado com o FOMO</b><span class="soft" style="font-size:15px">Entrar depois que o preço já andou é o erro mais comum do iniciante (aula 10.2). Movimento forte não é convite.</span></div>
+    <div class="card surge" style="padding:20px"><b style="display:block;margin-bottom:6px">📉 Caiu muito? Não é "barato"</b><span class="soft" style="font-size:15px">Queda forte pode continuar. Antes de qualquer ideia, o contexto e o seu plano (aulas 6.6 e 11.2).</span></div>
+    <div class="card surge" style="padding:20px"><b style="display:block;margin-bottom:6px">🌍 Ásia, Europa e EUA se conversam</b><span class="soft" style="font-size:15px">O humor de Tóquio passa por Londres e chega a Nova York — e ao Ibovespa. Veja as sessões no topo da página.</span></div>
+  </div>
+  <p class="soft surge" style="font-size:13px;margin-top:14px">Informação de mercado com finalidade educacional. Não é recomendação de compra ou venda.</p>
+</div></section>
+
+<section id="noticias" style="background:linear-gradient(180deg,var(--bg),var(--bg2))"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Notícias</span><h2>O que está mexendo com o mercado</h2><p>As manchetes mais recentes do Brasil, dos Estados Unidos, da Europa, da Ásia e dos bancos centrais — direto das fontes.</p></div>
+  <div class="surge" data-noticias data-limite="12"></div>
+</div></section>
+
+<section id="dicas"><div class="wrap">
+  <div class="sec-titulo surge" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;max-width:none"><div style="max-width:720px"><span class="eyebrow">Dicas</span><h2>Para entender o mercado desta semana</h2><p>Explicações curtas, com dados e fontes, sobre o que está acontecendo — e o que o método diz para fazer.</p></div><a class="btn btn-sec" href="dicas.html">Ver todas as dicas →</a></div>
+  <div class="dicas" data-dicas="6"></div>
+  <p class="soft" style="font-size:13px;margin-top:14px">Conteúdo educacional. Não é recomendação de compra ou venda.</p>
+</div></section>
+
+<section id="agenda"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Agenda econômica</span><h2>Os eventos que podem mexer no mercado</h2><p>Decisões de juros, inflação, emprego e PIB do Brasil e das maiores economias. É a mesma rotina da aula 12.1 do curso: olhar a agenda antes de olhar o gráfico.</p></div>
+  <div class="widget surge" data-agenda style="height:560px"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="faixa-curso surge">
+    <div>
+      <span class="eyebrow">Curso completo</span>
+      <h2 style="font-size:clamp(28px,4vw,42px);margin-top:10px">Trader — O Mercado Sem Mistério</h2>
+      <p style="color:#cbd5e1;font-size:18px;margin:14px 0 24px">Do zero ao seu próprio plano de trading, escrito e testado. Gestão de risco antes de tudo — e nenhuma promessa de ganho fácil.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-ouro" href="curso.html">Ver o curso completo</a><a class="btn btn-sec" href="aula-gratis/">Assistir a uma aula grátis</a></div>
+    </div>
+    <div class="numeros"><div><b data-contar="99">99</b><span>aulas animadas</span></div><div><b data-contar="14">14</b><span>módulos, do básico ao avançado</span></div><div><b data-contar="21" data-prefixo="~" data-sufixo=" h">~21 h</b><span>de conteúdo</span></div><div><b data-contar="7" data-sufixo=" dias">7 dias</b><span>de garantia</span></div></div>
+  </div>
+</div></section>
+
+<section id="ferramentas" style="padding-top:20px"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Grátis</span><h2>Ferramentas para usar hoje</h2></div>
+  <div class="grade3">
+    <a class="card ferr surge" href="ferramentas/calculadora.html"><span class="ic">🧮</span><h3>Calculadora do trader</h3><p>Valor do pip, tamanho da posição, margem, risco-retorno e drawdown.</p><span class="ir">Abrir a calculadora →</span></a>
+    <a class="card ferr surge" href="aula-gratis/"><span class="ic">🎬</span><h3>Aula grátis: tamanho da posição</h3><p>A conta que separa quem sobrevive de quem quebra — a aula 9.3 do curso, completa.</p><span class="ir">Assistir agora →</span></a>
+    <a class="card ferr surge" href="#lista"><span class="ic">📬</span><h3>Mapa da semana</h3><p>Receba os eventos que importam e o que observar em cada um. Em breve, toda semana.</p><span class="ir">Entrar na lista →</span></a>
+  </div>
+</div></section>
+
+<section id="lista" style="background:var(--bg2)"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Lista do Mercado Sem Mistério</span><h2>Receba os conteúdos novos primeiro</h2><p>O mapa da semana, aulas grátis e as condições de lançamento dos cursos. Sem spam: você sai quando quiser.</p></div>
+  <form class="form-contato card surge" style="padding:22px" data-contato="home">
+    <label>Nome<input name="nome" autocomplete="given-name" maxlength="120"></label>
+    <label>E-mail<input name="email" type="email" autocomplete="email" maxlength="200"></label>
+    <label>WhatsApp (opcional)<input name="whatsapp" type="tel" autocomplete="tel" maxlength="30" placeholder="(31) 99999-9999"></label>
+    <button class="btn btn-ouro" type="submit">Quero receber</button>
+    <label class="consent"><input type="checkbox" name="consentimento">Autorizo o Mercado Sem Mistério a me enviar conteúdos por e-mail e WhatsApp. Posso cancelar a qualquer momento. Veja a <a href="privacidade.html">política de privacidade</a>.</label>
+    <p class="msg-form"></p>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><a class="marca" href="./" style="margin-bottom:10px"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério</span></a><p>O mercado financeiro explicado com números que você pode conferir. Conteúdo educacional, por Igor Mesquita.</p></div>
+    <div><h4>Site</h4><a href="#mercado">Mercado</a><a href="#noticias">Notícias</a><a href="#agenda">Agenda</a><a href="ferramentas/calculadora.html">Calculadora</a></div>
+    <div><h4>Curso</h4><a href="curso.html">Trader — O Mercado Sem Mistério</a><a href="aula-gratis/">Aula grátis</a><a href="termos.html">Termos de uso e aviso de risco</a><a href="privacidade.html">Política de privacidade</a></div>
+  </div>
+  <div class="aviso-risco"><b class="ouro">Aviso de risco.</b> Operar no mercado financeiro, especialmente com alavancagem, envolve risco alto de perda, inclusive de todo o capital aplicado. Todo o conteúdo deste site é educacional e informativo: não é recomendação de investimento, não oferece sinais de compra ou venda e não promete resultado. Cotações e gráficos fornecidos pelo TradingView; manchetes com link para as fontes originais. Resultados passados não garantem resultados futuros.</div>
+  <p style="margin:20px 0 0;font-size:13px">© 2026 Mercado Sem Mistério · mercadosemmisterio.com.br</p>
+</div></footer>
+<script src="assets/site.js"></script>
+<script src="assets/anim.js"></script>
+</body>
+</html>

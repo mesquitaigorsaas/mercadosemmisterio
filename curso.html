@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curso Trader — O Mercado Sem Mistério | Forex do básico ao avançado</title>
+<meta name="description" content="99 aulas, do zero ao seu próprio plano de trading testado. Gestão de risco antes de tudo, sem promessa de ganho. Com calculadora, apostilas, quizzes e certificado.">
+<meta property="og:title" content="Curso Trader — O Mercado Sem Mistério">
+<meta property="og:description" content="Forex do básico ao avançado, com método, gestão de risco e nenhuma promessa de ganho fácil.">
+<meta property="og:image" content="https://mercadosemmisterio.com.br/assets/img/aula-setup.jpg">
+<meta name="theme-color" content="#050e1f">
+<link rel="icon" href="assets/img/emblema-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .hero-curso { display: grid; grid-template-columns: 1.05fr 1fr; gap: 46px; align-items: center; }
+  @media (max-width: 960px) { .hero-curso { grid-template-columns: 1fr; } }
+  .tela-mock { position: relative; border-radius: 18px; padding: 10px; background: linear-gradient(160deg, #1b3460, #0b1730); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(245,179,1,.08); transform: perspective(1400px) rotateY(-7deg) rotateX(3deg); transition: transform .6s; }
+  .tela-mock:hover { transform: none; }
+  .tela-mock img { border-radius: 10px; width: 100%; height: auto; }
+  .tela-mock .pill { position: absolute; left: -16px; bottom: 26px; padding: 12px 16px; border-radius: 14px; background: #0b1f3a; border: 1px solid rgba(16,185,129,.4); font: 700 14px Inter; box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .preco-hero { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 6px 0 22px; }
+  .preco-hero s { color: var(--soft2); font-size: 20px; } .preco-hero b { font: 800 44px "Plus Jakarta Sans"; color: #fff; } .preco-hero span { color: var(--soft); }
+  .selos { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: #cbd5e1; font: 600 14px Inter; }
+  .barra-num { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border-radius: 18px; overflow: hidden; border: 1px solid var(--line); }
+  .barra-num div { background: var(--card); padding: 22px 14px; text-align: center; }
+  .barra-num b { display: block; font: 800 30px "Plus Jakarta Sans"; color: var(--gold); } .barra-num span { color: var(--soft); font-size: 14px; }
+  @media (max-width: 760px) { .barra-num { grid-template-columns: repeat(2, 1fr); } .barra-num div:last-child { grid-column: 1 / -1; } }
+  .dado { padding: 26px; } .dado b { display: block; font: 800 54px/1 "Plus Jakarta Sans"; color: var(--down); margin-bottom: 10px; } .dado p { margin: 0; color: #cbd5e1; } .dado small { display: block; color: var(--soft2); margin-top: 10px; font-size: 12.5px; }
+  .pilar { padding: 26px; } .pilar .ic { font-size: 30px; } .pilar h3 { font-size: 20px; margin: 10px 0 6px; } .pilar p { color: var(--soft); margin: 0; font-size: 15.5px; }
+  .nivel-bloco { margin-bottom: 26px; } .nivel-bloco > h3 { display: flex; align-items: center; gap: 10px; font-size: 22px; margin-bottom: 12px; }
+  .nivel-bloco > h3 i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+  details.mod { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
+  details.mod summary { list-style: none; cursor: pointer; padding: 16px 18px; display: grid; grid-template-columns: 100px 1fr auto; gap: 12px; align-items: center; font: 700 16px Inter; }
+  details.mod summary::-webkit-details-marker { display: none; }
+  details.mod summary .n { white-space: nowrap; color: var(--gold); font: 800 13px Inter; letter-spacing: .1em; text-transform: uppercase; }
+  details.mod summary .q { color: var(--soft); font-size: 13.5px; font-weight: 600; }
+  details.mod[open] summary { border-bottom: 1px solid var(--line); }
+  details.mod ol { margin: 0; padding: 12px 18px 16px 18px; color: #cbd5e1; columns: 2; column-gap: 30px; } details.mod li { list-style: none; padding: 4px 0; break-inside: avoid; font-size: 15px; }
+  @media (max-width: 640px) { details.mod ol { columns: 1; } details.mod summary { grid-template-columns: 1fr auto; } details.mod summary .n { grid-column: 1 / -1; } }
+  .galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .galeria figure { margin: 0; } .galeria img { border-radius: 14px; border: 1px solid var(--line); cursor: zoom-in; transition: transform .25s; } .galeria img:hover { transform: scale(1.02); }
+  .galeria figcaption { color: var(--soft); font-size: 14px; margin-top: 8px; }
+  @media (max-width: 860px) { .galeria { grid-template-columns: 1fr 1fr; } } @media (max-width: 560px) { .galeria { grid-template-columns: 1fr; } }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; place-items: center; z-index: 100; padding: 20px; cursor: zoom-out; } .lightbox.on { display: grid; } .lightbox img { max-height: 90vh; border-radius: 12px; }
+  .inclui { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } .inclui > div { display: flex; gap: 14px; padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+  .inclui .ic { font-size: 26px; } .inclui b { display: block; } .inclui span { color: var(--soft); font-size: 14.5px; }
+  @media (max-width: 760px) { .inclui { grid-template-columns: 1fr; } }
+  .para li { list-style: none; padding: 10px 0 10px 34px; position: relative; border-bottom: 1px solid var(--line); color: #dbe4f0; } .para ul { padding: 0; margin: 10px 0 0; }
+  .para li::before { position: absolute; left: 0; top: 9px; font-size: 18px; } .para.sim li::before { content: "✅"; } .para.nao li::before { content: "⛔"; }
+  .instrutor { display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: center; padding: 34px; }
+  .instrutor img { width: 200px; border-radius: 50%; border: 3px solid var(--gold); padding: 10px; background: #0b1f3a; }
+  @media (max-width: 760px) { .instrutor { grid-template-columns: 1fr; text-align: center; } .instrutor img { margin: 0 auto; } }
+  .oferta { max-width: 640px; margin: 0 auto; padding: 38px; text-align: center; border: 2px solid rgba(245,179,1,.5); border-radius: 26px; background: linear-gradient(180deg, #102a52, #0b1730); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+  .oferta .tag { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(245,179,1,.15); color: var(--gold); font: 800 13px Inter; letter-spacing: .08em; text-transform: uppercase; }
+  .oferta s { display: block; color: var(--soft2); font-size: 20px; margin-top: 18px; } .oferta .valor { font: 800 72px/1 "Plus Jakarta Sans"; margin: 6px 0; } .oferta .valor small { font-size: 26px; vertical-align: top; margin-right: 6px; }
+  .oferta ul { text-align: left; margin: 24px 0; padding: 0; } .oferta li { list-style: none; padding: 7px 0 7px 30px; position: relative; color: #dbe4f0; } .oferta li::before { content: "✓"; position: absolute; left: 0; color: var(--up); font-weight: 800; }
+  .garantia { display: flex; gap: 14px; align-items: center; text-align: left; margin-top: 22px; padding: 16px; border-radius: 14px; background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.3); font-size: 14.5px; color: #cbd5e1; } .garantia b { color: #6ee7b7; }
+  details.faq { border-bottom: 1px solid var(--line); } details.faq summary { cursor: pointer; padding: 18px 0; font: 700 17px Inter; list-style: none; display: flex; justify-content: space-between; gap: 14px; } details.faq summary::after { content: "+"; color: var(--gold); font-size: 22px; } details.faq[open] summary::after { content: "−"; } details.faq p { margin: 0 0 18px; color: var(--soft); }
+  .cta-fixo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: rgba(5,14,31,.95); border-top: 1px solid var(--line); padding: 10px 16px; display: none; align-items: center; justify-content: space-between; gap: 10px; backdrop-filter: blur(10px); }
+  .cta-fixo b { font: 800 18px "Plus Jakarta Sans"; } .cta-fixo .btn { padding: 12px 18px; }
+  @media (max-width: 760px) { .cta-fixo.on { display: flex; } body { padding-bottom: 70px; } }
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="./"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a>
+  <nav class="menu"><a href="#conteudo">Conteúdo</a><a href="#por-dentro">Por dentro</a><a href="#instrutor">Instrutor</a><a href="#oferta">Inscrição</a><a href="#faq">Dúvidas</a><a href="./">Mercado ao vivo</a></nav>
+  <a class="btn btn-ouro" href="#oferta">Quero me inscrever</a>
+  <button class="burger" aria-label="Menu">☰</button>
+</div></header>
+
+<section class="hero" style="padding-bottom:70px"><canvas data-velas aria-hidden="true"></canvas><span class="brilho" style="background:#f5b301;top:-140px;left:30%;opacity:.16"></span><div class="wrap hero-curso">
+  <div>
+    <img class="logo-hero" src="assets/img/logo-460.png" alt="Trader — O Mercado Sem Mistério" width="460" height="460">
+    <span class="eyebrow" style="display:block">Curso completo · do básico ao avançado</span>
+    <h1 style="font-size:clamp(34px,5.2vw,60px);margin-top:14px">Aprenda a operar no mercado com <em>método</em> — não com promessa.</h1>
+    <p class="lead">99 aulas que levam você do zero ao seu próprio plano de trading, escrito e testado. Com gestão de risco antes de tudo, exemplos com data e fonte, e a verdade sobre o mercado que quase ninguém conta.</p>
+    <div class="preco-hero"><s data-preco-de>R$ 497</s><b data-preco-por>R$ 297</b><span data-parcelas>ou em até 12x no cartão</span></div>
+    <div class="acoes"><a class="btn btn-ouro btn-g" data-comprar href="#oferta">Quero começar agora</a><a class="btn btn-sec btn-g" href="aula-gratis/">Ver uma aula grátis</a></div>
+    <div class="selos"><span>🛡️ 7 dias de garantia</span><span>🎓 Certificado</span><span>📱 No computador e no celular</span></div>
+  </div>
+  <div class="tela-mock surge"><img src="assets/img/aula-setup.jpg" alt="Tela da aula 11.3: o gatilho do setup no gráfico" width="1600" height="900"><div class="pill">✓ Aulas animadas, com o texto da explicação</div></div>
+</div></section>
+
+<section style="padding:0 0 70px"><div class="wrap">
+  <div class="barra-num surge"><div><b data-contar="99">99</b><span>aulas</span></div><div><b data-contar="14">14</b><span>módulos</span></div><div><b data-contar="21" data-prefixo="~" data-sufixo=" h">~21 h</b><span>de conteúdo</span></div><div><b data-contar="15">15</b><span>apostilas em PDF</span></div><div><b data-contar="7" data-sufixo=" dias">7 dias</b><span>de garantia</span></div></div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">A verdade que vem primeiro</span><h2>A maioria perde dinheiro. E não é por falta de indicador.</h2><p>Antes de vender qualquer coisa, a gente mostra os números. Eles explicam por que este curso começa pela gestão de risco — e não pelo "setup milagroso".</p></div>
+  <div class="grade3">
+    <div class="card dado surge"><b data-contar="97" data-sufixo="%">97%</b><p>dos brasileiros que insistiram no day trade de mini-índice por 300 dias ou mais perderam dinheiro.</p><small>Chague, De-Losso e Giovannetti (FGV/USP), 2019 · B3, 2013–2015</small></div>
+    <div class="card dado surge"><b>74–89%</b><p>das contas de varejo em CFDs na Europa perdiam dinheiro, segundo as próprias corretoras.</p><small>ESMA, 2018</small></div>
+    <div class="card dado surge"><b style="color:var(--gold)">1 regra</b><p>separa quem sobrevive de quem quebra: o tamanho do risco em cada operação. É o assunto mais importante do curso.</p><small>Módulo 9 · Gestão de risco e de capital</small></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Veja com os próprios olhos</span><h2>O mesmo trader, as mesmas operações. Só muda o risco.</h2><p>200 operações sorteadas de uma estratégia com vantagem pequena: 42% de acerto, ganhando 1,5 vez o que arrisca. Em verde, arriscando 1% por operação. Em vermelho, 10%. A mesma estratégia — e o risco alto costuma destruir a conta. É a lição do módulo 9.</p></div>
+  <div class="card risco surge" data-curvas-risco>
+    <svg viewBox="0 0 1000 340" role="img" aria-label="Duas curvas de capital: risco de 1% e de 10% por operação"></svg>
+    <div class="legenda"><div><span style="color:#10b981">● Risco de 1% por operação</span><b data-final="a">US$ 10.000</b></div><div><span style="color:#ef4444">● Risco de 10% por operação</span><b data-final="b">US$ 10.000</b></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px"><span class="soft" style="font-size:13px">Simulação ilustrativa: a cada clique, uma nova sequência sorteada. Não representa resultado de ninguém.</span><button class="btn btn-sec" data-replay>↻ Sortear outra sequência</button></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">O que muda com o método</span><h2>Você sai com um plano seu — escrito, testado e com regras de risco.</h2></div>
+  <div class="grade4">
+    <div class="card pilar surge"><span class="ic">🧭</span><h3>Entender o mercado</h3><p>Como o dinheiro, os bancos centrais e as notícias mexem nos preços.</p></div>
+    <div class="card pilar surge"><span class="ic">📈</span><h3>Ler o gráfico</h3><p>Tendência, zonas, candles, indicadores e price action — sem excesso.</p></div>
+    <div class="card pilar surge"><span class="ic">🛡️</span><h3>Proteger o capital</h3><p>Risco por operação, tamanho da posição, stop, drawdown e alavancagem.</p></div>
+    <div class="card pilar surge"><span class="ic">🧠</span><h3>Controlar a cabeça</h3><p>FOMO, vingança, sequências de perdas, diário e rotina.</p></div>
+  </div>
+</div></section>
+
+<section id="conteudo" style="background:var(--bg2)"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Conteúdo completo</span><h2>14 módulos, em três níveis</h2><p>Clique em cada módulo para ver as aulas.</p></div>
+  <div id="modulos"></div>
+</div></section>
+
+<section id="por-dentro"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Por dentro das aulas</span><h2>Aulas animadas, com exemplos reais e datados</h2><p>Cada aula é uma sequência de telas, com gráficos que se movem e o texto da explicação embaixo. Você avança no seu ritmo.</p></div>
+  <div class="galeria">
+    <figure class="surge"><img src="assets/img/aula-lote.jpg" alt="Aula 9.3: o cálculo do lote passo a passo" loading="lazy"><figcaption>9.3 · O tamanho da posição, passo a passo</figcaption></figure>
+    <figure class="surge"><img src="assets/img/aula-caso-eurusd.jpg" alt="Aula 12.2: estudo de caso no EUR/USD" loading="lazy"><figcaption>12.2 · Estudo de caso com preços reais de 2025</figcaption></figure>
+    <figure class="surge"><img src="assets/img/aula-sequencias.jpg" alt="Aula 10.5: o que fazer depois de X perdas" loading="lazy"><figcaption>10.5 · O que fazer depois de cada perda</figcaption></figure>
+    <figure class="surge"><img src="assets/img/aula-metricas.jpg" alt="Aula 11.5: painel de métricas" loading="lazy"><figcaption>11.5 · As métricas que mostram se há vantagem</figcaption></figure>
+    <figure class="surge"><img src="assets/img/aula-martingale.jpg" alt="Aula 13.1: a martingale zerando a conta" loading="lazy"><figcaption>13.1 · Por que o "robô que nunca perde" quebra</figcaption></figure>
+    <figure class="surge"><img src="assets/img/aula-sessoes.jpg" alt="Aula 2.3: as sessões do Forex em horário de Brasília" loading="lazy"><figcaption>2.3 · As sessões do Forex em horário de Brasília</figcaption></figure>
+  </div>
+  <div class="lightbox" id="lightbox"><img alt=""></div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Tudo o que você recebe</span><h2>Não é só aula: é o kit completo do trader</h2></div>
+  <div class="inclui">
+    <div class="surge"><span class="ic">🎬</span><div><b>99 aulas animadas</b><span>Do mercado financeiro ao plano de trading, em 14 módulos.</span></div></div>
+    <div class="surge"><span class="ic">📚</span><div><b>15 apostilas em PDF</b><span>Uma por módulo, mais a completa, para ler e revisar.</span></div></div>
+    <div class="surge"><span class="ic">🧮</span><div><b>Calculadora do trader</b><span>Pip, lote, margem, risco-retorno e drawdown.</span></div></div>
+    <div class="surge"><span class="ic">📓</span><div><b>Diário e painel de métricas</b><span>Registre as operações e veja acerto, payoff, fator de lucro e drawdown.</span></div></div>
+    <div class="surge"><span class="ic">❓</span><div><b>14 quizzes e exercícios com gabarito</b><span>Para fixar cada módulo antes de seguir.</span></div></div>
+    <div class="surge"><span class="ic">📝</span><div><b>Modelo do plano de trading</b><span>As 8 seções do seu plano, com o exemplo do curso.</span></div></div>
+    <div class="surge"><span class="ic">🎓</span><div><b>Prova final e certificado</b><span>30 questões; certificado ao ser aprovado.</span></div></div>
+    <div class="surge"><span class="ic">🔎</span><div><b>Raio-x do aluno</b><span>Recomendações de ritmo e estilo para a sua rotina.</span></div></div>
+  </div>
+  <div class="grade2" style="margin-top:20px">
+    <figure class="surge" style="margin:0"><img src="assets/img/ferr-calculadora.jpg" alt="Calculadora do curso" loading="lazy" style="border-radius:14px;border:1px solid var(--line)"></figure>
+    <figure class="surge" style="margin:0"><img src="assets/img/ferr-diario.jpg" alt="Diário e métricas" loading="lazy" style="border-radius:14px;border:1px solid var(--line)"></figure>
+  </div>
+</div></section>
+
+<section><div class="wrap grade2">
+  <div class="card para sim surge" style="padding:28px"><h3 style="font-size:22px">Este curso é para você se…</h3><ul><li>Está começando e quer entender o mercado do jeito certo.</li><li>Já tentou operar, perdeu, e quer método em vez de palpite.</li><li>Quer aprender a controlar o risco antes de pensar no lucro.</li><li>Tem 30 a 60 minutos por dia para estudar com calma.</li></ul></div>
+  <div class="card para nao surge" style="padding:28px"><h3 style="font-size:22px">Não é para você se…</h3><ul><li>Procura sinais prontos ou um "robô que nunca perde".</li><li>Quer ficar rico rápido ou viver de trading no mês que vem.</li><li>Pretende operar com dinheiro que faz falta nas contas.</li><li>Não quer estudar nem praticar na conta demo.</li></ul></div>
+</div></section>
+
+<section id="instrutor" style="background:var(--bg2)"><div class="wrap">
+  <div class="card instrutor surge"><img src="assets/img/logo-800.png" alt="Trader — O Mercado Sem Mistério">
+    <div><span class="eyebrow">Quem conduz o curso</span><h2 style="font-size:clamp(28px,4vw,40px);margin:8px 0 14px">Igor Mesquita</h2>
+      <p style="color:#cbd5e1;font-size:17.5px;margin:0">Tenho 45 anos e acompanho e estudo o mercado financeiro todos os dias. Há 8 anos opero day trade, no Brasil e no exterior. Nesse tempo, aprendi na prática que o mercado não perdoa improviso: o que sustenta um trader é método, gestão de risco e disciplina — e não promessa de ganho rápido. É isso que eu ensino aqui, do jeito que eu gostaria de ter aprendido quando comecei.</p></div></div>
+</div></section>
+
+<section id="oferta"><div class="wrap">
+  <div class="oferta surge">
+    <span class="tag">Preço de lançamento</span>
+    <h2 style="font-size:30px;margin-top:16px">Trader — O Mercado Sem Mistério</h2>
+    <s>de <span data-preco-de>R$ 497</span></s>
+    <div class="valor"><small>por</small><span data-preco-por>R$ 297</span></div>
+    <p class="soft" style="margin:0" data-parcelas>ou em até 12x no cartão</p>
+    <ul><li>99 aulas em 14 módulos, do básico ao avançado</li><li>15 apostilas em PDF</li><li>Calculadora, diário de métricas, quizzes e exercícios</li><li>Modelo do plano de trading e raio-x do aluno</li><li>Prova final e certificado de conclusão</li><li>Acesso pelo computador e pelo celular</li></ul>
+    <a class="btn btn-ouro btn-g" data-comprar href="#lista" style="width:100%">Quero garantir o preço de lançamento</a>
+    <div class="garantia"><span style="font-size:34px">🛡️</span><div><b>Garantia de 7 dias.</b> Assista, use as ferramentas, faça os quizzes. Se não for o que você esperava, peça o reembolso pela plataforma em até 7 dias, sem precisar explicar.</div></div>
+  </div>
+  <form class="form-contato card surge" id="lista" style="padding:22px;margin-top:30px" data-contato="curso-lista-espera">
+    <p style="grid-column:1/-1;margin:0;font-weight:700">Inscrições abrindo em breve. Deixe o seu contato para garantir o preço de lançamento:</p>
+    <label>Nome<input name="nome" autocomplete="given-name" maxlength="120"></label>
+    <label>E-mail<input name="email" type="email" autocomplete="email" maxlength="200"></label>
+    <label>WhatsApp (opcional)<input name="whatsapp" type="tel" autocomplete="tel" maxlength="30"></label>
+    <button class="btn btn-ouro" type="submit">Me avise</button>
+    <label class="consent"><input type="checkbox" name="consentimento">Autorizo o Mercado Sem Mistério a me enviar conteúdos e avisos do curso por e-mail e WhatsApp. Posso cancelar a qualquer momento. <a href="privacidade.html">Política de privacidade</a>.</label>
+    <p class="msg-form"></p>
+  </form>
+</div></section>
+
+<section id="faq" style="background:var(--bg2)"><div class="wrap" style="max-width:820px">
+  <div class="sec-titulo surge centro" style="text-align:center"><span class="eyebrow">Dúvidas frequentes</span><h2>Perguntas que você pode estar se fazendo</h2></div>
+  <div class="surge">
+    <details class="faq"><summary>Preciso saber alguma coisa de mercado para começar?</summary><p>Não. O curso começa do zero: o que é o dinheiro, o que é o mercado financeiro e como ele funciona. Os módulos 0 a 3 dão toda a base.</p></details>
+    <details class="faq"><summary>Vou ganhar dinheiro com o curso?</summary><p>Não prometemos ganho — e você deveria desconfiar de quem promete. O curso ensina método, gestão de risco e disciplina, e mostra como testar uma estratégia antes de arriscar dinheiro real. O resultado depende de você, do mercado e do risco que você assume.</p></details>
+    <details class="faq"><summary>O curso dá sinais de compra e venda?</summary><p>Não. O conteúdo é educacional. Você aprende a montar e testar o seu próprio plano, em vez de depender de sinais de terceiros.</p></details>
+    <details class="faq"><summary>Operar Forex no Brasil é legal?</summary><p>A aula 3.3 explica o que diz a CVM sobre corretoras estrangeiras e mostra alternativas reguladas no Brasil, como o dólar futuro e o mini dólar na B3. A aula 3.4 trata dos impostos.</p></details>
+    <details class="faq"><summary>Quanto tempo leva para terminar?</summary><p>São cerca de 21 horas de conteúdo. Estudando de 30 a 60 minutos por dia, a maioria termina em 2 a 3 meses — junto com a prática na conta demo.</p></details>
+    <details class="faq"><summary>Preciso de dinheiro para praticar?</summary><p>Não. Todo o curso usa conta demo, com dinheiro fictício. O caminho para a conta real só aparece no fim, com critérios objetivos (aula 11.7).</p></details>
+    <details class="faq"><summary>Por quanto tempo tenho acesso?</summary><p>O acesso é entregue pela plataforma de pagamento, junto com a garantia de 7 dias. As condições aparecem na página de compra.</p></details>
+  </div>
+  <p style="text-align:center;margin-top:34px"><a class="btn btn-ouro btn-g" data-comprar href="#lista">Quero começar agora</a></p>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><a class="marca" href="./" style="margin-bottom:10px"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério</span></a><p>Conteúdo educacional sobre o mercado financeiro, por Igor Mesquita.</p></div>
+    <div><h4>Site</h4><a href="./">Mercado ao vivo</a><a href="./#noticias">Notícias</a><a href="ferramentas/calculadora.html">Calculadora</a><a href="aula-gratis/">Aula grátis</a></div>
+    <div><h4>Legal</h4><a href="termos.html">Termos de uso e aviso de risco</a><a href="privacidade.html">Política de privacidade</a></div>
+  </div>
+  <div class="aviso-risco"><b class="ouro">Aviso de risco.</b> Operar no mercado financeiro, especialmente com alavancagem, envolve risco alto de perda, inclusive de todo o capital aplicado. Este curso é educacional: não é recomendação de investimento, não oferece sinais de compra ou venda e não promete resultado. Os exemplos com operações e gráficos são ilustrativos ou reconstruções didáticas, sempre indicadas como tal. Resultados passados não garantem resultados futuros.</div>
+  <p style="margin:20px 0 0;font-size:13px">© 2026 Mercado Sem Mistério · mercadosemmisterio.com.br</p>
+</div></footer>
+<div class="cta-fixo" id="ctaFixo"><div><b data-preco-por>R$ 297</b> <span class="soft" style="font-size:13px">lançamento</span></div><a class="btn btn-ouro" data-comprar href="#oferta">Quero me inscrever</a></div>
+
+<script>
+const NIVEIS = [["Básico", "#10b981", [0, 1, 2, 3]], ["Intermediário", "#f5b301", [4, 5, 6, 7, 8]], ["Avançado", "#ef4444", [9, 10, 11, 12, 13]]];
+const MODS = ["Boas-vindas e como aproveitar o curso", "O mercado financeiro: o que é e como funciona", "Introdução ao Forex", "Corretoras, plataformas, legislação e conta demo", "Análise fundamentalista no Forex", "Análise técnica: fundamentos", "Candlesticks e padrões gráficos", "Indicadores técnicos", "Price action e estrutura de mercado", "Gestão de risco e de capital", "Psicologia do trader", "Plano de trading e construção de estratégia", "Prática guiada e estudos de caso", "Tópicos avançados, alertas e encerramento"];
+const AULAS = [["Boas-vindas e mapa do curso","A verdade sobre o mercado","Aviso de risco e responsabilidade","Preparando o ambiente de estudo"],["Uma breve história do dinheiro","O que é o mercado financeiro","Os grandes mercados","Bolsa × balcão","Quem participa do mercado","Quem regula e fiscaliza","A economia que move os preços","O Brasil no mercado global","Investir × especular × operar"],["O que é o Forex","De Bretton Woods ao celular","Horários e sessões","Pares de moedas","Lendo uma cotação","Pip, pipette e valor do pip","Lotes","Alavancagem e margem","Os custos de operar","Tipos de ordem"],["Tipos de corretora","Regulação e segurança","Forex e o Brasil: o que diz a lei","Impostos","MetaTrader 5 na prática","TradingView na prática","Dinheiro, golpes e proteção"],["O que é análise fundamentalista","Bancos centrais e juros","Inflação e emprego","PIB, PMI e confiança","Calendário econômico na prática","Sentimento de risco","Correlações","Geopolítica e eventos extremos"],["O que é análise técnica","Tipos de gráfico","Tempos gráficos","Tendência","Suporte e resistência","Linhas de tendência e canais","Volume no Forex"],["A origem japonesa dos candles","Padrões de um candle","Padrões de dois e três candles","Padrões de reversão","Padrões de continuação","Contexto é tudo"],["O que são indicadores","Médias móveis","IFR (RSI)","MACD e estocástico","Bandas de Bollinger e ATR","Fibonacci","Pontos de pivô","Confluência e excesso de indicadores"],["Estrutura de mercado","Rompimentos e falsos rompimentos","Zonas de oferta e demanda","Liquidez","\"Smart money\": fato × marketing","Análise multi-timeframe","Juntando tudo"],["Por que traders quebram","Risco por operação","Tamanho da posição","Stop loss e take profit","Risco-retorno e expectativa","Drawdown","Alavancagem com responsabilidade"],["O cérebro contra você","FOMO, vingança e excesso de operações","Disciplina e rotina","Diário de trading","Sequências de perdas","Saúde e equilíbrio"],["Estilos de operação","O que é um plano de trading","Montando um setup","Backtest manual","Métricas que importam","Teste em conta demo","Quando (e se) ir para a conta real"],["Rotina de análise da semana","Estudo de caso: EUR/USD","Estudo de caso: GBP/USD","Estudo de caso: USD/JPY","Estudo de caso: ouro (XAU/USD)","Estudo de caso: dia de Payroll","Revisão de operações"],["Robôs e automação (EAs)","Copy trade e sinais","Mesas proprietárias (prop firms)","Como identificar falsos gurus","Próximos passos","Encerramento"]];
+document.getElementById("modulos").innerHTML = NIVEIS.map(([n, c, ms]) => `<div class="nivel-bloco surge" style="--c:${c}"><h3><i></i>${n}</h3>${ms.map((m) => `<details class="mod"><summary><span class="n">Módulo ${m}</span><span>${MODS[m]}</span><span class="q">${AULAS[m].length} aulas</span></summary><ol start="1">${AULAS[m].map((a, i) => `<li><b class="ouro">${m}.${i + 1}</b> ${a}</li>`).join("")}</ol></details>`).join("")}</div>`).join("");
+const lb = document.getElementById("lightbox");
+document.querySelectorAll(".galeria img").forEach((im) => im.onclick = () => { lb.querySelector("img").src = im.src; lb.querySelector("img").alt = im.alt; lb.classList.add("on"); });
+lb.onclick = () => lb.classList.remove("on");
+addEventListener("scroll", () => document.getElementById("ctaFixo").classList.toggle("on", scrollY > 700 && document.getElementById("oferta").getBoundingClientRect().top > innerHeight), { passive: true });
+</script>
+<script src="assets/site.js"></script>
+<script src="assets/anim.js"></script>
+</body>
+</html>

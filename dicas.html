@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dicas — Mercado Sem Mistério</title>
+<meta name="description" content="Dicas curtas e educativas sobre o mercado financeiro: agenda da semana, gestão de risco, psicologia e análise técnica.">
+<meta name="theme-color" content="#050e1f">
+<link rel="icon" href="assets/img/emblema-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="./"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a>
+  <nav class="menu"><a href="./#mercado">Mercado</a><a href="./#sobe-desce">Sobe e desce</a><a href="./#noticias">Notícias</a><a href="dicas.html" class="on">Dicas</a><a href="curso.html">Curso</a></nav>
+  <a class="btn btn-ouro" href="curso.html">Conheça o curso</a>
+  <button class="burger" aria-label="Menu">☰</button>
+</div></header>
+
+<section id="lista-dicas"><div class="wrap">
+  <div class="sec-titulo"><span class="eyebrow">Dicas</span><h1 style="font-size:clamp(32px,5vw,50px);margin-top:10px">Dicas do Mercado Sem Mistério</h1><p class="soft" style="font-size:18px">Explicações curtas, com dados e fontes. Conteúdo educacional — não é recomendação de compra ou venda.</p></div>
+  <div class="abas" id="filtros"></div>
+  <div class="dicas" id="todas"></div>
+</div></section>
+
+<section id="ler" hidden><div class="wrap">
+  <article class="artigo">
+    <a href="dicas.html" class="soft" style="font-weight:700">← Todas as dicas</a>
+    <div style="margin-top:22px"><span class="eyebrow" id="a-cat"></span></div>
+    <h1 id="a-titulo"></h1>
+    <p class="soft" id="a-meta" style="margin:0 0 26px"></p>
+    <div class="corpo" id="a-corpo"></div>
+    <div class="card" style="padding:24px;margin-top:34px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+      <div><b style="display:block;font-size:18px">Quer aprender o método completo?</b><span class="soft" id="a-aula">São 99 aulas, do básico ao seu plano de trading.</span></div>
+      <a class="btn btn-ouro" href="curso.html">Conhecer o curso</a>
+    </div>
+    <p class="soft" style="font-size:13px;margin-top:20px">Conteúdo educacional. Não é recomendação de investimento nem sinal de compra ou venda. Operar envolve risco de perda.</p>
+  </article>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="aviso-risco" style="margin-top:0"><b class="ouro">Aviso de risco.</b> Operar no mercado financeiro, especialmente com alavancagem, envolve risco alto de perda, inclusive de todo o capital aplicado. Todo o conteúdo deste site é educacional: não é recomendação de investimento e não promete resultado.</div>
+  <p style="margin:20px 0 0;font-size:13px">© 2026 Mercado Sem Mistério · <a href="termos.html" style="display:inline">Termos</a> · <a href="privacidade.html" style="display:inline">Privacidade</a></p>
+</div></footer>
+<script src="assets/site.js"></script>
+<script>
+(async () => {
+  const slug = new URLSearchParams(location.search).get("d");
+  if (slug) {
+    document.getElementById("lista-dicas").hidden = true; document.getElementById("ler").hidden = false;
+    const d = (await buscaDicas(`select=*&slug=eq.${encodeURIComponent(slug)}&limit=1`))[0];
+    if (!d) { document.getElementById("a-titulo").textContent = "Dica não encontrada"; return; }
+    const [cat, cor] = CATEGORIAS[d.categoria] || ["Dica", "#f5b301"];
+    document.title = d.titulo + " — Mercado Sem Mistério";
+    const cEl = document.getElementById("a-cat"); cEl.textContent = cat; cEl.style.color = cor;
+    document.getElementById("a-titulo").textContent = d.titulo;
+    document.getElementById("a-meta").textContent = new Date(d.publicado_em).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" }) + (d.aula ? ` · aprofundado na aula ${d.aula} do curso` : "");
+    document.getElementById("a-corpo").innerHTML = d.conteudo; /* conteúdo escrito por nós no banco (somente leitura para o público) */
+    if (d.aula) document.getElementById("a-aula").textContent = `Esta dica é aprofundada na aula ${d.aula} — uma das 99 do curso.`;
+    return;
+  }
+  const todas = await buscaDicas("select=slug,titulo,resumo,categoria,aula,publicado_em&order=publicado_em.desc&limit=100");
+  let filtro = "todas";
+  const usadas = ["todas", ...new Set(todas.map((d) => d.categoria))];
+  const f = document.getElementById("filtros");
+  f.innerHTML = usadas.map((c) => `<button data-c="${c}" class="${c === "todas" ? "on" : ""}">${c === "todas" ? "Todas" : (CATEGORIAS[c] || [c])[0]}</button>`).join("");
+  const mostra = () => { document.getElementById("todas").innerHTML = todas.filter((d) => filtro === "todas" || d.categoria === filtro).map((d) => cartaoDica(d, "")).join(""); f.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.c === filtro)); };
+  f.querySelectorAll("button").forEach((b) => b.onclick = () => { filtro = b.dataset.c; mostra(); });
+  mostra();
+})();
+</script>
+</body>
+</html>

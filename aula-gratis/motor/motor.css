@@ -1,0 +1,135 @@
+/* Motor de telas do curso Trader — O Mercado Sem Mistério
+   Palco 16:9 (1920×1080) escalado para caber na janela. */
+:root {
+  --navy: #0b1f3a; --navy2: #132c52; --deep: #071428; --ink: #0f172a;
+  --txt: #e8eef8; --soft: #9fb3cf; --line: rgba(255,255,255,.12);
+  --up: #10b981; --down: #ef4444; --gold: #f5b301; --blue: #3b82f6;
+  --n1: #10b981; --n2: #f5b301; --n3: #ef4444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #000; overflow: hidden; }
+body { font-family: Inter, sans-serif; color: var(--txt); }
+body.ocioso { cursor: none; }
+h1, h2, h3, .h { font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: -0.03em; }
+
+#palco {
+  position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+  transform-origin: 0 0; overflow: hidden;
+  background: radial-gradient(1200px 800px at 85% -10%, #1d4f91 0%, transparent 60%), linear-gradient(160deg, var(--navy) 0%, var(--deep) 100%);
+}
+#palco::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* telas */
+.tela { position: absolute; inset: 0; padding: 110px 140px; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s .6s; }
+.tela.on { opacity: 1; visibility: visible; transition: opacity .6s ease; }
+.tela .eyebrow { font-size: 26px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.tela h2 { font-size: 84px; line-height: 1.05; margin-top: 18px; }
+.tela h2 em { font-style: normal; color: var(--gold); }
+.tela p.lead { font-size: 34px; color: var(--soft); margin-top: 24px; max-width: 1300px; line-height: 1.4; }
+
+/* passos: elementos com data-p="n" aparecem quando o passo da tela chega em n */
+[data-p] { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+[data-p].vis { opacity: 1; transform: none; }
+[data-p].zoom { transform: scale(.6); }
+[data-p].zoom.vis { transform: none; }
+[data-p].esq { transform: translateX(-60px); }
+[data-p].esq.vis { transform: none; }
+
+/* marca */
+.marca { display: flex; align-items: center; gap: 22px; }
+.marca img { width: 110px; height: 110px; display: block; }
+.logo-completo img { display: block; width: 100%; height: auto; }
+.marca b { font-family: "Plus Jakarta Sans"; font-size: 56px; font-weight: 800; letter-spacing: -0.03em; display: block; line-height: 1; }
+.marca span { font-size: 22px; color: #9fc0ef; letter-spacing: .08em; }
+
+/* rodapé fixo do palco */
+#rodape { position: absolute; left: 140px; right: 140px; bottom: 44px; display: flex; align-items: center; gap: 24px; font-size: 20px; color: var(--soft); z-index: 5; }
+#rodape .mini { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+#rodape .mini img { width: 40px; height: 40px; display: block; }
+#rodape .barra { flex: 1; height: 4px; background: var(--line); border-radius: 4px; overflow: hidden; }
+#rodape .barra i { display: block; height: 100%; width: 0; background: var(--gold); transition: width .6s ease; }
+
+/* cartões */
+.card { background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 28px; padding: 36px; backdrop-filter: blur(4px); }
+.chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 22px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.07); font-size: 24px; font-weight: 600; }
+.nota { font-size: 18px; color: #7d93b3; }
+
+/* blocos de uso geral */
+.g2, .g3, .g4 { display: grid; gap: 30px; margin-top: 60px; }
+.g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+.ci { padding: 36px 34px; }
+.ci .ic { font-size: 72px; line-height: 1; }
+.ci b { display: block; font: 800 34px/1.15 "Plus Jakarta Sans"; margin-top: 18px; }
+.ci span { display: block; font-size: 24px; color: var(--soft); margin-top: 10px; line-height: 1.4; }
+.ci.centro { text-align: center; }
+/* versão compacta dos cards, para telas com coluna lateral cheia */
+.compacto .ci { padding: 20px 26px; }
+.compacto .ci .ic { font-size: 42px !important; }
+.compacto .ci b { font-size: 29px; margin-top: 6px; }
+.compacto .ci span { font-size: 22px; margin-top: 6px; }
+.ci.verde { border-color: rgba(16,185,129,.45); background: rgba(16,185,129,.08); }
+.ci.vermelho { border-color: rgba(239,68,68,.45); background: rgba(239,68,68,.08); }
+.ci.ouro { border-color: rgba(245,179,1,.5); background: rgba(245,179,1,.08); }
+.ci.azul { border-color: rgba(59,130,246,.5); background: rgba(59,130,246,.1); }
+.num-g { font: 800 150px/1 "Plus Jakarta Sans"; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--gold); }
+.num-m { font: 800 80px/1 "Plus Jakarta Sans"; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--gold); }
+.num-g span, .num-m span { display: inline; font: inherit; color: inherit; margin: 0; }
+.txt-g { font-size: 34px; line-height: 1.45; }
+.txt-m { font-size: 28px; line-height: 1.45; color: var(--soft); }
+.fonte { font-size: 18px; color: #7d93b3; margin-top: 16px; }
+.em-verde { color: var(--up); } .em-vermelho { color: var(--down); } .em-ouro { color: var(--gold); } .em-branco { color: #fff; }
+.stag > [data-p]:nth-child(2) { transition-delay: .15s; } .stag > [data-p]:nth-child(3) { transition-delay: .3s; }
+.stag > [data-p]:nth-child(4) { transition-delay: .45s; } .stag > [data-p]:nth-child(5) { transition-delay: .6s; } .stag > [data-p]:nth-child(6) { transition-delay: .75s; }
+
+/* selo de moeda (no lugar das bandeiras) */
+.selo { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; font: 800 .8em Inter; color: #fff; vertical-align: middle; box-shadow: inset 0 0 0 3px rgba(255,255,255,.25); }
+.selo-par { display: inline-flex; align-items: center; gap: .15em; }
+.selo-par .selo + .selo { margin-left: -.45em; }
+.ci .selo, .ci .selo-par .selo { display: inline-grid; margin-top: 0; color: #fff; font-size: 1em; line-height: 1; }
+.ci .selo-par { display: inline-flex; margin-top: 0; }
+
+/* tela final "próxima aula" (igual em todas as aulas) */
+.tela.final { display: grid; place-items: center; text-align: center; }
+.proxima { padding: 50px 80px; max-width: 1400px; }
+.proxima small { font: 700 26px Inter; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.proxima h2 { font-size: 72px; margin-top: 20px; white-space: nowrap; }
+.proxima p { font-size: 34px; color: var(--soft); margin-top: 22px; }
+.pontos { display: flex; gap: 18px; justify-content: center; margin-top: 50px; }
+.pontos i { width: 90px; height: 12px; border-radius: 6px; background: rgba(255,255,255,.15); }
+.pontos i.ok { background: var(--gold); }
+.pontos-leg { font-size: 22px; color: var(--soft); margin-top: 14px; }
+
+/* fita de cotações */
+.fita { position: absolute; left: 0; right: 0; top: 0; height: 70px; border-bottom: 1px solid var(--line); background: rgba(7,20,40,.7); overflow: hidden; display: flex; align-items: center; }
+.fita .trilho { display: flex; gap: 70px; white-space: nowrap; animation: fita 40s linear infinite; padding-left: 40px; }
+.fita .q { font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; display: flex; gap: 14px; }
+.fita .q b { color: #fff; } .fita .q .v { transition: color .3s; } .fita .q .s { font-size: 20px; }
+.fita .q.alta .s { color: var(--up); } .fita .q.baixa .s { color: var(--down); }
+.fita .q .v.flash-up { color: var(--up); } .fita .q .v.flash-down { color: var(--down); }
+@keyframes fita { to { transform: translateX(-50%); } }
+
+/* texto da aula (modo leitura, padrão; tecla N liga/desliga) */
+#notas { position: fixed; left: 0; right: 0; bottom: 0; height: var(--faixa, 0px); overflow: auto; background: #050d1c; color: #f1f5f9; padding: 14px max(20px, 4vw) 10px; display: none; z-index: 50; border-top: 3px solid var(--gold); }
+body.leitura #notas { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+#notas .txt { font: 500 clamp(16px, 1.15vw + 7px, 25px)/1.55 Inter, sans-serif; max-width: 1500px; margin: 0 auto; width: 100%; animation: notas-entra .35s ease; }
+#notas .txt b { color: #fcd34d; font-weight: 700; }
+#notas small { display: block; text-align: right; color: #64748b; font: 600 13px Inter, sans-serif; max-width: 1500px; margin: 0 auto; width: 100%; }
+#notas small kbd { background: #1e293b; border-radius: 4px; padding: 0 6px; color: #cbd5e1; }
+@keyframes notas-entra { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+body.leitura #navaula { bottom: calc(var(--faixa) + 12px); }
+#dica { position: fixed; right: 16px; top: 16px; z-index: 60; background: rgba(0,0,0,.75); color: #cbd5e1; font: 500 13px/1.6 Inter, sans-serif; padding: 10px 14px; border-radius: 10px; transition: opacity .6s; }
+#dica.some { opacity: 0; pointer-events: none; }
+#dica kbd { background: #1e293b; border-radius: 4px; padding: 0 6px; color: #fff; }
+
+/* navegação entre aulas (aparece no último passo; some com o mouse parado, para não aparecer na gravação) */
+#navaula { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 70; display: none; gap: 10px; transition: opacity .4s; }
+#navaula.on { display: flex; }
+body.ocioso #navaula { opacity: 0; pointer-events: none; }
+#navaula a { font: 700 15px Inter, sans-serif; color: #fff; text-decoration: none; background: rgba(11,31,58,.92); border: 1px solid rgba(255,255,255,.18); padding: 10px 16px; border-radius: 12px; }
+#navaula a:hover { border-color: #f5b301; }
+#navaula a.prox { background: #f5b301; color: #10213a; border-color: #f5b301; }
+.tela.final .proxima { cursor: pointer; }

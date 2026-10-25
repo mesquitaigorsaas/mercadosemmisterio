@@ -1,0 +1,1 @@
+window.LISTA_AULAS = [];

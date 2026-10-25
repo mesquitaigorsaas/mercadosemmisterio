@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula grátis · Aula 9.3 — Tamanho da posição</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/img/emblema-128.png">
+<link rel="stylesheet" href="motor/motor.css">
+<style>
+  #t1 h2 { font-size: 110px; }
+  .formula { text-align: center; margin-top: 60px; font: 800 64px Inter; line-height: 1.5; }
+  .formula .fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 20px; }
+  .formula .fr span { padding: 4px 20px; }
+  .formula .fr span:first-child { border-bottom: 6px solid #fff; }
+  .formula .t { opacity: .15; transition: opacity .5s; } .formula .t.on { opacity: 1; }
+  .passos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
+  .passos .card { text-align: center; padding: 26px 14px; opacity: .15; transition: opacity .5s; }
+  .passos .card.on { opacity: 1; }
+  .passos .n { font: 800 26px Inter; color: var(--soft); }
+  .passos b { display: block; font: 800 52px Inter; margin: 10px 0; font-variant-numeric: tabular-nums; }
+  .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+  .ent { display: grid; gap: 18px; }
+  .ent label { display: grid; grid-template-columns: 280px 1fr 170px; align-items: center; gap: 16px; font: 700 25px Inter; padding: 16px 22px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
+  .ent input[type=range] { width: 100%; accent-color: #f5b301; height: 30px; }
+  .ent output { text-align: right; font: 800 30px Inter; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .ent select { font: 700 24px Inter; padding: 8px; border-radius: 10px; background: #0b1626; color: #fff; border: 1px solid var(--line); }
+  .res { display: grid; gap: 16px; align-content: start; }
+  .res .card { display: grid; grid-template-columns: 1fr auto; padding: 20px 26px; font: 700 25px Inter; align-items: center; }
+  .res b { font: 800 40px Inter; font-variant-numeric: tabular-nums; }
+  .res .card.lote { background: rgba(245,179,1,.12); border: 2px solid var(--gold); }
+  .res .card.lote b { font-size: 64px; color: var(--gold); }
+</style>
+</head>
+<body>
+<div id="palco">
+
+  <!-- T1 -->
+  <section class="tela" id="t1">
+    <p class="eyebrow" data-p="0" style="margin-top:60px">Módulo 9 · Aula 3</p>
+    <h2 data-p="0">Tamanho da <em>posição</em></h2>
+    <p class="lead" data-p="1">Você decide quanto aceita perder. O stop decide onde. O lote é só a conta que junta os dois.</p>
+  </section>
+
+  <!-- T2 · Fórmula -->
+  <section class="tela" id="t2">
+    <p class="eyebrow" data-p="0">A fórmula</p>
+    <h2 data-p="0" style="font-size:66px">Uma conta de <em>três números</em></h2>
+    <div class="formula" data-p="0">
+      <span class="t" data-t="0">Lote</span> = <span class="fr"><span class="t" data-t="1">capital × risco %</span><span class="t" data-t="2">stop em pips × valor do pip</span></span>
+    </div>
+    <div class="g3" style="margin-top:50px">
+      <div class="card ci ouro centro" data-p="1"><div class="ic">💰</div><b>Em cima: quanto posso perder</b><span>Em dinheiro. Ex.: 1% de US$ 5.000 = US$ 50.</span></div>
+      <div class="card ci centro" data-p="2"><div class="ic">📏</div><b>Embaixo: quanto custa cada lote no stop</b><span>Pips até o stop vezes o valor do pip de 1 lote (aula 2.6).</span></div>
+      <div class="card ci verde centro" data-p="3"><div class="ic">🎯</div><b>O resultado: o lote certo</b><span>Aquele que perde exatamente o planejado se o stop for atingido.</span></div>
+    </div>
+  </section>
+
+  <!-- T3 · Passo a passo -->
+  <section class="tela" id="t3">
+    <p class="eyebrow" data-p="0">Exemplo · EUR/USD</p>
+    <h2 data-p="0" style="font-size:66px">Passo a <em>passo</em></h2>
+    <div class="passos">
+      <div class="card ci" data-s="1"><div class="n">1 · capital</div><b>US$ 5.000</b><span>conta demo</span></div>
+      <div class="card ci" data-s="2"><div class="n">2 · risco 1%</div><b class="em-ouro">US$ 50</b><span>o máximo a perder</span></div>
+      <div class="card ci" data-s="3"><div class="n">3 · stop</div><b>25 pips</b><span>× US$ 10 por pip (1 lote) = US$ 250 por lote</span></div>
+      <div class="card ci verde" data-s="4"><div class="n">4 · lote</div><b class="em-verde">0,20</b><span>US$ 50 ÷ US$ 250</span></div>
+    </div>
+    <p class="txt-m" data-p="5" style="text-align:center;margin-top:30px">Conferindo: 0,20 lote × US$ 10 × 25 pips = <b class="em-ouro">US$ 50</b>. Exatamente 1% da conta.</p>
+  </section>
+
+  <!-- T4 · Calculadora -->
+  <section class="tela" id="t4">
+    <p class="eyebrow" data-p="0">A calculadora do curso</p>
+    <h2 data-p="0" style="font-size:60px">Mexa nos números e veja o <em>lote</em> mudar</h2>
+    <div class="calc">
+      <div class="ent" data-p="0">
+        <label>Capital (US$)<input type="range" id="cap" min="500" max="50000" step="500" value="5000"><output id="o-cap"></output></label>
+        <label>Risco por operação<input type="range" id="ris" min="0.25" max="3" step="0.25" value="1"><output id="o-ris"></output></label>
+        <label>Stop (pips)<input type="range" id="stp" min="5" max="100" step="1" value="25"><output id="o-stp"></output></label>
+        <label>Par<select id="par"><option value="EURUSD">EUR/USD — US$ 10 por pip</option><option value="USDJPY">USD/JPY — ¥ 1.000 por pip</option></select><output id="o-par"></output></label>
+        <p class="fonte">Valor do pip por lote padrão de 100 mil. Para o USD/JPY, conversão ilustrativa a ¥ 150 por dólar.</p>
+      </div>
+      <div class="res" data-p="0">
+        <div class="card"><span>Risco em dinheiro</span><b id="r-din">—</b></div>
+        <div class="card"><span>Valor do pip (1 lote)</span><b id="r-pip">—</b></div>
+        <div class="card"><span>Perda por lote no stop</span><b id="r-lot">—</b></div>
+        <div class="card lote"><span>Lote certo</span><b id="r-res">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- T5 · Stop maior, lote menor -->
+  <section class="tela compacto" id="t5">
+    <p class="eyebrow" data-p="0">A consequência mais importante</p>
+    <h2 data-p="0" style="font-size:72px">Stop maior, <em>lote menor</em></h2>
+    <div class="g3 stag">
+      <div class="card ci centro" data-p="1"><div class="ic">📏</div><b>Stop de 10 pips</b><span>Com US$ 50 de risco: <b class="em-ouro" style="display:inline">0,50 lote</b></span></div>
+      <div class="card ci centro" data-p="1"><div class="ic">📏</div><b>Stop de 25 pips</b><span>Com US$ 50 de risco: <b class="em-ouro" style="display:inline">0,20 lote</b></span></div>
+      <div class="card ci centro" data-p="1"><div class="ic">📏</div><b>Stop de 50 pips</b><span>Com US$ 50 de risco: <b class="em-ouro" style="display:inline">0,10 lote</b></span></div>
+    </div>
+    <p class="txt-m" data-p="2" style="text-align:center;margin-top:30px">O risco em dinheiro <b class="em-ouro">nunca muda</b>. O stop fica onde a análise manda — e o lote se ajusta. Nunca o contrário.</p>
+  </section>
+
+  <!-- T6 · Mini dólar -->
+  <section class="tela compacto" id="t6">
+    <p class="eyebrow" data-p="0">A mesma lógica no Brasil</p>
+    <h2 data-p="0" style="font-size:72px">E no <em>mini dólar</em>?</h2>
+    <div class="g4 stag">
+      <div class="card ci centro" data-p="1"><div class="ic">💰</div><b>Capital R$ 10.000</b><span>conta de exemplo</span></div>
+      <div class="card ci ouro centro" data-p="1"><div class="ic">🎯</div><b>Risco 1% = R$ 100</b><span>o máximo a perder</span></div>
+      <div class="card ci centro" data-p="2"><div class="ic">📏</div><b>Stop de 10 pontos</b><span>× R$ 10 por ponto = R$ 100 por contrato</span></div>
+      <div class="card ci verde centro" data-p="2"><div class="ic">📦</div><b>1 contrato</b><span>R$ 100 ÷ R$ 100</span></div>
+    </div>
+    <p class="fonte" data-p="1" style="text-align:center;margin-top:14px">Especificação do WDO: R$ 10 por ponto (B3), como na aula 3.3 · capital ilustrativo</p>
+  </section>
+
+  <!-- T7 · Você sabia -->
+  <section class="tela" id="t7">
+    <p class="eyebrow" data-p="0">💡 Você sabia?</p>
+    <h2 data-p="0" style="font-size:72px">O erro que a calculadora <em>evita</em></h2>
+    <div class="g2" style="align-items:center">
+      <div class="card ci centro vermelho" data-p="0"><div class="ic" style="font-size:130px">🎰</div><b style="font-size:40px">"sempre 1 lote"</b></div>
+      <div>
+        <p class="txt-g" data-p="1">Muitos iniciantes usam sempre o mesmo lote, não importa onde está o stop.</p>
+        <p class="txt-m" data-p="2" style="margin-top:22px">Resultado: numa operação arriscam 0,5%, na outra 6% — sem perceber. O risco vira loteria. Calcular o lote <b class="em-ouro">em toda operação</b> é o que transforma 1% em regra de verdade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- T8 · Próxima -->
+  <section class="tela final" id="t8">
+    <div>
+      <div class="logo-completo zoom" data-logo="completo" data-p="0" style="width:280px;margin:0 auto 26px"></div>
+      <div class="card proxima" data-p="0" onclick="event.stopPropagation();location.href='../curso.html'">
+        <small>Aula grátis · módulo 9 de 14</small>
+        <h2>Gostou? São <em>99 aulas</em> assim</h2>
+        <p>Do básico ao seu plano de trading testado. Clique para conhecer o curso completo.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="rodape"><span class="mini"><span data-logo="emblema"></span>Trader — O Mercado Sem Mistério</span><span class="barra"><i></i></span><span>Aula 9.3</span></div>
+</div>
+
+<script src="motor/motor.js"></script>
+<script>
+Motor.logos();
+const n2 = (v, d = 2) => v.toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d });
+
+function formula(p) { document.querySelectorAll(".formula .t").forEach((t) => t.classList.toggle("on", p === 0 || (+t.dataset.t === 1 && p >= 1) || (+t.dataset.t === 2 && p >= 2) || (+t.dataset.t === 0 && p >= 3))); }
+function passos(p) { document.querySelectorAll(".passos .card").forEach((c) => c.classList.toggle("on", +c.dataset.s <= p)); }
+
+/* calculadora */
+const $ = (id) => document.getElementById(id);
+function calcula() {
+  const cap = +$("cap").value, ris = +$("ris").value, stp = +$("stp").value, par = $("par").value;
+  const pip = par === "EURUSD" ? 10 : 1000 / 150;
+  const din = cap * ris / 100, porLote = stp * pip, lote = din / porLote;
+  $("o-cap").textContent = "US$ " + n2(cap, 0); $("o-ris").textContent = n2(ris) + "%"; $("o-stp").textContent = stp; $("o-par").textContent = "";
+  $("r-din").textContent = "US$ " + n2(din); $("r-pip").textContent = "US$ " + n2(pip); $("r-lot").textContent = "US$ " + n2(porLote); $("r-res").textContent = n2(Math.floor(lote * 100) / 100);
+}
+["cap", "ris", "stp", "par"].forEach((id) => $(id).addEventListener("input", calcula));
+calcula();
+/* demonstração automática para a gravação */
+let tDemo;
+function demo(p) {
+  clearInterval(tDemo);
+  const roteiro = [[5000, 1, 25, "EURUSD"], [5000, 1, 50, "EURUSD"], [5000, 1, 12, "EURUSD"], [5000, 0.5, 25, "EURUSD"], [5000, 1, 25, "USDJPY"]];
+  const [c, r, s, pr] = roteiro[Math.min(p, roteiro.length - 1)];
+  $("cap").value = c; $("ris").value = r; $("stp").value = s; $("par").value = pr; calcula();
+}
+
+Motor.iniciar({
+  aula: "Aula 9.3 — Tamanho da posição",
+  telas: [
+    { id: "t1", nome: "Abertura", passos: [
+      `Na aula passada, você decidiu <b>quanto</b> aceita perder por operação: 1%, por exemplo. Agora, a pergunta prática: com que <b>lote</b> eu entro?`,
+      `A resposta é uma conta simples. Você decide quanto aceita perder; o stop decide onde. O lote é só a conta que junta os dois.`,
+    ] },
+    { id: "t2", nome: "A fórmula", passos: [
+      `A fórmula do tamanho da posição.`,
+      `Em cima: <b>quanto posso perder</b>, em dinheiro. O capital vezes o risco. Por exemplo, 1% de 5 mil dólares são 50 dólares.`,
+      `Embaixo: <b>quanto custa cada lote</b> se o stop for atingido — a distância do stop em pips vezes o valor do pip de um lote, que você aprendeu na aula 2.6.`,
+      `E o resultado é o <b>lote certo</b>: aquele que perde exatamente o planejado, se o stop for atingido.`,
+    ], ao: (p) => formula(p) },
+    { id: "t3", nome: "Passo a passo", passos: [
+      `Vamos a um exemplo no euro contra o dólar, numa conta demo.`,
+      `Passo um: o capital — <b>5 mil dólares</b>.`,
+      `Passo dois: o risco de 1% — <b>50 dólares</b>. É o máximo que essa operação pode tirar da conta.`,
+      `Passo três: a análise mandou colocar o stop a <b>25 pips</b> da entrada. Como cada pip vale 10 dólares num lote padrão, cada lote perderia 250 dólares no stop.`,
+      `Passo quatro: 50 dividido por 250 dá <b>0,20 lote</b>.`,
+      `Conferindo: 0,20 lote, vezes 10 dólares, vezes 25 pips, dá exatamente <b>50 dólares</b>. Um por cento da conta.`,
+    ], ao: (p) => passos(p) },
+    { id: "t4", nome: "A calculadora", passos: [
+      `Agora, a calculadora do curso. Você também pode mexer nela. Começamos com o mesmo exemplo: 5 mil dólares, 1%, stop de 25 pips — 0,20 lote.`,
+      `Se a análise pedir um stop maior, de 50 pips, o lote cai pela metade: 0,10.`,
+      `Com um stop curto, de 12 pips, o lote sobe — mas o risco em dinheiro continua o mesmo.`,
+      `Se você reduzir o risco para meio por cento, o lote cai junto.`,
+      `E num par cotado em iene, como o dólar contra o iene, o valor do pip é diferente — aqui, uma conversão ilustrativa. A calculadora resolve isso para você.`,
+    ], ao: (p) => demo(p) },
+    { id: "t5", nome: "Stop maior, lote menor", passos: [
+      `E a consequência mais importante de tudo isso.`,
+      `Com 50 dólares de risco: stop de 10 pips, 0,50 lote. Stop de 25 pips, 0,20. Stop de 50 pips, 0,10.`,
+      `O risco em dinheiro <b>nunca muda</b>. O stop fica onde a análise manda — e o lote se ajusta. Nunca o contrário: nunca aperte o stop só para caber um lote maior.`,
+    ] },
+    { id: "t6", nome: "Mini dólar", passos: [
+      `E a mesma lógica vale no Brasil, no <b>mini dólar</b>.`,
+      `Um capital de exemplo de 10 mil reais, com risco de 1%: 100 reais.`,
+      `Um stop de 10 pontos — e, como cada ponto do WDO vale 10 reais, segundo a B3, cada contrato perderia 100 reais. Resultado: <b>um contrato</b>.`,
+    ] },
+    { id: "t7", nome: "Você sabia?", passos: [
+      `Um erro que a calculadora evita: usar <b>"sempre 1 lote"</b>.`,
+      `Muitos iniciantes usam sempre o mesmo lote, não importa onde está o stop.`,
+      `O resultado: numa operação arriscam meio por cento, na outra 6% — sem perceber. O risco vira loteria. Calcular o lote <b>em toda operação</b> é o que transforma o 1% em regra de verdade.`,
+    ] },
+    { id: "t8", nome: "O curso completo", passos: [
+      `Esta foi a aula 9.3 do curso <b>Trader — O Mercado Sem Mistério</b>. São 99 aulas como esta, do básico ao seu plano de trading testado, com calculadora, apostilas, quizzes e certificado. Clique no cartão para conhecer o curso.`,
+    ] },
+  ],
+});
+</script>
+</body>
+</html>

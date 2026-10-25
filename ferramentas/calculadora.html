@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora do curso — Trader: O Mercado Sem Mistério</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/img/emblema-128.png">
+<link rel="stylesheet" href="materiais.css">
+</head>
+<body>
+  <div class="topo"><img src="../assets/img/logo-800.png" alt=""><div><h1>Calculadora <em>do trader</em></h1><p>Pip, tamanho da posição, margem, risco-retorno e drawdown — as contas dos módulos 2 e 9</p></div><a class="voltar" href="../">← Voltar ao site</a></div>
+  <main>
+    <div class="abas" id="abas">
+      <button data-a="pip" class="on">Valor do pip</button>
+      <button data-a="lote">Tamanho da posição</button>
+      <button data-a="margem">Margem</button>
+      <button data-a="rr">Risco-retorno e expectativa</button>
+      <button data-a="dd">Drawdown e sequência</button>
+    </div>
+
+    <!-- valor do pip -->
+    <section class="card" data-aba="pip">
+      <span class="mn">Aula 2.6</span><h2>Quanto vale cada pip?</h2>
+      <div class="campos">
+        <label>Par<select id="p-par"></select></label>
+        <label>Lote<input id="p-lote" type="number" step="0.01" min="0.01" value="1"></label>
+        <label>Cotação atual do par<input id="p-cot" type="number" step="0.0001" value="1.1000"></label>
+        <label>Dólar em reais (opcional)<input id="p-brl" type="number" step="0.01" value="5.04"></label>
+      </div>
+      <div class="res"><div><span>Tamanho do pip</span><b id="r-pip">—</b></div><div><span>Valor do pip em dólar</span><b class="ouro" id="r-vu">—</b></div><div><span>Valor do pip em reais</span><b id="r-vr">—</b></div></div>
+      <p class="aviso">Para pares com o dólar na frente (USD/JPY, USD/CHF, USD/CAD), o valor do pip depende da cotação. No ouro, o padrão mais comum é 1 lote = 100 onças, e o "pip" varia de corretora para corretora (aula 12.5) — confira a especificação do contrato.</p>
+    </section>
+
+    <!-- tamanho da posição -->
+    <section class="card" data-aba="lote" hidden>
+      <span class="mn">Aula 9.3</span><h2>Qual lote usar?</h2>
+      <div class="campos">
+        <label>Capital da conta (US$)<input id="l-cap" type="number" value="10000"></label>
+        <label>Risco por operação (%)<input id="l-risco" type="number" step="0.05" value="1"></label>
+        <label>Stop (em pips)<input id="l-stop" type="number" value="40"></label>
+        <label>Par<select id="l-par"></select></label>
+        <label>Cotação atual do par<input id="l-cot" type="number" step="0.0001" value="1.1000"></label>
+      </div>
+      <div class="res"><div><span>Risco em dinheiro</span><b class="ouro" id="r-rd">—</b></div><div><span>Lote ideal</span><b id="r-li">—</b></div><div><span>Lote a usar (arredondado para baixo)</span><b class="ok" id="r-lu">—</b></div><div><span>Risco real com esse lote</span><b id="r-rr">—</b></div></div>
+      <p class="aviso" id="l-aviso">Lote = risco em dinheiro ÷ (stop em pips × valor do pip por lote). Arredonde sempre para baixo.</p>
+    </section>
+
+    <!-- margem -->
+    <section class="card" data-aba="margem" hidden>
+      <span class="mn">Aula 2.8</span><h2>Quanta margem a posição prende?</h2>
+      <div class="campos">
+        <label>Par<select id="m-par"></select></label>
+        <label>Lote<input id="m-lote" type="number" step="0.01" value="0.1"></label>
+        <label>Cotação atual do par<input id="m-cot" type="number" step="0.0001" value="1.1000"></label>
+        <label>Alavancagem (1:X)<input id="m-alav" type="number" value="30"></label>
+        <label>Capital da conta (US$)<input id="m-cap" type="number" value="10000"></label>
+      </div>
+      <div class="res"><div><span>Tamanho da posição</span><b id="r-nom">—</b></div><div><span>Margem exigida</span><b class="ouro" id="r-mar">—</b></div><div><span>Parte da conta presa como margem</span><b id="r-pc">—</b></div></div>
+      <p class="aviso">Margem não é o risco: o risco é o que você perde até o stop. Alavancagem alta só deixa a porta aberta para posições grandes demais (aula 9.7).</p>
+    </section>
+
+    <!-- risco-retorno -->
+    <section class="card" data-aba="rr" hidden>
+      <span class="mn">Aulas 9.4 e 9.5</span><h2>Risco-retorno e expectativa</h2>
+      <h3>A operação</h3>
+      <div class="campos">
+        <label>Compra ou venda<select id="r-lado"><option value="1">Compra</option><option value="-1">Venda</option></select></label>
+        <label>Entrada<input id="r-ent" type="number" step="0.0001" value="1.1078"></label>
+        <label>Stop<input id="r-stp" type="number" step="0.0001" value="1.1034"></label>
+        <label>Alvo<input id="r-alv" type="number" step="0.0001" value="1.1170"></label>
+      </div>
+      <div class="res"><div><span>Distância do stop</span><b id="r-ds">—</b></div><div><span>Distância do alvo</span><b id="r-da">—</b></div><div><span>Relação risco-retorno</span><b class="ouro" id="r-rel">—</b></div></div>
+      <h3>A estratégia</h3>
+      <div class="campos">
+        <label>Taxa de acerto (%)<input id="e-ac" type="number" value="42"></label>
+        <label>Ganho médio (em R)<input id="e-gm" type="number" step="0.1" value="2"></label>
+        <label>Perda média (em R)<input id="e-pm" type="number" step="0.1" value="1"></label>
+      </div>
+      <div class="res"><div><span>Expectativa por operação</span><b id="r-exp">—</b></div><div><span>Acerto mínimo para empatar</span><b id="r-eq">—</b></div></div>
+    </section>
+
+    <!-- drawdown -->
+    <section class="card" data-aba="dd" hidden>
+      <span class="mn">Aulas 9.2 e 9.6</span><h2>Drawdown e sequência de perdas</h2>
+      <div class="campos">
+        <label>Queda da conta (%)<input id="d-q" type="number" value="20"></label>
+      </div>
+      <div class="res"><div><span>Ganho necessário para voltar ao topo</span><b class="ruim" id="r-rec">—</b></div></div>
+      <h3>E se vierem várias perdas seguidas?</h3>
+      <div class="campos">
+        <label>Risco por operação (%)<input id="d-r" type="number" step="0.1" value="1"></label>
+        <label>Perdas seguidas<input id="d-n" type="number" value="10"></label>
+      </div>
+      <div class="res"><div><span>Queda acumulada da conta</span><b class="ruim" id="r-seq">—</b></div><div><span>Ganho necessário depois</span><b id="r-seq2">—</b></div></div>
+    </section>
+
+    <p class="soft" style="font-size:14px">Calculadora educacional. Os resultados são aproximados e não consideram spread, comissão, swap nem slippage. Confira sempre na sua plataforma.</p>
+  <section class="card" style="text-align:center"><h2>Quer entender cada conta dessas?</h2><p class="soft">Elas são explicadas, passo a passo, no curso Trader — O Mercado Sem Mistério.</p><a class="btn" href="../curso.html" style="margin-top:10px">Conhecer o curso</a></section>
+  </main>
+<script>
+/* [par, tipo: "q" = dólar cotado (XXX/USD), "b" = dólar na base (USD/XXX), "o" = ouro, tamanho do pip, unidades por lote, cotação de exemplo] */
+const PARES = [["EUR/USD", "q", 0.0001, 100000, 1.1000], ["GBP/USD", "q", 0.0001, 100000, 1.3300], ["AUD/USD", "q", 0.0001, 100000, 0.6500], ["NZD/USD", "q", 0.0001, 100000, 0.5900], ["USD/JPY", "b", 0.01, 100000, 150.00], ["USD/CHF", "b", 0.0001, 100000, 0.8000], ["USD/CAD", "b", 0.0001, 100000, 1.3800], ["XAU/USD (ouro)", "o", 0.01, 100, 4000]];
+const $ = (id) => document.getElementById(id), num = (id) => parseFloat(String($(id).value).replace(",", ".")) || 0;
+const us = (v, c = 2) => "US$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: c, maximumFractionDigits: c });
+const pc = (v, c = 2) => v.toLocaleString("pt-BR", { minimumFractionDigits: c, maximumFractionDigits: c }) + "%";
+["p-par", "l-par", "m-par"].forEach((id) => $(id).innerHTML = PARES.map((p, i) => `<option value="${i}">${p[0]}</option>`).join(""));
+/* valor do pip por 1 lote, em dólar */
+function pip1(par, cot) { const [, t, ps, u] = par; return t === "b" ? u * ps / (cot || 1) : u * ps; }
+function nocional(par, cot, lote) { const [, t, , u] = par; return t === "b" ? u * lote : u * lote * cot; }
+function calcPip() {
+  const par = PARES[$("p-par").value], cot = num("p-cot"), lote = num("p-lote"), v = pip1(par, cot) * lote;
+  $("r-pip").textContent = String(par[2]).replace(".", ",");
+  $("r-vu").textContent = us(v); $("r-vr").textContent = num("p-brl") ? "R$ " + (v * num("p-brl")).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—";
+}
+function calcLote() {
+  const par = PARES[$("l-par").value], risco = num("l-cap") * num("l-risco") / 100, stop = num("l-stop"), vp = pip1(par, num("l-cot"));
+  const ideal = stop > 0 ? risco / (stop * vp) : 0, usa = Math.floor(ideal * 100 + 1e-9) / 100, real = usa * stop * vp;
+  $("r-rd").textContent = us(risco); $("r-li").textContent = ideal.toLocaleString("pt-BR", { maximumFractionDigits: 4 });
+  $("r-lu").textContent = usa.toLocaleString("pt-BR", { minimumFractionDigits: 2 }); $("r-rr").textContent = us(real);
+  $("l-aviso").innerHTML = usa < 0.01 ? `<b class="ruim">O lote ideal é menor que o mínimo (0,01).</b> Com 0,01 lote, o risco seria ${us(0.01 * stop * vp)} — ${pc(0.01 * stop * vp / num("l-cap") * 100)} da conta. Se passar do seu plano, a operação fica de fora (aula 11.7).` : "Lote = risco em dinheiro ÷ (stop em pips × valor do pip por lote). Arredonde sempre para baixo.";
+}
+function calcMargem() {
+  const par = PARES[$("m-par").value], n = nocional(par, num("m-cot"), num("m-lote")), m = n / (num("m-alav") || 1);
+  $("r-nom").textContent = us(n, 0); $("r-mar").textContent = us(m); $("r-pc").textContent = num("m-cap") ? pc(m / num("m-cap") * 100) : "—";
+}
+function calcRR() {
+  const lado = +$("r-lado").value, e = num("r-ent"), s = num("r-stp"), a = num("r-alv"), dS = (e - s) * lado, dA = (a - e) * lado;
+  const tamPip = e > 20 ? 0.01 : 0.0001; /* pares com iene e ouro: pip de 0,01 */
+  const f = (d) => Math.round(d / tamPip).toLocaleString("pt-BR") + " pips";
+  $("r-ds").textContent = dS > 0 ? f(dS) : "stop do lado errado"; $("r-da").textContent = dA > 0 ? f(dA) : "alvo do lado errado";
+  $("r-rel").textContent = dS > 0 && dA > 0 ? "1 : " + (dA / dS).toLocaleString("pt-BR", { maximumFractionDigits: 2 }) : "—";
+  const ac = num("e-ac") / 100, gm = num("e-gm"), pm = num("e-pm"), ex = ac * gm - (1 - ac) * pm;
+  $("r-exp").textContent = (ex >= 0 ? "+" : "") + ex.toLocaleString("pt-BR", { maximumFractionDigits: 2 }) + "R"; $("r-exp").className = ex > 0 ? "ok" : "ruim";
+  $("r-eq").textContent = gm + pm > 0 ? pc(pm / (gm + pm) * 100, 1) : "—";
+}
+function calcDD() {
+  const q = Math.min(99.9, num("d-q")) / 100; $("r-rec").textContent = "+" + pc(q / (1 - q) * 100, 1);
+  const s = 1 - Math.pow(1 - num("d-r") / 100, num("d-n")); $("r-seq").textContent = "−" + pc(s * 100, 1); $("r-seq2").textContent = "+" + pc(s / (1 - s) * 100, 1);
+}
+const tudo = () => { calcPip(); calcLote(); calcMargem(); calcRR(); calcDD(); };
+document.querySelectorAll("input, select").forEach((el) => el.addEventListener("input", tudo));
+[["p-par", "p-cot"], ["l-par", "l-cot"], ["m-par", "m-cot"]].forEach(([s, c]) => $(s).addEventListener("change", () => { $(c).value = PARES[$(s).value][4]; tudo(); }));
+document.querySelectorAll("#abas button").forEach((b) => b.onclick = () => {
+  document.querySelectorAll("#abas button").forEach((x) => x.classList.toggle("on", x === b));
+  document.querySelectorAll("[data-aba]").forEach((s) => s.hidden = s.dataset.aba !== b.dataset.a);
+});
+tudo();
+</script>
+</body>
+</html>
