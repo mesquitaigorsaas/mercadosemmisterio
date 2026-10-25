@@ -38,3 +38,10 @@ Qualquer hospedagem de site estático serve (Netlify, Cloudflare Pages, Vercel).
 
 ## Cache
 Ao mudar `site.css`, `site.js` ou `anim.js`, aumente o número `?v=` nos links das páginas HTML. Assim o navegador baixa o arquivo novo, sem esperar os 10 minutos de cache do GitHub Pages.
+
+## Área do aluno (`area/`)
+- `area/index.html`: entrada com e-mail + CPF (ou código do pedido). Chama a função `entrar` do Supabase, que devolve a sessão.
+- `area/sw.js`: service worker que serve tudo em `area/curso/...` a partir do depósito **privado** `curso` do Supabase, com o login do aluno. Sem login ou sem compra ativa, volta para a entrada.
+- `404.html`: num aparelho sem o service worker, endereços `area/curso/...` levam para a entrada.
+- Quem pode entrar: tabela `alunos` (preenchida pela função `aviso-compra`, que recebe os avisos da Kiwify e da Hotmart; reembolso e estorno cortam o acesso). Para liberar alguém à mão: inserir uma linha em `alunos` com `pedido` (vira a senha) e `ativo = true`.
+- Para atualizar os arquivos do curso: `plataformas/area-do-aluno/enviar-curso.js` (exige reativar a função `carregar-curso`).
