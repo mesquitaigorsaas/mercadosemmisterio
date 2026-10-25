@@ -188,12 +188,12 @@ html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o 
 }
 @media (max-width: 380px) { .wrap { padding: 0 16px; } .marca { font-size: 15.5px; } .marca img { width: 44px; height: 44px; } }
 
-/* Instagram no cabeçalho */
-.insta { display: inline-flex; flex: none; width: 20px; height: 20px; border-radius: 6px; transition: transform .15s, box-shadow .2s; }
+/* Instagram no cabeçalho: em telas largas fica centralizado no espaço entre o botão e a borda da tela */
+.insta { display: inline-flex; flex: none; width: 40px; height: 40px; border-radius: 12px; transition: transform .15s, box-shadow .2s; }
 .insta:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 22px rgba(214,36,159,.35); }
-.insta svg { display: block; }
-.insta svg { width: 20px; height: 20px; }
-@media (max-width: 860px) { .insta { margin-left: auto; width: 22px; height: 22px; } .insta svg { width: 22px; height: 22px; } .insta + .burger { margin-left: 12px; } }
+.insta svg { display: block; width: 40px; height: 40px; }
+@media (min-width: 1280px) { .topo .insta { position: absolute; top: 22px; right: calc((100% - var(--max)) / 4 - 10px); } .topo .insta:hover { transform: scale(1.06); } }
+@media (max-width: 860px) { .insta { margin-left: auto; width: 36px; height: 36px; } .insta svg { width: 36px; height: 36px; } .insta + .burger { margin-left: 8px; } }
 
 /* rodapé: linha final com Instagram e crédito */
 .rodape-fim { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; font-size: 13px; }
