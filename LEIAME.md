@@ -35,3 +35,6 @@ Qualquer hospedagem de site estático serve (Netlify, Cloudflare Pages, Vercel).
 
 ## Fotos das aulas
 `assets/img/aula-*.jpg` e `ferr-*.jpg` foram capturadas das aulas reais (1600×900) com o Chrome em modo headless.
+
+## Cache
+Ao mudar `site.css`, `site.js` ou `anim.js`, aumente o número `?v=` nos links das páginas HTML. Assim o navegador baixa o arquivo novo, sem esperar os 10 minutos de cache do GitHub Pages.
