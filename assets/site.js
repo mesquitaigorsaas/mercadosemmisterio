@@ -111,10 +111,13 @@ document.querySelectorAll("[data-painel]").forEach((el) => tradingview(el, "mark
 }));
 document.querySelectorAll("[data-mini]").forEach((el) => tradingview(el, "mini-symbol-overview", { symbol: el.dataset.mini, width: "100%", height: 220, dateRange: "1D", trendLineColor: "#f5b301", underLineColor: "rgba(245,179,1,.18)", underLineBottomColor: "rgba(245,179,1,0)", chartOnly: false, noTimeScale: false }));
 document.querySelectorAll("[data-hotlists]").forEach((el) => tradingview(el, "hotlists", { exchange: "BMFBOVESPA", dateRange: "1D", showChart: true, width: "100%", height: 560, showSymbolLogo: true, showFloatingTooltip: true, plotLineColorGrowing: "#10b981", plotLineColorFalling: "#ef4444", belowLineFillColorGrowing: "rgba(16,185,129,.12)", belowLineFillColorFalling: "rgba(239,68,68,.12)", symbolActiveColor: "rgba(245,179,1,.12)" }));
-document.querySelectorAll("[data-bolsas]").forEach((el) => tradingview(el, "market-quotes", { width: "100%", height: 560, showSymbolLogo: true,
-  symbolsGroups: [
-    { name: "Américas", symbols: [{ name: "BMFBOVESPA:IBOV", displayName: "Ibovespa (Brasil)" }, { name: "FOREXCOM:SPXUSD", displayName: "S&P 500 (EUA)" }, { name: "FOREXCOM:NSXUSD", displayName: "Nasdaq 100 (EUA)" }, { name: "FOREXCOM:DJI", displayName: "Dow Jones (EUA)" }] },
-    { name: "Europa", symbols: [{ name: "INDEX:DEU40", displayName: "DAX (Alemanha)" }, { name: "FOREXCOM:UKXGBP", displayName: "FTSE 100 (Reino Unido)" }, { name: "INDEX:CAC40", displayName: "CAC 40 (França)" }, { name: "INDEX:SX5E", displayName: "Euro Stoxx 50" }] },
-    { name: "Ásia", symbols: [{ name: "INDEX:NKY", displayName: "Nikkei 225 (Japão)" }, { name: "INDEX:HSI", displayName: "Hang Seng (Hong Kong)" }, { name: "SSE:000001", displayName: "Xangai (China)" }, { name: "ASX:XJO", displayName: "ASX 200 (Austrália)" }] },
-  ] }));
+/* bolsas do mundo em abas por região (o modelo de tabela larga do TradingView rolava para o lado e sobrepunha os nomes) */
+document.querySelectorAll("[data-bolsas]").forEach((el) => tradingview(el, "market-overview", {
+  dateRange: "1D", showChart: true, width: "100%", height: 560, showSymbolLogo: true, showFloatingTooltip: true, plotLineColorGrowing: "#10b981", plotLineColorFalling: "#ef4444", belowLineFillColorGrowing: "rgba(16,185,129,.12)", belowLineFillColorFalling: "rgba(239,68,68,.12)", symbolActiveColor: "rgba(245,179,1,.12)",
+  tabs: [
+    { title: "Américas", symbols: [{ s: "BMFBOVESPA:IBOV", d: "Ibovespa (Brasil)" }, { s: "FOREXCOM:SPXUSD", d: "S&P 500 (EUA)" }, { s: "FOREXCOM:NSXUSD", d: "Nasdaq 100 (EUA)" }, { s: "FOREXCOM:DJI", d: "Dow Jones (EUA)" }] },
+    { title: "Europa", symbols: [{ s: "INDEX:DEU40", d: "DAX (Alemanha)" }, { s: "FOREXCOM:UKXGBP", d: "FTSE 100 (Reino Unido)" }, { s: "INDEX:CAC40", d: "CAC 40 (França)" }, { s: "INDEX:SX5E", d: "Euro Stoxx 50" }] },
+    { title: "Ásia", symbols: [{ s: "INDEX:NKY", d: "Nikkei 225 (Japão)" }, { s: "INDEX:HSI", d: "Hang Seng (Hong Kong)" }, { s: "SSE:000001", d: "Xangai (China)" }, { s: "ASX:XJO", d: "ASX 200 (Austrália)" }] },
+  ],
+}));
 document.querySelectorAll("[data-agenda]").forEach((el) => tradingview(el, "events", { width: "100%", height: 560, importanceFilter: "0,1", countryFilter: "br,us,eu,gb,jp,cn" }));
