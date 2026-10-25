@@ -6,7 +6,7 @@
   --r: 18px; --max: 1180px;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; } /* o menu fixo não cobre o título ao clicar num link do menu */
 body { margin: 0; background: var(--bg); color: var(--txt); font: 400 16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: var(--gold); text-decoration: none; }
 img { max-width: 100%; height: auto; display: block; }
