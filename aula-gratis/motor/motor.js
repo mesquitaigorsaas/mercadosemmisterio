@@ -11,8 +11,13 @@ const Motor = (() => {
   try { leitura = localStorage.getItem("tomsm.leitura") !== "0"; } catch (e) {}
   function alturaFaixa() { return leitura ? Math.round(Math.max(130, Math.min(280, innerHeight * 0.24))) : 0; }
   function ajustar() {
-    const p = document.getElementById("palco"), cap = alturaFaixa();
+    const p = document.getElementById("palco");
+    /* celular em pé: o slide fica colado no topo e o texto ocupa todo o resto da tela, sem faixa preta no meio */
+    const retrato = leitura && innerHeight > innerWidth * 1.15;
+    let cap = alturaFaixa();
+    if (retrato) cap = Math.round(innerHeight - innerWidth * 1080 / 1920);
     document.body.classList.toggle("leitura", leitura);
+    document.body.classList.toggle("retrato", retrato);
     document.documentElement.style.setProperty("--faixa", cap + "px");
     const s = Math.min(innerWidth / 1920, (innerHeight - cap) / 1080);
     p.style.top = ((innerHeight - cap) / 2) + "px";
@@ -53,7 +58,7 @@ const Motor = (() => {
   function textoDe(i) { if (i < 0 || i >= seq.length) return ""; const [ti, pi] = seq[i]; return telas[ti].passos[pi]; }
   function atualizarNotas() {
     const n = document.getElementById("notas");
-    n.innerHTML = `<div class="txt">${textoDe(pos)}</div><small>${pos + 1} / ${seq.length} · <kbd>→</kbd> ou clique no slide para continuar</small>`;
+    n.innerHTML = `<div class="txt">${textoDe(pos)}</div><small>${pos + 1} / ${seq.length} · <span class="so-pc"><kbd>→</kbd> ou clique</span><span class="so-cel">toque</span> no slide para continuar<span class="so-cel"> · gire o celular para ver maior</span></small>`;
     n.scrollTop = 0;
     if (janelaNotas && !janelaNotas.closed) desenharJanela();
   }

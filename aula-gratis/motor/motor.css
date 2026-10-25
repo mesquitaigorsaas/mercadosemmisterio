@@ -13,7 +13,7 @@ body.ocioso { cursor: none; }
 h1, h2, h3, .h { font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: -0.03em; }
 
 #palco {
-  position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+  position: fixed; left: 50%; top: 50%; width: 1920px; height: 1080px; /* fixed: no celular o slide não alarga a página */
   transform-origin: 0 0; overflow: hidden;
   background: radial-gradient(1200px 800px at 85% -10%, #1d4f91 0%, transparent 60%), linear-gradient(160deg, var(--navy) 0%, var(--deep) 100%);
 }
@@ -133,3 +133,10 @@ body.ocioso #navaula { opacity: 0; pointer-events: none; }
 #navaula a:hover { border-color: #f5b301; }
 #navaula a.prox { background: #f5b301; color: #10213a; border-color: #f5b301; }
 .tela.final .proxima { cursor: pointer; }
+
+/* celular em pé (classe posta pelo motor) */
+.so-cel { display: none; } body.retrato .so-cel { display: inline; } body.retrato .so-pc { display: none; }
+body.retrato #notas { justify-content: flex-start; gap: 18px; padding-top: 18px; }
+body.retrato #notas .txt { font-size: 19px; line-height: 1.6; }
+body.retrato #notas small { text-align: left; font-size: 13px; }
+@media (hover: none) and (pointer: coarse) { #dica { display: none; } } /* sem teclado no celular: a dica de teclas só atrapalha */

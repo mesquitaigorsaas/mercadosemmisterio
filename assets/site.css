@@ -202,3 +202,5 @@ html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o 
 .rodape-fim .rodape-insta svg { flex: none; transition: transform .15s; } .rodape-fim .rodape-insta:hover svg { transform: scale(1.08); }
 .rodape-fim .credito b { color: var(--gold); }
 @media (max-width: 640px) { .rodape-fim { flex-direction: column; align-items: flex-start; } }
+
+.ls-legenda { margin: 12px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--soft2); }

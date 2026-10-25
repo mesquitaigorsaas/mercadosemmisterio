@@ -54,6 +54,7 @@
         `<div class="ls-horas">${[0, 6, 12, 18, 24].map((h) => `<em style="left:${h / 24 * 100}%">${h}h</em>`).join("")}</div><div class="ls-agora" style="left:calc(var(--ls-esq) + (100% - var(--ls-esq)) * ${hBR / 24})"></div>`;
     };
     desenha(); setInterval(desenha, 60000);
+    el.insertAdjacentHTML("afterend", `<p class="ls-legenda">Cada barra mostra quando a bolsa daquela região está aberta. A linha amarela é a hora de agora. Onde duas barras se cruzam, há mais negociação e mais movimento.</p>`);
   }
   document.querySelectorAll("[data-linha-sessoes]").forEach(linhaSessoes);
 
