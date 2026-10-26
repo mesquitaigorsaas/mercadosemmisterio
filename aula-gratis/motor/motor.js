@@ -1,4 +1,4 @@
-/* Motor de telas do curso Trader — O Mercado Sem Mistério
+/* Motor de telas do curso Forex do Zero
    Teclas: → / Espaço / clique = avançar · ← = voltar · F = tela cheia
            N = liga/desliga o texto da aula embaixo do slide (modo leitura, ligado por padrão) · P = janela do apresentador
            Home = voltar ao início */
