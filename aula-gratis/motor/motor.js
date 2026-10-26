@@ -138,6 +138,9 @@ const Motor = (() => {
     document.body.insertAdjacentHTML("beforeend", '<nav id="navaula"><a href="../">☰ Voltar ao site</a><a class="prox" href="../curso.html">Conhecer o curso completo ▶</a></nav>');
     const nav = document.getElementById("navaula");
     nav.addEventListener("click", (e) => e.stopPropagation());
+    /* saída sempre à mão: a barra acima só aparece no último slide */
+    document.body.insertAdjacentHTML("beforeend", '<a id="sair" href="../" title="Sair da aula e voltar ao site">✕ Sair</a>');
+    document.getElementById("sair").addEventListener("click", (e) => e.stopPropagation());
     const sc = document.createElement("script");
     sc.src = "motor/lista-aulas.js";
     sc.onload = () => {
