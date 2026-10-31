@@ -3,7 +3,7 @@ const CONFIG = {
   supabaseUrl: "https://kgyhgfxkhrdeucvsvehk.supabase.co",
   supabaseKey: "sb_publishable_tqDOSHFcYthq7tHKzpHp-A_9Lstfpqz", // chave pública (só lê notícias e cadastra contatos)
   checkoutUrl: "https://pay.hotmart.com/B108196908U", // checkout da Hotmart (a Kiwify bloqueou o produto em 26/10) — vazio = botões levam à lista de espera
-  precoDe: "R$ 497", precoPor: "R$ 297", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
+  precoDe: "R$ 297", precoPor: "R$ 97", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
 };
 
 /* menu do celular */

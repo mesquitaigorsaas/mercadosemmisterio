@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Trade — Dominando o Mini Índice e o Minidólar | Curso com simulador</title>
+<meta name="description" content="Mini índice e minidólar com método: contratos, margem, estratégias com stop e alvo, risco, psicologia e plano operacional. 56 aulas e simulador.">
+<meta property="og:title" content="Day Trade — Dominando o Mini Índice e o Minidólar">
+<meta property="og:description" content="Mini índice e minidólar com método: contratos, margem, estratégias com stop e alvo, risco, psicologia e plano operacional. 56 aulas e simulador.">
+<meta property="og:image" content="https://mesquitaigorsaas.github.io/mercadosemmisterio/assets/img/produtos/day-trade-banner-1920x1080.png">
+<meta name="theme-color" content="#050e1f">
+<link rel="icon" href="assets/img/emblema-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=8">
+<!-- gerada por cursos-b3/publicacao/gerar-paginas-venda.js: edite lá e gere de novo -->
+<style>
+  .hero-curso { display: grid; grid-template-columns: 1.05fr 1fr; gap: 46px; align-items: center; }
+  @media (max-width: 960px) { .hero-curso { grid-template-columns: 1fr; } }
+  .tela-mock { position: relative; border-radius: 18px; padding: 10px; background: linear-gradient(160deg, #1b3460, #0b1730); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(245,179,1,.08); transform: perspective(1400px) rotateY(-7deg) rotateX(3deg); transition: transform .6s; }
+  .tela-mock:hover { transform: none; }
+  .tela-mock img { border-radius: 10px; width: 100%; height: auto; }
+  .tela-mock { margin-bottom: 26px; }
+  .tela-mock .pill { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); text-align: center; color: #d1fae5; padding: 11px 18px; border-radius: 14px; background: #0b1f3a; border: 1px solid rgba(16,185,129,.4); font: 700 14px Inter; box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .preco-hero { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 6px 0 22px; }
+  .preco-hero s { color: var(--soft2); font-size: 20px; } .preco-hero b { font: 800 44px "Plus Jakarta Sans"; color: #fff; } .preco-hero span { color: var(--soft); }
+  .selos { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: #cbd5e1; font: 600 14px Inter; }
+  .barra-num { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border-radius: 18px; overflow: hidden; border: 1px solid var(--line); }
+  .barra-num div { background: var(--card); padding: 22px 14px; text-align: center; }
+  .barra-num b { display: block; font: 800 30px "Plus Jakarta Sans"; color: var(--gold); } .barra-num span { color: var(--soft); font-size: 14px; }
+  @media (max-width: 760px) { .barra-num { grid-template-columns: repeat(2, 1fr); } .barra-num div:last-child { grid-column: 1 / -1; } }
+  .dado { padding: 26px; } .dado b { display: block; font: 800 54px/1 "Plus Jakarta Sans"; color: var(--down); margin-bottom: 10px; } .dado p { margin: 0; color: #cbd5e1; } .dado small { display: block; color: var(--soft2); margin-top: 10px; font-size: 12.5px; }
+  .pilar { padding: 26px; } .pilar .ic { font-size: 30px; } .pilar h3 { font-size: 20px; margin: 10px 0 6px; } .pilar p { color: var(--soft); margin: 0; font-size: 15.5px; }
+  .nivel-bloco { margin-bottom: 26px; } .nivel-bloco > h3 { display: flex; align-items: center; gap: 10px; font-size: 22px; margin-bottom: 12px; }
+  .nivel-bloco > h3 i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+  details.mod { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
+  details.mod summary { list-style: none; cursor: pointer; padding: 16px 18px; display: grid; grid-template-columns: 100px 1fr auto; gap: 12px; align-items: center; font: 700 16px Inter; }
+  details.mod summary::-webkit-details-marker { display: none; }
+  details.mod summary .n { white-space: nowrap; color: var(--gold); font: 800 13px Inter; letter-spacing: .1em; text-transform: uppercase; }
+  details.mod summary .q { color: var(--soft); font-size: 13.5px; font-weight: 600; }
+  details.mod[open] summary { border-bottom: 1px solid var(--line); }
+  details.mod ol { margin: 0; padding: 12px 18px 16px 18px; color: #cbd5e1; columns: 2; column-gap: 30px; } details.mod li { list-style: none; padding: 4px 0; break-inside: avoid; font-size: 15px; }
+  @media (max-width: 640px) { details.mod ol { columns: 1; } details.mod summary { grid-template-columns: 1fr auto; } details.mod summary .n { grid-column: 1 / -1; } }
+  .galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .galeria figure { margin: 0; } .galeria img { border-radius: 14px; border: 1px solid var(--line); cursor: zoom-in; transition: transform .25s; } .galeria img:hover { transform: scale(1.02); }
+  .galeria figcaption { color: var(--soft); font-size: 14px; margin-top: 8px; }
+  @media (max-width: 860px) { .galeria { grid-template-columns: 1fr 1fr; } } @media (max-width: 560px) { .galeria { grid-template-columns: 1fr; } }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; place-items: center; z-index: 100; padding: 20px; cursor: zoom-out; } .lightbox.on { display: grid; } .lightbox img { max-height: 90vh; border-radius: 12px; }
+  .inclui { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } .inclui > div { display: flex; gap: 14px; padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+  .inclui .ic { font-size: 26px; } .inclui b { display: block; } .inclui span { color: var(--soft); font-size: 14.5px; }
+  @media (max-width: 760px) { .inclui { grid-template-columns: 1fr; } }
+  .para li { list-style: none; padding: 10px 0 10px 34px; position: relative; border-bottom: 1px solid var(--line); color: #dbe4f0; } .para ul { padding: 0; margin: 10px 0 0; }
+  .para li::before { position: absolute; left: 0; top: 9px; font-size: 18px; } .para.sim li::before { content: "✅"; } .para.nao li::before { content: "⛔"; }
+  .instrutor { display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: center; padding: 34px; }
+  .instrutor img { width: 200px; border-radius: 50%; border: 3px solid var(--gold); padding: 10px; background: #0b1f3a; }
+  @media (max-width: 760px) { .instrutor { grid-template-columns: 1fr; text-align: center; } .instrutor img { margin: 0 auto; } }
+  .oferta { max-width: 640px; margin: 0 auto; padding: 38px; text-align: center; border: 2px solid rgba(245,179,1,.5); border-radius: 26px; background: linear-gradient(180deg, #102a52, #0b1730); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+  .oferta .tag { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(245,179,1,.15); color: var(--gold); font: 800 13px Inter; letter-spacing: .08em; text-transform: uppercase; }
+  .oferta s { display: block; color: var(--soft2); font-size: 20px; margin-top: 18px; } .oferta .valor { font: 800 72px/1 "Plus Jakarta Sans"; margin: 6px 0; } .oferta .valor small { font-size: 26px; vertical-align: top; margin-right: 6px; }
+  .oferta ul { text-align: left; margin: 24px 0; padding: 0; } .oferta li { list-style: none; padding: 7px 0 7px 30px; position: relative; color: #dbe4f0; } .oferta li::before { content: "✓"; position: absolute; left: 0; color: var(--up); font-weight: 800; }
+  .garantia { display: flex; gap: 14px; align-items: center; text-align: left; margin-top: 22px; padding: 16px; border-radius: 14px; background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.3); font-size: 14.5px; color: #cbd5e1; } .garantia b { color: #6ee7b7; }
+  @media (max-width: 640px) { .oferta { padding: 26px 18px; border-radius: 20px; } .oferta h2 { font-size: 24px !important; } .oferta .valor { font-size: 58px; } .garantia { padding: 14px; gap: 12px; } .garantia span { font-size: 26px !important; } }
+  details.faq { border-bottom: 1px solid var(--line); } details.faq summary { cursor: pointer; padding: 18px 0; font: 700 17px Inter; list-style: none; display: flex; justify-content: space-between; gap: 14px; } details.faq summary::after { content: "+"; color: var(--gold); font-size: 22px; } details.faq[open] summary::after { content: "−"; } details.faq p { margin: 0 0 18px; color: var(--soft); }
+  .cta-fixo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: rgba(5,14,31,.95); border-top: 1px solid var(--line); padding: 10px 16px; display: none; align-items: center; justify-content: space-between; gap: 10px; backdrop-filter: blur(10px); }
+  .cta-fixo b { font: 800 18px "Plus Jakarta Sans"; } .cta-fixo .btn { padding: 12px 18px; }
+  @media (max-width: 760px) { .cta-fixo.on { display: flex; } body { padding-bottom: 70px; } }
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="./"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a>
+  <nav class="menu"><a href="#conteudo">Conteúdo</a><a href="#instrutor">Instrutor</a><a href="#oferta">Inscrição</a><a href="#faq">Dúvidas</a><a href="./">Mercado ao vivo</a></nav>
+  <a class="btn btn-ouro" href="https://pay.hotmart.com/O108276123F" target="_blank" rel="noopener" style="padding:12px 18px;font-size:15px">Quero me inscrever</a>
+  <a class="insta" href="https://www.instagram.com/traderomercadosemmisterio" target="_blank" rel="noopener" aria-label="Instagram do Mercado Sem Mistério" title="Siga no Instagram"><svg viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><defs><radialGradient id="ig-grad" cx="0.3" cy="1.07" r="1.3"><stop offset="0" stop-color="#fdf497"/><stop offset=".08" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="48" height="48" rx="12" fill="url(#ig-grad)"/><rect x="11" y="11" width="26" height="26" rx="8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6.3" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.6" cy="16.4" r="1.9" fill="#fff"/></svg></a><button class="burger" aria-label="Menu">☰</button>
+</div></header>
+
+<section class="hero" style="padding-bottom:70px"><canvas data-velas aria-hidden="true"></canvas><span class="brilho" style="background:#f5b301;top:-140px;left:30%;opacity:.16"></span><div class="wrap hero-curso">
+  <div>
+    <span class="eyebrow" style="display:block">Curso Day Trade — Dominando o Mini Índice e o Minidólar · intermediário</span>
+    <h1 style="font-size:clamp(34px,5.2vw,58px);margin-top:14px">Mini índice e minidólar com <em>método</em> — e não no impulso.</h1>
+    <p class="lead">56 aulas animadas e interativas e um simulador de day trade para treinar sem dinheiro real. Entenda o que você está operando, quanto pode perder, quando entrar, quando não entrar e como sair.</p>
+    <div class="preco-hero"><b>R$ 97</b><span>à vista ou em até 12x de R$ 10,03 no cartão</span></div>
+    <div class="acoes"><a class="btn btn-ouro btn-g" href="https://pay.hotmart.com/O108276123F" target="_blank" rel="noopener">Quero começar agora</a><a class="btn btn-sec btn-g" href="#conteudo">Ver o conteúdo</a></div>
+    <div class="selos"><span>🛡️ 7 dias de garantia</span><span>🎓 Certificado</span><span>♾️ Acesso vitalício</span><span>📱 No computador e no celular</span></div>
+  </div>
+  <div class="tela-mock surge"><img src="assets/img/produtos/day-trade-banner-1920x1080.png" alt="Day Trade — Dominando o Mini Índice e o Minidólar" width="1920" height="1080"><div class="pill">✓ Simulador de WIN e WDO, candle a candle</div></div>
+</div></section>
+
+<section style="padding:0 0 70px"><div class="wrap">
+  <div class="barra-num surge"><div><b>56</b><span>aulas</span></div><div><b>10</b><span>módulos</span></div><div><b>4</b><span>estratégias com stop e alvo</span></div><div><b>1</b><span>simulador de day trade</span></div><div><b>7 dias</b><span>de garantia</span></div></div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">A verdade que vem primeiro</span><h2>Os contratos mais negociados também são os que mais quebram contas.</h2><p>Por alavancagem, por falta de stop e por decisões no calor do pregão. Por isso o curso começa pelo risco — e mostra também quando não operar.</p></div>
+  <div class="grade3">
+    <div class="card dado surge"><b>91%</b><p>de quem insistiu no day trade de mini índice perdeu dinheiro.</p><small>Estudo da FGV, 2019</small></div>
+    <div class="card dado surge"><b>R$ 155</b><p>de margem mínima no WIN (R$ 140 no WDO) desde 02/02/2026: dá para perder mais do que se tem.</p><small>B3, 2026 · Módulo 2</small></div>
+    <div class="card dado surge"><b style="color:var(--gold)">1 plano</b><p>de uma página, escrito por você, com stop do dia, tamanho da mão e checklist do pregão.</p><small>Módulo 9 · Plano operacional</small></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">O que você vai aprender</span><h2>Do conceito à prática, sempre com o risco na conta.</h2></div>
+  <div class="grade4">
+    <div class="card pilar surge"><span class="ic">📑</span><h3>Conhecer o contrato</h3><p>Ficha técnica do WIN e do WDO, vencimentos de 2026, rolagem e ajuste diário.</p></div>
+    <div class="card pilar surge"><span class="ic">📈</span><h3>Ler o pregão</h3><p>Livro de ofertas, Times &amp; Trades, agressão, VWAP e agenda econômica.</p></div>
+    <div class="card pilar surge"><span class="ic">🎯</span><h3>Entrar e sair com regra</h3><p>4 estratégias completas, stop técnico, alvo realista, breakeven e OCO.</p></div>
+    <div class="card pilar surge"><span class="ic">🧠</span><h3>Controlar risco e cabeça</h3><p>Quantos contratos, stop do dia, sequência de perdas, FOMO e revenge trade.</p></div>
+  </div>
+</div></section>
+
+<section id="conteudo" style="background:var(--bg2)"><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Conteúdo completo</span><h2>10 módulos, 56 aulas</h2><p>Clique em cada módulo para ver as aulas. No fim: prova final e certificado.</p></div>
+  <div>
+    <details class="mod surge"><summary><span class="n">Módulo 0</span><span>Boas-vindas e a verdade sobre o day trade</span><span class="q">4 aulas</span></summary><ol><li><b class="ouro">0.1</b> Boas-vindas e mapa do curso</li><li><b class="ouro">0.2</b> A verdade sobre o day trade</li><li><b class="ouro">0.3</b> Alavancagem: o aviso que vem primeiro</li><li><b class="ouro">0.4</b> Pré-requisitos e ambiente</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 1</span><span>Os contratos: mini índice e minidólar</span><span class="q">7 aulas</span></summary><ol><li><b class="ouro">1.1</b> O que é um contrato futuro</li><li><b class="ouro">1.2</b> Mini índice (WIN): a ficha técnica</li><li><b class="ouro">1.3</b> Minidólar (WDO): a ficha técnica</li><li><b class="ouro">1.4</b> Códigos, vencimentos e rolagem</li><li><b class="ouro">1.5</b> Ajuste diário</li><li><b class="ouro">1.6</b> Horários, leilão e circuit breaker</li><li><b class="ouro">1.7</b> Custos e impostos do day trade</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 2</span><span>Margem e alavancagem</span><span class="q">5 aulas</span></summary><ol><li><b class="ouro">2.1</b> O que é margem de garantia</li><li><b class="ouro">2.2</b> Alavancagem em números</li><li><b class="ouro">2.3</b> Margem de day trade × de posição</li><li><b class="ouro">2.4</b> Zeragem compulsória e chamada de margem</li><li><b class="ouro">2.5</b> Quando se perde mais do que se tem</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 3</span><span>Leitura do mercado em tempo real</span><span class="q">7 aulas</span></summary><ol><li><b class="ouro">3.1</b> O que move o mini índice</li><li><b class="ouro">3.2</b> O que move o minidólar</li><li><b class="ouro">3.3</b> A agenda econômica</li><li><b class="ouro">3.4</b> A abertura e o gap</li><li><b class="ouro">3.5</b> O livro de ofertas nos futuros</li><li><b class="ouro">3.6</b> Times &amp;amp; Trades e agressão</li><li><b class="ouro">3.7</b> Tempos gráficos e a VWAP</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 4</span><span>Estratégias de entrada e saída</span><span class="q">7 aulas</span></summary><ol><li><b class="ouro">4.1</b> Anatomia de uma estratégia</li><li><b class="ouro">4.2</b> Rompimento da faixa de abertura</li><li><b class="ouro">4.3</b> Pullback na VWAP</li><li><b class="ouro">4.4</b> Reversão nas regiões do dia anterior</li><li><b class="ouro">4.5</b> A tendência do dia</li><li><b class="ouro">4.6</b> Quando não operar</li><li><b class="ouro">4.7</b> Saídas: alvo, parcial e stop móvel</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 5</span><span>Stop loss e stop gain</span><span class="q">6 aulas</span></summary><ol><li><b class="ouro">5.1</b> Stop técnico × stop financeiro</li><li><b class="ouro">5.2</b> Onde colocar o stop no WIN e no WDO</li><li><b class="ouro">5.3</b> Stop gain e alvos realistas</li><li><b class="ouro">5.4</b> Breakeven e stop móvel</li><li><b class="ouro">5.5</b> A boleta dos futuros e a ordem OCO</li><li><b class="ouro">5.6</b> Slippage, notícia e gap</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 6</span><span>Gestão de risco no day trade</span><span class="q">5 aulas</span></summary><ol><li><b class="ouro">6.1</b> Risco por operação em pontos e reais</li><li><b class="ouro">6.2</b> Quantos contratos operar</li><li><b class="ouro">6.3</b> Stop do dia e da semana</li><li><b class="ouro">6.4</b> Sequência de perdas</li><li><b class="ouro">6.5</b> Expectativa: acerto × payoff</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 7</span><span>Psicologia do day trader</span><span class="q">5 aulas</span></summary><ol><li><b class="ouro">7.1</b> Por que o day trade mexe com a cabeça</li><li><b class="ouro">7.2</b> Overtrading e revenge trade</li><li><b class="ouro">7.3</b> FOMO e medo de executar</li><li><b class="ouro">7.4</b> Rotina, pausa e saúde</li><li><b class="ouro">7.5</b> Teste: o seu ponto fraco</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 8</span><span>Simulação de operações</span><span class="q">5 aulas</span></summary><ol><li><b class="ouro">8.1</b> Como usar o simulador</li><li><b class="ouro">8.2</b> Operação comentada: rompimento no WIN</li><li><b class="ouro">8.3</b> Operação comentada: o stop no WIN</li><li><b class="ouro">8.4</b> Operação comentada: pullback no WDO</li><li><b class="ouro">8.5</b> Desafio: 10 decisões</li></ol></details>
+    <details class="mod surge"><summary><span class="n">Módulo 9</span><span>Plano operacional e encerramento</span><span class="q">5 aulas</span></summary><ol><li><b class="ouro">9.1</b> O plano operacional de uma página</li><li><b class="ouro">9.2</b> O checklist do pregão</li><li><b class="ouro">9.3</b> Diário e métricas</li><li><b class="ouro">9.4</b> Do simulador ao real</li><li><b class="ouro">9.5</b> Encerramento</li></ol></details>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-titulo surge"><span class="eyebrow">Tudo o que você recebe</span><h2>Aulas interativas, ferramentas e certificado</h2><p>Cada aula é uma sequência de telas animadas que avançam a cada clique, com o texto da explicação e testes no meio do caminho.</p></div>
+  <div class="inclui">
+    <div class="surge"><span class="ic">🎬</span><div><b>56 aulas animadas</b><span>Dos contratos ao plano operacional, em 10 módulos.</span></div></div>
+    <div class="surge"><span class="ic">🕹️</span><div><b>Simulador de day trade</b><span>Pregão de WIN e WDO candle a candle, com stop, alvo e resultado em R.</span></div></div>
+    <div class="surge"><span class="ic">🧮</span><div><b>Calculadora de contratos</b><span>Contratos pelo risco, resultado em reais e imposto do mês.</span></div></div>
+    <div class="surge"><span class="ic">📚</span><div><b>Livro de ofertas animado</b><span>Times &amp; Trades, testes rápidos e jogos de decisão.</span></div></div>
+    <div class="surge"><span class="ic">📝</span><div><b>Plano operacional</b><span>O seu plano de uma página e o checklist do pregão.</span></div></div>
+    <div class="surge"><span class="ic">🎓</span><div><b>Prova final e certificado</b><span>25 questões; certificado com 18 acertos.</span></div></div>
+  </div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap grade2">
+  <div class="card para sim surge" style="padding:28px"><h3 style="font-size:22px">Este curso é para você se…</h3><ul><li>Já sabe o básico da Bolsa (candles, ordens e stop).</li><li>Quer operar mini índice e minidólar com método.</li><li>Quer entender, antes de arriscar, se o day trade é para você.</li><li>Quer treinar no simulador antes da conta real.</li></ul></div>
+  <div class="card para nao surge" style="padding:28px"><h3 style="font-size:22px">Não é para você se…</h3><ul><li>Procura sala de sinais, call ou ganho rápido.</li><li>Não aceita usar stop.</li><li>Pretende operar com dinheiro que faz falta nas contas.</li><li>Ainda não sabe o que é um candle (comece pelo Bolsa de Valores do Zero).</li></ul></div>
+</div></section>
+
+<section id="instrutor"><div class="wrap">
+  <div class="card instrutor surge"><img src="assets/img/logo-800.png" alt="Trader — O Mercado Sem Mistério">
+    <div><span class="eyebrow">Quem conduz o curso</span><h2 style="font-size:clamp(28px,4vw,40px);margin:8px 0 14px">Igor Mesquita</h2>
+      <p style="color:#cbd5e1;font-size:17.5px;margin:0">Tenho 45 anos e acompanho e estudo o mercado financeiro todos os dias. Há 8 anos opero day trade, no Brasil e no exterior. Nesse tempo, aprendi na prática que o mercado não perdoa improviso: o que sustenta um trader é método, gestão de risco e disciplina — e não promessa de ganho rápido. É isso que eu ensino aqui, do jeito que eu gostaria de ter aprendido quando comecei.</p></div></div>
+</div></section>
+
+<section id="oferta" style="background:var(--bg2)"><div class="wrap">
+  <div class="oferta surge">
+    <span class="tag">Inscrições abertas</span>
+    <h2 style="font-size:30px;margin-top:16px">Day Trade — Dominando o Mini Índice e o Minidólar</h2>
+    <div class="valor" style="margin-top:18px">R$ 97</div>
+    <p class="soft" style="margin:0">à vista ou em até 12x de R$ 10,03 no cartão</p>
+    <ul><li>56 aulas em 10 módulos, dos contratos ao plano operacional</li><li>Simulador de day trade e calculadora de contratos</li><li>4 estratégias completas, sempre com stop e alvo</li><li>Prova final e certificado de conclusão</li><li>Acesso vitalício, no computador e no celular</li></ul>
+    <a class="btn btn-ouro btn-g" href="https://pay.hotmart.com/O108276123F" target="_blank" rel="noopener" style="width:100%">Quero me inscrever</a>
+    <div class="garantia"><span style="font-size:34px">🛡️</span><div><b>Garantia de 7 dias.</b> Assista às aulas e use as ferramentas. Se não for o que você esperava, peça o reembolso pela Hotmart em até 7 dias, sem precisar explicar.</div></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap" style="max-width:820px">
+  <div class="sec-titulo surge centro" style="text-align:center"><span class="eyebrow">Dúvidas frequentes</span><h2>Perguntas que você pode estar se fazendo</h2></div>
+  <div class="surge">
+    <details class="faq"><summary>Preciso ter feito o curso de Bolsa do Zero?</summary><p>É recomendado. A aula 0.4 tem um checklist que diz exatamente o que rever antes de seguir.</p></details>
+    <details class="faq"><summary>O simulador usa dinheiro real?</summary><p>Não. São pregões ilustrativos, para treino.</p></details>
+    <details class="faq"><summary>Vocês mandam sinais?</summary><p>Não. O curso ensina a montar e seguir o seu próprio plano operacional.</p></details>
+    <details class="faq"><summary>Vou ganhar dinheiro com o curso?</summary><p>Não prometemos ganho. Contratos futuros são alavancados e podem gerar perdas maiores que o capital depositado. O curso ensina método e controle de risco.</p></details>
+    <details class="faq"><summary>Por quanto tempo tenho acesso?</summary><p>O acesso é vitalício.</p></details>
+    <details class="faq"><summary>Como assisto às aulas?</summary><p>Depois da compra, você entra na Área do aluno do site com o e-mail da compra e o seu CPF. As aulas e o simulador funcionam no computador e no celular.</p></details>
+    <details class="faq"><summary>Tem certificado?</summary><p>Sim, depois da aprovação na prova final (18 acertos de 25).</p></details>
+    <details class="faq"><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia, com devolução integral, pedida pela Hotmart.</p></details>
+  </div>
+  <p class="soft" style="font-size:14px;margin-top:26px"><b class="ouro">Aviso de risco.</b> Curso de finalidade exclusivamente educacional. Não é recomendação de investimento. Operações com contratos futuros são alavancadas e podem gerar perdas maiores que o capital depositado. Resultados passados não garantem resultados futuros.</p>
+  <p style="text-align:center;margin-top:28px"><a class="btn btn-ouro btn-g" href="https://pay.hotmart.com/O108276123F" target="_blank" rel="noopener">Quero começar agora</a></p>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><a class="marca" href="./" style="margin-bottom:10px"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério</span></a><p>Conteúdo educacional sobre o mercado financeiro, por Igor Mesquita.</p></div>
+    <div><h4>Site</h4><a href="./">Mercado ao vivo</a><a href="./#noticias">Notícias</a><a href="ferramentas/calculadora.html">Calculadora</a><a href="curso.html">Forex do Zero</a><a href="curso-bolsa.html">Bolsa de Valores do Zero</a><a href="curso-day-trade.html">Day Trade: Mini Índice e Minidólar</a><a href="area/">Área do aluno</a></div>
+    <div><h4>Legal</h4><a href="termos.html">Termos de uso e aviso de risco</a><a href="privacidade.html">Política de privacidade</a></div>
+  </div>
+  <div class="aviso-risco"><b class="ouro">Aviso de risco.</b> Operar no mercado financeiro, especialmente com alavancagem, envolve risco alto de perda, inclusive de todo o capital aplicado. Este curso é educacional: não é recomendação de investimento, não oferece sinais de compra ou venda e não promete resultado. Os exemplos com operações e gráficos são ilustrativos ou reconstruções didáticas, sempre indicadas como tal. Resultados passados não garantem resultados futuros.</div>
+  <div class="rodape-fim"><p>© 2026 Mercado Sem Mistério · <a href="termos.html">Termos</a> · <a href="privacidade.html">Privacidade</a></p><a class="rodape-insta" href="https://www.instagram.com/traderomercadosemmisterio" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" width="30" height="30" aria-hidden="true"><defs><radialGradient id="ig-grad-r" cx="0.3" cy="1.07" r="1.3"><stop offset="0" stop-color="#fdf497"/><stop offset=".08" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="48" height="48" rx="12" fill="url(#ig-grad-r)"/><rect x="11" y="11" width="26" height="26" rx="8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6.3" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.6" cy="16.4" r="1.9" fill="#fff"/></svg><span>@traderomercadosemmisterio</span></a><p class="credito">Desenvolvido por <a href="https://mesquitasaas.online/" target="_blank" rel="noopener"><b>Mesquita SaaS</b></a></p></div>
+</div></footer>
+<div class="cta-fixo" id="ctaFixo"><div><b>R$ 97</b> <span class="soft" style="font-size:13px">acesso vitalício</span></div><a class="btn btn-ouro" href="https://pay.hotmart.com/O108276123F" target="_blank" rel="noopener">Quero me inscrever</a></div>
+
+<script>
+addEventListener("scroll", () => document.getElementById("ctaFixo").classList.toggle("on", scrollY > 700 && document.getElementById("oferta").getBoundingClientRect().top > innerHeight), { passive: true });
+</script>
+<script src="assets/site.js?v=10"></script>
+<script src="assets/anim.js?v=8"></script>
+</body>
+</html>
