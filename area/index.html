@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Área do aluno — Mercado Sem Mistério</title>
-<meta name="description" content="Entrada da área do aluno do curso Forex do Zero — Entenda e Aprenda a Operar: versão interativa das aulas, calculadora, quizzes, prova e certificado.">
+<meta name="description" content="Entrada da área do aluno dos cursos Trader — O mercado sem mistério: aulas interativas, ferramentas, quizzes, prova e certificado.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/img/emblema-128.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -23,14 +23,15 @@
 .ajuda b{color:#e2e8f0}
 #logado{display:none}
 #logado .btn-sec{margin-top:10px}
+#cursos .btn{justify-content:center;text-align:center}
 </style>
 </head>
 <body>
 <header class="topo"><div class="wrap"><a class="marca" href="../"><img src="../assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a><nav class="menu"><a href="../#mercado">Mercado</a><a href="../#noticias">Notícias</a><a href="../dicas.html">Dicas</a><a href="../curso.html">Curso</a><a href="../#ferramentas">Ferramentas</a></nav><a class="btn btn-ouro" href="../curso.html">Conheça o curso</a><button class="burger" aria-label="Menu">☰</button></div></header>
 <main class="entrada">
   <span class="eyebrow">Área do aluno</span>
-  <h1>Curso interativo</h1>
-  <p>Aqui ficam a versão interativa das 99 aulas, a calculadora do trader, o diário de métricas, os quizzes, a prova final e o certificado.</p>
+  <h1>Cursos interativos</h1>
+  <p>Aqui ficam as aulas interativas dos seus cursos, com as ferramentas, os quizzes, a prova final e o certificado.</p>
 
   <div class="caixa" id="formulario">
     <form id="form-entrar" novalidate>
@@ -43,8 +44,8 @@
   </div>
 
   <div class="caixa" id="logado">
-    <p>Você já está conectado neste aparelho.</p>
-    <a class="btn btn-ouro" id="continuar" href="curso/">Continuar o curso</a>
+    <p id="logado-texto">Você já está conectado neste aparelho.</p>
+    <div id="cursos"><a class="btn btn-ouro" id="continuar" href="curso/">Continuar o curso</a></div>
     <button class="btn btn-sec" type="button" id="sair">Sair deste aparelho</button>
   </div>
 </main>
@@ -52,7 +53,35 @@
 const SB = "https://kgyhgfxkhrdeucvsvehk.supabase.co";
 const CHAVE_PUBLICA = "sb_publishable_tqDOSHFcYthq7tHKzpHp-A_9Lstfpqz";
 const volta = new URLSearchParams(location.search).get("volta") || "";
-const destino = "curso/" + (/^[\w\-./]+$/.test(volta) && !volta.includes("..") ? volta : "");
+const voltaValida = /^[\w\-./]+$/.test(volta) && !volta.includes("..") ? volta : "";
+const destino = "curso/" + voltaValida;
+/* cada curso mora numa pasta de curso/ (o Forex fica na raiz) */
+const CURSOS = {
+  "forex": { nome: "Forex do Zero — Entenda e Aprenda a Operar", pasta: "" },
+  "bolsa-do-zero": { nome: "Aprenda Bolsa de Valores do Zero", pasta: "bolsa-do-zero/" },
+  "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Minidólar", pasta: "day-trade/" },
+};
+/* cursos ativos da pessoa; null se não deu para perguntar (aí o botão leva ao destino de sempre) */
+async function meusCursos(s) {
+  try {
+    const r = await fetch(SB + "/rest/v1/rpc/meus_cursos", { method: "POST", headers: { apikey: CHAVE_PUBLICA, Authorization: "Bearer " + s.access_token, "Content-Type": "application/json" }, body: "{}" });
+    if (!r.ok) return null;
+    return (await r.json()).filter((c) => CURSOS[c]);
+  } catch (e) { return null; }
+}
+/* com "volta" (veio de um endereço do curso) ou um curso só, vai direto; com vários, mostra a lista */
+function mostrarCursos(lista) {
+  const caixa = document.getElementById("cursos");
+  if (!lista || !lista.length) return;
+  if (lista.length === 1) { document.getElementById("continuar").href = voltaValida ? destino : "curso/" + CURSOS[lista[0]].pasta; return; }
+  document.getElementById("logado-texto").textContent = "Você está conectado. Escolha o curso:";
+  caixa.innerHTML = "";
+  for (const c of lista) {
+    const a = document.createElement("a");
+    a.className = "btn btn-ouro"; a.href = "curso/" + CURSOS[c].pasta; a.textContent = CURSOS[c].nome;
+    caixa.appendChild(a);
+  }
+}
 
 /* mesma base de dados que o sw.js lê */
 const abrir = () => new Promise((ok, erro) => { const r = indexedDB.open("area-aluno", 1); r.onupgradeneeded = () => r.result.createObjectStore("sessao"); r.onsuccess = () => ok(r.result); r.onerror = () => erro(r.error); });
@@ -66,10 +95,12 @@ const aviso = (txt, tipo) => { const a = document.getElementById("aviso"); a.tex
 
 (async () => {
   try { await pronto; } catch (e) { aviso("Este navegador não abre a área do aluno. Use Chrome, Edge, Firefox ou Safari atualizados.", "erro"); document.getElementById("botao").disabled = true; return; }
-  if (await ler()) {
+  const s = await ler();
+  if (s) {
     document.getElementById("formulario").style.display = "none";
     document.getElementById("logado").style.display = "block";
     document.getElementById("continuar").href = destino;
+    if (!voltaValida) mostrarCursos(await meusCursos(s));
   }
 })();
 
@@ -89,10 +120,17 @@ document.getElementById("form-entrar").addEventListener("submit", async (e) => {
     const r = await fetch(SB + "/functions/v1/entrar", { method: "POST", headers: { apikey: CHAVE_PUBLICA, "Content-Type": "application/json" }, body: JSON.stringify({ email, senha }) });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.access_token) { aviso(d.erro || "Não foi possível entrar agora. Tente de novo em instantes.", "erro"); botao.disabled = false; return; }
-    await gravar({ access_token: d.access_token, refresh_token: d.refresh_token, expires_at: d.expires_at });
+    const s = { access_token: d.access_token, refresh_token: d.refresh_token, expires_at: d.expires_at };
+    await gravar(s);
     await pronto;
+    const lista = voltaValida ? null : await meusCursos(s);
+    if (lista && lista.length > 1) {
+      document.getElementById("formulario").style.display = "none";
+      document.getElementById("logado").style.display = "block";
+      return mostrarCursos(lista);
+    }
     aviso("Tudo certo! Abrindo o curso…", "ok");
-    location.href = destino;
+    location.href = lista && lista.length === 1 ? "curso/" + CURSOS[lista[0]].pasta : destino;
   } catch (err) {
     aviso("Sem conexão com o servidor. Confira a internet e tente de novo.", "erro");
     botao.disabled = false;
