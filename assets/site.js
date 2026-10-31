@@ -2,7 +2,6 @@
 const CONFIG = {
   supabaseUrl: "https://kgyhgfxkhrdeucvsvehk.supabase.co",
   supabaseKey: "sb_publishable_tqDOSHFcYthq7tHKzpHp-A_9Lstfpqz", // chave pública (só lê notícias e cadastra contatos)
-  checkoutUrl: "https://pay.hotmart.com/B108196908U", // checkout da Hotmart (a Kiwify bloqueou o produto em 26/10) — vazio = botões levam à lista de espera
   precoDe: "R$ 297", precoPor: "R$ 97", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
 };
 
@@ -16,11 +15,8 @@ document.addEventListener("click", (e) => {
 const obs = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("vis"); obs.unobserve(e.target); } }), { threshold: .12 }) : null;
 document.querySelectorAll(".surge").forEach((el) => (obs ? obs.observe(el) : el.classList.add("vis")));
 
-/* botões de compra: checkout ou lista de espera */
-document.querySelectorAll("[data-comprar]").forEach((a) => {
-  if (CONFIG.checkoutUrl) { a.href = CONFIG.checkoutUrl; a.target = "_blank"; a.rel = "noopener"; }
-  else { a.href = a.dataset.semCheckout || "#lista"; }
-});
+/* botões de compra (data-comprar): abrem a janela de compra do assets/comprar.js (pagamento no Mercado Pago) */
+document.querySelectorAll("[data-comprar]").forEach((a) => { a.href = "#comprar"; a.removeAttribute("target"); });
 document.querySelectorAll("[data-preco-de]").forEach((e) => (e.textContent = CONFIG.precoDe));
 document.querySelectorAll("[data-preco-por]").forEach((e) => (e.textContent = CONFIG.precoPor));
 document.querySelectorAll("[data-parcelas]").forEach((e) => (e.textContent = CONFIG.parcelas));

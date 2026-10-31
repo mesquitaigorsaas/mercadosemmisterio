@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua inscrição — Mercado Sem Mistério</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/emblema-128.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=8">
+<style>
+.caixa-pedido{max-width:620px;margin:0 auto;padding:60px 20px 90px;text-align:center}
+.icone{font-size:64px;line-height:1}
+.caixa-pedido h1{font-size:clamp(30px,6vw,44px);margin:16px 0 10px}
+.caixa-pedido p{color:#cbd5e1;font-size:17px}
+.passos{margin:28px 0;padding:22px;text-align:left;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}
+.passos ol{margin:0;padding-left:22px;color:#dbe4f0}.passos li{padding:6px 0}
+.codigo{display:inline-block;margin-top:6px;padding:6px 12px;border-radius:10px;background:#071428;border:1px solid var(--line);font:700 15px ui-monospace,monospace;color:var(--gold)}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><a class="marca" href="./"><img src="assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a><nav class="menu"><a href="./#cursos">Cursos</a><a href="area/">Área do aluno</a></nav><a class="btn btn-ouro" href="area/">Área do aluno</a><button class="burger" aria-label="Menu">☰</button></div></header>
+<main class="caixa-pedido">
+  <div class="icone" id="icone">⏳</div>
+  <h1 id="titulo">Conferindo o seu pagamento…</h1>
+  <p id="texto">Isso leva só alguns segundos.</p>
+  <div class="passos" id="passos" style="display:none">
+    <b>Como entrar no curso</b>
+    <ol>
+      <li>Abra a <a href="area/">Área do aluno</a>.</li>
+      <li>Digite o <b>e-mail</b> que você usou na compra.</li>
+      <li>No segundo campo, digite o seu <b>CPF</b> (ou o código do pedido abaixo).</li>
+    </ol>
+    <p style="margin:12px 0 0;font-size:14px">Código do pedido: <span class="codigo" id="codigo"></span></p>
+  </div>
+  <div id="acoes"></div>
+  <p class="soft" style="font-size:13.5px;margin-top:30px">Guarde o código do pedido. Garantia de 7 dias: se não for o que você esperava, peça o reembolso e devolvemos o valor integral.</p>
+</main>
+<script>
+const FUNCAO = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/pagar";
+const NOMES = { "forex": "Forex do Zero", "bolsa-do-zero": "Aprenda Bolsa de Valores do Zero", "day-trade": "Mini Índice e Mini Dólar" };
+const PAGINAS = { "forex": "curso.html", "bolsa-do-zero": "curso-bolsa.html", "day-trade": "curso-mini-indice-e-mini-dolar.html" };
+let codigo = new URLSearchParams(location.search).get("pedido") || "";
+try { if (!codigo) codigo = localStorage.getItem("msm.ultimo-pedido") || ""; } catch (_) {}
+const $ = (id) => document.getElementById(id);
+const mostra = (icone, titulo, texto, acoes) => { $("icone").textContent = icone; $("titulo").textContent = titulo; $("texto").textContent = texto; $("acoes").innerHTML = acoes || ""; };
+
+let tentativas = 0;
+async function confere() {
+  if (!/^MSM-[A-Z0-9]{6}$/.test(codigo)) return mostra("🔎", "Não encontramos o seu pedido", "Se você acabou de pagar, confira o e-mail do Mercado Pago ou entre na Área do aluno com o e-mail e o CPF da compra.", '<a class="btn btn-ouro btn-g" href="area/">Ir para a Área do aluno</a>');
+  $("codigo").textContent = codigo;
+  let d = {};
+  try { d = await (await fetch(FUNCAO + "?codigo=" + encodeURIComponent(codigo))).json(); } catch (_) {}
+  const curso = NOMES[d.curso] || "o curso";
+  if (d.status === "approved") {
+    $("passos").style.display = "block";
+    return mostra("🎉", "Pagamento aprovado!", `Bem-vindo(a) a ${curso}. O seu acesso já está liberado.`, '<a class="btn btn-ouro btn-g" href="area/">Entrar no curso agora</a>');
+  }
+  if (["rejected", "cancelled", "erro"].includes(d.status)) {
+    return mostra("⚠️", "O pagamento não foi concluído", "Nenhum valor foi cobrado. Você pode tentar de novo com outra forma de pagamento.", `<a class="btn btn-ouro btn-g" href="${PAGINAS[d.curso] || "./#cursos"}?comprar=${d.curso || ""}">Tentar de novo</a>`);
+  }
+  if (["refunded", "charged_back"].includes(d.status)) return mostra("↩️", "Pedido reembolsado", "O valor foi devolvido e o acesso a este curso foi encerrado.");
+  /* pendente: Pix ainda não pago, boleto aguardando compensação ou aviso do Mercado Pago a caminho */
+  $("passos").style.display = "block";
+  mostra("⏳", "Aguardando a confirmação do pagamento", "Pix costuma confirmar em segundos; boleto, em até 3 dias úteis. Assim que for aprovado, o acesso é liberado sozinho — esta página se atualiza.");
+  if (tentativas++ < 40) setTimeout(confere, 8000);
+}
+confere();
+</script>
+<script src="assets/site.js?v=11"></script>
+</body>
+</html>
