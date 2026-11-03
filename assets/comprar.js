@@ -7,6 +7,7 @@
     "bolsa-do-zero": { nome: "Aprenda Bolsa de Valores do Zero", resumo: "65 aulas · 10 módulos · prova e certificado" },
     "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Minidólar", resumo: "56 aulas · simulador de day trade · certificado" },
   };
+  const HOTMART = { "forex": "https://pay.hotmart.com/B108196908U", "bolsa-do-zero": "https://pay.hotmart.com/V108276074N" };
   const PRECO = "R$ 97", PARCELAS = "à vista no Pix ou em até 12x no cartão";
 
   const css = `
@@ -88,6 +89,9 @@
     try {
       const r = await fetch(FUNCAO, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ curso, nome, email, cpf }) });
       const d = await r.json().catch(() => ({}));
+      // 503 = Mercado Pago ainda sem token: Forex e Bolsa seguem pela Hotmart; o Day Trade só é vendido aqui
+      if (r.status === 503 && HOTMART[curso]) { msg("Levando você ao pagamento seguro…", "ok"); location.href = HOTMART[curso]; return; }
+      if (r.status === 503) { msg("As inscrições deste curso abrem em breve. Volte nos próximos dias.", "erro"); botao.disabled = false; return; }
       if (!r.ok || !d.url) { msg(d.erro || "Não foi possível iniciar o pagamento. Tente de novo.", "erro"); botao.disabled = false; return; }
       try { localStorage.setItem("msm.ultimo-pedido", d.codigo); } catch (_) {}
       msg("Tudo certo! Levando você ao Mercado Pago…", "ok");
