@@ -2,7 +2,7 @@
 const CONFIG = {
   supabaseUrl: "https://kgyhgfxkhrdeucvsvehk.supabase.co",
   supabaseKey: "sb_publishable_tqDOSHFcYthq7tHKzpHp-A_9Lstfpqz", // chave pública (só lê notícias e cadastra contatos)
-  precoDe: "R$ 297", precoPor: "R$ 97", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
+  precoPor: "R$ 97", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
 };
 
 /* menu do celular */
@@ -17,7 +17,6 @@ document.querySelectorAll(".surge").forEach((el) => (obs ? obs.observe(el) : el.
 
 /* botões de compra (data-comprar): abrem a janela de compra do assets/comprar.js (pagamento no Mercado Pago) */
 document.querySelectorAll("[data-comprar]").forEach((a) => { a.href = "#comprar"; a.removeAttribute("target"); });
-document.querySelectorAll("[data-preco-de]").forEach((e) => (e.textContent = CONFIG.precoDe));
 document.querySelectorAll("[data-preco-por]").forEach((e) => (e.textContent = CONFIG.precoPor));
 document.querySelectorAll("[data-parcelas]").forEach((e) => (e.textContent = CONFIG.parcelas));
 
