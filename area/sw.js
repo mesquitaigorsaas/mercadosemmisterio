@@ -43,6 +43,43 @@ async function sessaoValida() {
 const BASE = new URL("curso/", self.registration.scope).pathname;
 const paraEntrar = (rel) => Response.redirect(new URL("./?volta=" + encodeURIComponent(rel), self.registration.scope).href, 302);
 
+/* ---------- proteção das aulas (as apostilas em PDF continuam baixáveis) ---------- */
+const emailDe = (s) => { try { return JSON.parse(atob(s.access_token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).email || ""; } catch (e) { return ""; } };
+/* roda dentro de cada página HTML do curso; vai como texto para o <script> */
+function proteger(email) {
+  const d = document;
+  /* cópia salva no computador ou aberta fora da Área do aluno: não mostra a aula */
+  if (location.protocol === "file:" || !(navigator.serviceWorker && navigator.serviceWorker.controller)) {
+    d.documentElement.innerHTML = '<body style="margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#050e1f;color:#eef3fb;font:17px system-ui;text-align:center;padding:16px">As aulas só abrem na Área do aluno do site Mercado Sem Mistério.</body>';
+    return;
+  }
+  const css = d.createElement("style");
+  css.textContent = "html,body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:text}img,canvas,svg{-webkit-user-drag:none}@media print{body{display:none!important}}"
+    + ".msm-marca{position:fixed;inset:0;z-index:2147483647;pointer-events:none;overflow:hidden;opacity:.045}.msm-marca span{position:absolute;white-space:nowrap;font:600 15px system-ui;color:#fff;text-shadow:0 0 2px #000;transform:rotate(-24deg)}";
+  d.head.appendChild(css);
+  const bloquear = (e) => e.preventDefault();
+  ["copy", "cut", "dragstart", "selectstart"].forEach((t) => d.addEventListener(t, (e) => { if (!e.target.closest || !e.target.closest("input,textarea,select,[contenteditable]")) bloquear(e); }, true));
+  d.addEventListener("contextmenu", bloquear, true);
+  addEventListener("keydown", (e) => {
+    const k = (e.key || "").toLowerCase(), mod = e.ctrlKey || e.metaKey;
+    if (k === "f12" || (mod && ["s", "p", "u"].includes(k)) || (mod && e.shiftKey && ["i", "j", "c"].includes(k))) { e.preventDefault(); e.stopImmediatePropagation(); }
+  }, true);
+  addEventListener("beforeprint", () => { d.body.style.visibility = "hidden"; });
+  addEventListener("afterprint", () => { d.body.style.visibility = ""; });
+  if (email) {
+    const marca = d.createElement("div");
+    marca.className = "msm-marca";
+    for (let y = 0; y < 8; y++) for (let x = 0; x < 4; x++) {
+      const sp = d.createElement("span");
+      sp.textContent = email + " · uso pessoal";
+      sp.style.left = (x * 28 + (y % 2) * 14 - 6) + "%";
+      sp.style.top = (y * 13 + 4) + "%";
+      marca.appendChild(sp);
+    }
+    (d.body || d.documentElement).appendChild(marca);
+  }
+}
+
 async function servir(req) {
   const url = new URL(req.url);
   let rel = decodeURIComponent(url.pathname.slice(BASE.length));
@@ -63,6 +100,10 @@ async function servir(req) {
     return new Response("", { status: r.status === 404 ? 404 : 403 });
   }
   const ext = (rel.split(".").pop() || "").toLowerCase();
+  if (ext === "html") {
+    const html = (await r.text()).replace(/<\/body>/i, `<script>(${proteger})(${JSON.stringify(emailDe(s))})</script></body>`);
+    return new Response(html, { status: 200, headers: { "Content-Type": TIPOS.html, "Cache-Control": "no-store" } });
+  }
   return new Response(r.body, { status: 200, headers: { "Content-Type": TIPOS[ext] || r.headers.get("Content-Type") || "application/octet-stream", "Cache-Control": "no-store" } });
 }
 
