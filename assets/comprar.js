@@ -46,7 +46,7 @@
         <button class="btn btn-ouro btn-g" type="submit" id="cmpBotao">Ir para o pagamento seguro</button>
         <p class="msg" id="cmpMsg" role="status"></p>
       </form>
-      <div class="seguro"><span>🔒 Pagamento pelo Mercado Pago</span><span>⚡ Pix, cartão ou boleto</span><span>🛡️ 7 dias de garantia</span></div>
+      <div class="seguro"><span>🔒 Pagamento pelo Mercado Pago</span><span>⚡ Pix, cartão ou boleto</span></div>
       <p class="obs">O acesso é liberado assim que o pagamento é aprovado. Para entrar na Área do aluno, use este e-mail e o seu CPF.</p>
     </div>
   </div>`);
