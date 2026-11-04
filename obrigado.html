@@ -38,8 +38,8 @@
 </main>
 <script>
 const FUNCAO = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/pagar";
-const NOMES = { "forex": "Forex do Zero", "bolsa-do-zero": "Aprenda Bolsa de Valores do Zero", "day-trade": "Day Trade — Dominando o Mini Índice e o Mini Dólar" };
-const PAGINAS = { "forex": "curso.html", "bolsa-do-zero": "curso-bolsa.html", "day-trade": "curso-day-trade.html" };
+const NOMES = { "forex": "Forex do Zero", "bolsa-do-zero": "Aprenda Bolsa de Valores do Zero", "day-trade": "Day Trade — Dominando o Mini Índice e o Mini Dólar", "price-action": "Price Action — Aprenda a Ler o Mercado" };
+const PAGINAS = { "forex": "curso.html", "bolsa-do-zero": "curso-bolsa.html", "day-trade": "curso-day-trade.html", "price-action": "curso-price-action.html" };
 let codigo = new URLSearchParams(location.search).get("pedido") || "";
 try { if (!codigo) codigo = localStorage.getItem("msm.ultimo-pedido") || ""; } catch (_) {}
 const $ = (id) => document.getElementById(id);
