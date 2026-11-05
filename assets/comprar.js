@@ -1,5 +1,5 @@
 /* Compra direta pelo site: janela com nome, e-mail e CPF → função "pagar" do Supabase → página segura do Mercado Pago.
-   Qualquer link com data-comprar abre a janela; o curso vem de data-curso (forex, bolsa-do-zero, day-trade ou price-action). */
+   Qualquer link com data-comprar abre a janela; o curso vem de data-curso (forex, bolsa-do-zero, day-trade, price-action ou swing-trade). */
 (() => {
   const FUNCAO = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/pagar";
   const CURSOS = {
@@ -7,6 +7,7 @@
     "bolsa-do-zero": { nome: "Aprenda Bolsa de Valores do Zero", resumo: "65 aulas · 10 módulos · prova e certificado" },
     "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Mini Dólar", resumo: "56 aulas · simulador de day trade · certificado" },
     "price-action": { nome: "Price Action — Aprenda a Ler o Mercado", resumo: "59 aulas · replay de treino · prova e certificado" },
+    "swing-trade": { nome: "Swing Trade — Estratégias para Operar Ações", resumo: "58 aulas · backtest real · prova e certificado" },
   };
   const HOTMART = { "forex": "https://pay.hotmart.com/B108196908U", "bolsa-do-zero": "https://pay.hotmart.com/V108276074N" };
   const PRECO = "R$ 97", PARCELAS = "à vista no Pix ou em até 12x no cartão";
