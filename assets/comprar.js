@@ -1,5 +1,5 @@
 /* Compra direta pelo site: janela com nome, e-mail e CPF → função "pagar" do Supabase → página segura do Mercado Pago.
-   Qualquer link com data-comprar abre a janela; o curso vem de data-curso (forex, bolsa-do-zero, day-trade, price-action ou swing-trade). */
+   Qualquer link com data-comprar abre a janela; o curso vem de data-curso (forex, bolsa-do-zero, day-trade, price-action, swing-trade ou nasdaq). */
 (() => {
   const FUNCAO = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/pagar";
   const CURSOS = {
@@ -8,6 +8,7 @@
     "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Mini Dólar", resumo: "56 aulas · simulador de day trade · certificado" },
     "price-action": { nome: "Price Action — Aprenda a Ler o Mercado", resumo: "59 aulas · replay de treino · prova e certificado" },
     "swing-trade": { nome: "Swing Trade — Estratégias para Operar Ações", resumo: "58 aulas · backtest real · prova e certificado" },
+    "nasdaq": { nome: "Tudo sobre NASDAQ — Aprenda a operar com confiança", resumo: "114 aulas · NQ, MNQ e NAS100 · simulador e certificado", preco: "R$ 119,90" },
   };
   const HOTMART = { "forex": "https://pay.hotmart.com/B108196908U", "bolsa-do-zero": "https://pay.hotmart.com/V108276074N" };
   const PRECO = "R$ 97", PARCELAS = "à vista no Pix ou em até 12x no cartão";
@@ -39,7 +40,7 @@
       <span class="eyebrow">Inscrição</span>
       <h3 id="cmpTitulo"></h3>
       <p class="res" id="cmpResumo"></p>
-      <div class="preco"><b>${PRECO}</b><span>${PARCELAS}</span></div>
+      <div class="preco"><b id="cmpPreco">${PRECO}</b><span>${PARCELAS}</span></div>
       <form id="cmpForm" novalidate>
         <label>Nome completo<input type="text" name="nome" autocomplete="name" maxlength="120" required></label>
         <label>E-mail<input type="email" name="email" autocomplete="email" maxlength="200" required placeholder="o mesmo que vai usar para entrar no curso"></label>
@@ -60,6 +61,7 @@
     curso = CURSOS[c] ? c : "forex";
     document.getElementById("cmpTitulo").textContent = CURSOS[curso].nome;
     document.getElementById("cmpResumo").textContent = CURSOS[curso].resumo;
+    document.getElementById("cmpPreco").textContent = CURSOS[curso].preco || PRECO;
     msg(""); fundo.classList.add("on"); document.body.style.overflow = "hidden";
     setTimeout(() => form.nome.focus(), 50);
   };
