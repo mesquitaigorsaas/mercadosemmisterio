@@ -15,8 +15,7 @@ document.addEventListener("click", (e) => {
 const obs = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("vis"); obs.unobserve(e.target); } }), { threshold: .12 }) : null;
 document.querySelectorAll(".surge").forEach((el) => (obs ? obs.observe(el) : el.classList.add("vis")));
 
-/* botões de compra (data-comprar): abrem a janela de compra do assets/comprar.js (pagamento no Mercado Pago) */
-document.querySelectorAll("[data-comprar]").forEach((a) => { a.href = "#comprar"; a.removeAttribute("target"); });
+/* botões de compra (data-comprar): o assets/comprar.js aponta cada um para o checkout da Hotmart */
 document.querySelectorAll("[data-preco-por]").forEach((e) => (e.textContent = CONFIG.precoPor));
 document.querySelectorAll("[data-parcelas]").forEach((e) => (e.textContent = CONFIG.parcelas));
 
