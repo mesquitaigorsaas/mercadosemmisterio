@@ -292,7 +292,7 @@ function render(d) {
   // status
   const st = $("st-status"); st.className = "pill " + (d.janelaPayroll ? "vivo" : oks < fs.length ? "alerta" : "");
   st.querySelector("span").textContent = d.janelaPayroll ? "janela do payroll · atualiza a cada 1 min" : "atualiza a cada 10 min";
-  $("st-hora").textContent = "Nova York " + String(Math.floor(d.horaNY.minutos / 60)).padStart(2, "0") + "h" + String(d.horaNY.minutos % 60).padStart(2, "0");
+  st.querySelector("span").textContent += " · dados de " + new Date(d.buscadoEm).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
   $("lim-n").textContent = HIST.length;
 }
 
@@ -342,6 +342,14 @@ function widget(el, simbolo, nome) {
   box.firstChild.appendChild(s);
   const leg = document.createElement("div"); leg.className = "sub"; leg.textContent = nome; box.appendChild(leg);
 }
+
+/* relógio de Nova York ao vivo (o horário de verão dos EUA é tratado pelo próprio navegador) */
+function relogio() {
+  const ny = new Date().toLocaleTimeString("pt-BR", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit" });
+  const aqui = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  $("st-hora").textContent = `Nova York ${ny} · aqui ${aqui}`;
+}
+relogio(); setInterval(relogio, 15e3);
 
 let intervalo = 10 * 60e3, timer;
 async function atualizar() {
