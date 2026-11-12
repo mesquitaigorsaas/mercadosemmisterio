@@ -23,7 +23,8 @@
 .ajuda b{color:#e2e8f0}
 #logado{display:none}
 #logado .btn-sec{margin-top:10px}
-#cursos .btn{justify-content:center;text-align:center;padding:14px 16px;font-size:15px;line-height:1.3}
+#cursos .btn{flex-direction:column;justify-content:center;gap:2px;text-align:center;padding:12px 16px;font-size:16px;line-height:1.25}
+#cursos .btn .sub{font-weight:600;font-size:14px;opacity:.85}
 </style>
 </head>
 <body>
@@ -57,12 +58,12 @@ const voltaValida = /^[\w\-./]+$/.test(volta) && !volta.includes("..") ? volta :
 const destino = "curso/" + voltaValida;
 /* cada curso mora numa pasta de curso/ (o Forex fica na raiz) */
 const CURSOS = {
-  "forex": { nome: "Forex do Zero — Entenda e Aprenda a Operar", pasta: "" },
-  "bolsa-do-zero": { nome: "Aprenda Bolsa de Valores do Zero", pasta: "bolsa-do-zero/" },
-  "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Mini Dólar", pasta: "day-trade/" },
-  "price-action": { nome: "Price Action — Aprenda a Ler o Mercado", pasta: "price-action/" },
-  "swing-trade": { nome: "Swing Trade — Estratégias para Operar Ações", pasta: "swing-trade/" },
-  "nasdaq": { nome: "Tudo sobre NASDAQ — Aprenda a operar com confiança", pasta: "nasdaq/" },
+  "forex": { nome: "Forex do Zero — Entenda e Aprenda a Operar", titulo: "Forex do Zero", sub: "Entenda e aprenda a operar", pasta: "" },
+  "bolsa-do-zero": { nome: "Aprenda Bolsa de Valores do Zero", titulo: "Aprenda Bolsa de Valores do Zero", sub: "", pasta: "bolsa-do-zero/" },
+  "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Mini Dólar", titulo: "Day Trade", sub: "Dominando o Mini Índice e o Mini Dólar", pasta: "day-trade/" },
+  "price-action": { nome: "Price Action — Aprenda a Ler o Mercado", titulo: "Price Action", sub: "Aprenda a ler o mercado", pasta: "price-action/" },
+  "swing-trade": { nome: "Swing Trade — Estratégias para Operar Ações", titulo: "Swing Trade", sub: "Estratégias para operar ações", pasta: "swing-trade/" },
+  "nasdaq": { nome: "Tudo sobre NASDAQ — Aprenda a operar com confiança", titulo: "Tudo sobre NASDAQ", sub: "Aprenda a operar com confiança", pasta: "nasdaq/" },
 };
 /* cursos ativos da pessoa; null se não deu para perguntar (aí o botão leva ao destino de sempre) */
 async function meusCursos(s) {
@@ -81,7 +82,11 @@ function mostrarCursos(lista) {
   caixa.innerHTML = "";
   for (const c of lista) {
     const a = document.createElement("a");
-    a.className = "btn btn-ouro"; a.href = "curso/" + CURSOS[c].pasta; a.textContent = CURSOS[c].nome;
+    a.className = "btn btn-ouro"; a.href = "curso/" + CURSOS[c].pasta;
+    // botão em duas linhas: nome principal e, embaixo, o complemento (sem o travessão)
+    const t = document.createElement("span"); t.className = "nome"; t.textContent = CURSOS[c].titulo; a.appendChild(t);
+    if (CURSOS[c].sub) { const s = document.createElement("span"); s.className = "sub"; s.textContent = CURSOS[c].sub; a.appendChild(s); }
+    a.setAttribute("aria-label", CURSOS[c].nome);
     caixa.appendChild(a);
   }
 }
