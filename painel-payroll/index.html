@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Radar do Payroll</title>
+<link rel="icon" href="../assets/img/emblema-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- página oculta: não tem link no site e pede aos buscadores para não indexar -->
+<style>
+:root{--bg:#050e1f;--card:#0b1a33;--card2:#0f2342;--line:rgba(255,255,255,.09);--txt:#eef3fb;--soft:#a9b8cf;--soft2:#7d8fab;--ouro:#f5b301;--verde:#22c55e;--verm:#ef4444;--azul:#60a5fa;--roxo:#a78bfa}
+*{box-sizing:border-box}html{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 Inter,system-ui,sans-serif}
+a{color:var(--ouro)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:rgba(5,14,31,.9);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
+header .wrap{display:flex;align-items:center;gap:14px;min-height:64px;flex-wrap:wrap}
+header img{width:38px;height:38px}
+header b{font:800 18px "Plus Jakarta Sans"}header small{display:block;color:var(--soft2);font-size:12px}
+header .dir{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:12.5px;white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--soft2);display:inline-block}
+.pill.vivo i{background:var(--verde);box-shadow:0 0 0 4px rgba(34,197,94,.15)}
+.pill.alerta i{background:var(--ouro)}
+h1{font:800 clamp(28px,4.4vw,44px)/1.1 "Plus Jakarta Sans";margin:26px 0 6px}
+h1 em{font-style:normal;color:var(--ouro)}
+h2{font:800 22px "Plus Jakarta Sans";margin:0 0 4px}
+.lead{color:var(--soft);max-width:760px;margin:0 0 18px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1.15fr .85fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media (min-width:600px) and (max-width:900px){.g4{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0}
+.card h3{font:700 15px Inter;margin:0 0 10px;color:var(--soft)}
+.sec{margin:34px 0 10px}
+.sec p{color:var(--soft2);margin:0 0 14px;font-size:14px}
+.sub{color:var(--soft2);font-size:13px}
+.num{font:800 30px "Plus Jakarta Sans"}
+.verde{color:var(--verde)}.verm{color:var(--verm)}.ouro{color:var(--ouro)}
+/* principal */
+.principal{display:grid;grid-template-columns:320px 1fr;gap:22px;align-items:center}
+@media (max-width:760px){.principal{grid-template-columns:1fr}}
+.gauge{position:relative;max-width:320px;margin:0 auto;width:100%}
+.gauge .meio{position:absolute;left:0;right:0;bottom:6%;text-align:center}
+.gauge .meio .p{font:800 46px "Plus Jakarta Sans";line-height:1}
+.gauge .meio .l{color:var(--soft);font-size:13px}
+.barra{height:14px;border-radius:999px;background:var(--verm);overflow:hidden;margin:10px 0 6px}
+.barra span{display:block;height:100%;background:var(--verde)}
+.selo{display:inline-block;padding:4px 10px;border-radius:8px;font:700 12px Inter;letter-spacing:.02em;background:rgba(245,179,1,.12);color:var(--ouro);border:1px solid rgba(245,179,1,.35)}
+.passos{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.passos li{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed var(--line);padding-top:8px;font-size:14px}
+.passos li span:last-child{font-weight:700;white-space:nowrap}
+.sinal{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.sinal b{font-size:22px}
+.seta{font-weight:800}
+.lim{border:1px solid rgba(245,179,1,.4);background:rgba(245,179,1,.06)}
+.lim ol{margin:6px 0 0;padding-left:20px;color:var(--soft)}
+.lim li{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--soft2);font-weight:600}
+.tabela{overflow-x:auto}
+.fontes li{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line)}
+.fontes{list-style:none;margin:0;padding:0}
+.ok{color:var(--verde)}.erro{color:var(--verm)}
+input{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font:600 15px Inter;width:100%}
+label{font-size:13px;color:var(--soft)}
+.tv{min-height:220px}
+.risco{color:var(--soft2);font-size:13px;margin:30px 0 40px;border-top:1px solid var(--line);padding-top:16px}
+canvas{max-width:100%}
+.carregando{color:var(--soft2)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <img src="../assets/img/emblema-160.png" alt="">
+  <div><b>Radar do Payroll</b><small>NASDAQ × relatório de emprego dos EUA</small></div>
+  <div class="dir">
+    <span class="pill" id="st-status"><i></i><span>carregando…</span></span>
+    <span class="pill" id="st-hora">—</span>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <h1>Para que lado o Nasdaq tende a ir <em>no dia do payroll</em>?</h1>
+  <p class="lead">Índice calculado com dados oficiais (BLS e Fed de St. Louis) e com a reação real do Nasdaq 100 nos últimos payrolls. Ele mostra um <b>viés histórico condicionado</b>, não uma previsão.</p>
+
+  <!-- PRINCIPAL -->
+  <div class="card">
+    <div class="principal">
+      <div class="gauge"><canvas id="g-gauge" height="190"></canvas>
+        <div class="meio"><div class="p" id="p-alta">—</div><div class="l">chance estimada de <b>alta</b> no dia</div></div>
+      </div>
+      <div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><h2 id="t-titulo">Próximo payroll</h2><span class="selo" id="selo">índice de viés · não calibrado</span></div>
+        <div class="sub" id="t-quando">—</div>
+        <div class="barra"><span id="b-alta" style="width:50%"></span></div>
+        <div class="sinal"><span class="verde">Alta <b id="n-alta">—</b></span><span class="verm">Queda <b id="n-queda">—</b></span></div>
+        <ul class="passos" id="passos"><li class="carregando"><span>Calculando…</span><span></span></li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TENDÊNCIA: o índice antes de cada payroll × o que aconteceu -->
+  <div class="card" style="margin-top:16px">
+    <h3>Tendência: o que o índice mostraria antes de cada payroll × o que aconteceu</h3>
+    <canvas id="c-tend" height="120"></canvas>
+    <div class="sub" id="tend-det" style="margin-top:8px">—</div>
+  </div>
+
+  <!-- LIMITES (sempre visível) -->
+  <div class="card lim" style="margin-top:16px">
+    <h3 class="ouro">Limites deste gráfico</h3>
+    <ol>
+      <li><b>Sem calibração, não há probabilidade confiável.</b> O número acima é a frequência histórica de alta do Nasdaq 100 em payrolls parecidos (mesma fase da economia e mesmo sinal de surpresa). A amostra é pequena (<span id="lim-n">—</span> payrolls desde 2023), por isso o índice aparece como <b>não calibrado</b>.</li>
+      <li><b>O preço do NQ em tempo real e as manchetes rápidas são pagos.</b> Aqui, a reação histórica usa o <b>fechamento diário do Nasdaq 100</b> (FRED), e as cotações ao vivo abaixo vêm dos widgets do TradingView, com o CFD do Nasdaq 100, que <b>não é o NQ</b>.</li>
+      <li><b>O consenso e o rendimento de 2 anos têm limitações.</b> Não existe consenso gratuito com acesso automático: a "surpresa" é medida contra a <b>média dos 3 payrolls anteriores</b>. Se você souber o consenso, digite-o abaixo. O rendimento de 2 anos do FRED é <b>diário</b>, não intradiário.</li>
+    </ol>
+  </div>
+
+  <!-- PISTAS -->
+  <div class="sec"><h2>O que o índice está lendo agora</h2><p>Fase da economia e pistas que saem antes do payroll. Cada pista indica se o dado tende a vir mais forte ou mais fraco que a média recente.</p></div>
+  <div class="grid g4" id="pistas">
+    <div class="card"><h3>Fase da economia</h3><div class="num" id="fase">—</div><div class="sub" id="fase-det">—</div></div>
+    <div class="card"><h3>ADP (emprego privado)</h3><div class="num" id="adp">—</div><div class="sub" id="adp-det">—</div></div>
+    <div class="card"><h3>Seguro-desemprego (4 semanas)</h3><div class="num" id="icsa">—</div><div class="sub" id="icsa-det">—</div></div>
+    <div class="card"><h3>JOLTS (vagas abertas)</h3><div class="num" id="jolts">—</div><div class="sub" id="jolts-det">—</div></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>Pedidos contínuos (4 semanas)</h3><div class="num" id="ccsa">—</div><div class="sub" id="ccsa-det">—</div></div>
+    <div class="card"><h3>Juros de 2 anos · 20 dias (contexto)</h3><div class="num" id="ctx-2a">—</div><div class="sub" id="ctx-2a-det">—</div></div>
+    <div class="card"><h3>Nasdaq 100 · 20 dias (contexto)</h3><div class="num" id="ctx-ndx">—</div><div class="sub" id="ctx-ndx-det">—</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>Como a fase muda a reação (histórico)</h3>
+      <div class="tabela"><table id="tab-fase"><thead><tr><th>Fase</th><th>Dado acima da média</th><th>Dado abaixo da média</th></tr></thead><tbody></tbody></table></div>
+      <div class="sub" style="margin-top:8px">Cada célula mostra a % de dias em que o Nasdaq 100 fechou em alta, com o número de payrolls entre parênteses.</div>
+    </div>
+    <div class="card">
+      <h3>Consenso (opcional)</h3>
+      <label for="consenso">Vagas esperadas pelo mercado para o próximo payroll (em mil)</label>
+      <input id="consenso" type="number" inputmode="numeric" placeholder="ex.: 120">
+      <div class="sub" style="margin-top:8px">Fica guardado só neste navegador. Com o consenso, o índice usa "dado acima ou abaixo do consenso" depois da divulgação. Fontes para consultar: <a href="https://www.tradingeconomics.com/calendar/labour" target="_blank" rel="noopener">Trading Economics</a> · <a href="https://forexfundamentals.com/economic-calendar/nfp/next" target="_blank" rel="noopener">ForexFundamentals</a>.</div>
+    </div>
+  </div>
+
+  <!-- OCASIÕES -->
+  <div class="sec"><h2>As ocasiões: o que aconteceu em cada payroll</h2><p>Valores como foram divulgados no dia (arquivo histórico ALFRED), sem as revisões que vieram depois. A reação é do fechamento da véspera ao fechamento do dia.</p></div>
+  <div class="grid g2">
+    <div class="card"><h3>Reação do Nasdaq 100 no dia (%)</h3><canvas id="c-reacao" height="230"></canvas></div>
+    <div class="card"><h3>Surpresa (mil vagas) × reação do Nasdaq 100 (%)</h3><canvas id="c-disp" height="230"></canvas></div>
+    <div class="card"><h3>Vagas divulgadas no dia e revisões (mil)</h3><canvas id="c-vagas" height="230"></canvas></div>
+    <div class="card"><h3>Rendimento de 2 anos no dia (pontos-base)</h3><canvas id="c-2a" height="230"></canvas></div>
+    <div class="card"><h3>VIX no dia (pontos) · medo do mercado</h3><canvas id="c-vix" height="230"></canvas></div>
+    <div class="card"><h3>Dólar no dia (%) · índice amplo do Fed</h3><canvas id="c-dolar" height="230"></canvas></div>
+  </div>
+
+  <!-- AO VIVO -->
+  <div class="sec"><h2>Mercado agora</h2><p>Widgets gratuitos do TradingView. O Nasdaq 100 aparece como CFD (OANDA), com o preço próximo do NQ, mas não igual. No dia do payroll, olhe os três juntos às 8h30 de Nova York.</p></div>
+  <div class="grid g3">
+    <div class="card tv" id="tv-ndx"></div>
+    <div class="card tv" id="tv-nq"></div>
+    <div class="card tv" id="tv-2a"></div>
+    <div class="card tv" id="tv-10a"></div>
+    <div class="card tv" id="tv-dxy"></div>
+    <div class="card tv" id="tv-vix"></div>
+  </div>
+
+  <!-- TABELA + QUALIDADE -->
+  <div class="grid g2" style="margin-top:34px">
+    <div class="card"><h3>Payrolls do histórico</h3><div class="tabela"><table id="tab-hist"><thead><tr><th>Divulgação</th><th>Vagas</th><th>Surpresa</th><th>Revisões</th><th>Desemp.</th><th>Salário m/m</th><th>Fase</th><th>Nasdaq 100</th><th>2 anos</th><th>VIX</th><th>Dólar</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h3>Qualidade dos dados</h3><div class="sub" id="q-resumo" style="margin-bottom:8px">—</div><ul class="fontes" id="fontes"></ul>
+      <div class="sub" style="margin-top:10px">Busca automática a cada 10 minutos. No dia do payroll, entre 8h25 e 9h30 de Nova York, a cada 1 minuto.</div></div>
+  </div>
+
+  <p class="risco"><b>Aviso de risco.</b> Conteúdo educacional. Não é recomendação de investimento nem sinal de compra ou venda. Futuros e CFDs são alavancados e podem gerar perdas maiores que o capital. Resultados passados não garantem resultados futuros. Fontes: U.S. Bureau of Labor Statistics; Federal Reserve Bank of St. Louis (FRED/ALFRED); TradingView.</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const API = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/dados-payroll";
+const FASES = { inflacao: "Inflação", recessao: "Medo de recessão", neutra: "Neutra" };
+const COR = { inflacao: "#f5b301", recessao: "#ef4444", neutra: "#60a5fa" };
+const $ = (id) => document.getElementById(id);
+const fmt = (n, c = 0) => n == null || isNaN(n) ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: c, maximumFractionDigits: c });
+const mais = (n, c = 0) => n == null || isNaN(n) ? "—" : (n > 0 ? "+" : "") + fmt(n, c);
+const pct = (p) => Math.round(p * 100) + "%";
+Chart.defaults.color = "#a9b8cf"; Chart.defaults.borderColor = "rgba(255,255,255,.08)"; Chart.defaults.font.family = "Inter";
+
+let HIST = [], graficos = {};
+
+/* ---------- modelo ----------
+   1) fase atual: CPI 12 meses ≥ 3% = inflação; regra de Sahm ≥ 0,5 = medo de recessão; senão neutra
+   2) P(dado acima da média): pistas ADP, seguro-desemprego, pedidos contínuos e JOLTS (cada uma vale ±1) → 50% ± 10 pontos por pista, entre 20% e 80%
+   3) P(alta | sinal, fase): frequência histórica com suavização (k+1)/(n+2); se a fase tiver menos de 5 casos, usa todas as fases
+   4) P(alta) = P(acima)·P(alta|acima) + P(abaixo)·P(alta|abaixo) */
+function freq(lista) { const n = lista.length, k = lista.filter((r) => r.reacaoNdx > 0).length; return { n, k, p: (k + 1) / (n + 2) }; }
+function condicional(fase, sinal, hist = HIST) {
+  const base = hist.filter((r) => r.reacaoNdx != null && Math.sign(r.surpresa) === sinal);
+  const daFase = base.filter((r) => r.fase === fase);
+  return daFase.length >= 5 ? { ...freq(daFase), escopo: FASES[fase] } : { ...freq(base), escopo: "todas as fases" };
+}
+function faseAtual(d) {
+  const cpi = d.cpi || [], u = (d.unrate || []).map((x) => x[1]);
+  const cpi12 = cpi.length >= 13 ? (cpi.at(-1)[1] / cpi.at(-13)[1] - 1) * 100 : null;
+  let sahm = null;
+  if (u.length >= 15) { const m3 = (k) => (u[k] + u[k - 1] + u[k - 2]) / 3; let min = Infinity; for (let k = u.length - 13; k < u.length - 1; k++) min = Math.min(min, m3(k)); sahm = m3(u.length - 1) - min; }
+  const fase = sahm != null && sahm >= 0.5 ? "recessao" : cpi12 != null && cpi12 >= 3 ? "inflacao" : "neutra";
+  return { fase, cpi12, sahm, mesCpi: cpi.at(-1)?.[0] };
+}
+function pistas(d, mediaRecente) {
+  const out = [];
+  const adp = d.adp || [];
+  if (adp.length >= 2) { const v = (adp.at(-1)[1] - adp.at(-2)[1]) / 1000; const s = v > mediaRecente + 25 ? 1 : v < mediaRecente - 25 ? -1 : 0; out.push({ id: "adp", valor: v, sinal: s, mes: adp.at(-1)[0], texto: `${mais(v)} mil em ${adp.at(-1)[0].slice(0, 7)} · média recente do payroll: ${fmt(mediaRecente)} mil` }); }
+  const ic = (d.icsa || []).map((x) => x[1]);
+  if (ic.length >= 12) { const a = ic.slice(-4).reduce((s, x) => s + x, 0) / 4, b = ic.slice(-12, -8).reduce((s, x) => s + x, 0) / 4; const dif = (a - b) / 1000; const s = dif < -5 ? 1 : dif > 5 ? -1 : 0; out.push({ id: "icsa", valor: a / 1000, sinal: s, mes: d.icsa.at(-1)[0], texto: `média de ${fmt(a / 1000)} mil · ${mais(dif, 1)} mil vs. 8 semanas antes (até ${d.icsa.at(-1)[0]})` }); }
+  const cc = (d.ccsa || []).map((x) => x[1]);
+  if (cc.length >= 12) { const a = cc.slice(-4).reduce((s, x) => s + x, 0) / 4, b = cc.slice(-12, -8).reduce((s, x) => s + x, 0) / 4; const dif = (a - b) / 1000; const s = dif < -20 ? 1 : dif > 20 ? -1 : 0; out.push({ id: "ccsa", valor: a / 1000, sinal: s, mes: d.ccsa.at(-1)[0], texto: `média de ${fmt(a / 1e6, 2)} milhão · ${mais(dif)} mil vs. 8 semanas antes (até ${d.ccsa.at(-1)[0]})` }); }
+  const jo = d.jolts || [];
+  if (jo.length >= 4) { const dif = jo.at(-1)[1] - jo.at(-4)[1]; const s = dif > 150 ? 1 : dif < -150 ? -1 : 0; out.push({ id: "jolts", valor: jo.at(-1)[1] / 1000, sinal: s, mes: jo.at(-1)[0], texto: `${fmt(jo.at(-1)[1] / 1000, 2)} milhões em ${jo.at(-1)[0].slice(0, 7)} · ${mais(dif)} mil em 3 meses` }); }
+  return out;
+}
+/* acerto histórico da regra (deixa um de fora): dado o sinal real da surpresa, "alta se P>50%" */
+function acertoHistorico() {
+  let ok = 0, n = 0;
+  HIST.forEach((r, i) => { if (r.reacaoNdx == null || !r.surpresa) return; const resto = HIST.filter((_, j) => j !== i); const c = condicional(r.fase, Math.sign(r.surpresa), resto); n++; if ((c.p > 0.5) === (r.reacaoNdx > 0)) ok++; });
+  return { ok, n };
+}
+
+/* ---------- dado do dia (se o payroll novo já saiu e ainda não está no histórico) ---------- */
+function dadoNovo(d) {
+  const p = d.payems || []; if (p.length < 2) return null;
+  const mes = p.at(-1)[0].slice(0, 7), ultimoHist = HIST.at(-1)?.mes;
+  if (!ultimoHist || mes <= ultimoHist) return null;
+  const vagas = p.at(-1)[1] - p.at(-2)[1];
+  const media = (HIST.at(-1).vagas + HIST.at(-2).vagas + HIST.at(-3).vagas) / 3;
+  return { mes, vagas, media, surpresa: vagas - media };
+}
+
+function render(d) {
+  const ultimos3 = HIST.slice(-3), media = ultimos3.reduce((s, r) => s + r.vagas, 0) / 3;
+  const f = faseAtual(d), ps = pistas(d, media), score = ps.reduce((s, x) => s + x.sinal, 0);
+  const pAcima = Math.min(0.8, Math.max(0.2, 0.5 + 0.1 * score));
+  const cA = condicional(f.fase, 1), cB = condicional(f.fase, -1);
+  const novo = dadoNovo(d);
+  let consenso = null; try { consenso = +localStorage.getItem("payroll-consenso") || null; } catch (e) {}
+  let pAlta, titulo, passos;
+  if (novo) {
+    const ref = consenso ? novo.vagas - consenso : novo.surpresa, s = Math.sign(ref) || 1, c = s > 0 ? cA : cB;
+    pAlta = c.p; titulo = `Payroll de ${novo.mes} já saiu: ${mais(novo.vagas)} mil vagas`;
+    passos = [["Surpresa " + (consenso ? "contra o consenso" : "contra a média dos 3 anteriores"), mais(ref) + " mil"], ["Fase da economia", FASES[f.fase]], [`Alta do Nasdaq quando o dado veio ${s > 0 ? "acima" : "abaixo"} (${c.escopo})`, `${pct(c.p)} (${c.k} de ${c.n})`]];
+  } else {
+    pAlta = pAcima * cA.p + (1 - pAcima) * cB.p; titulo = "Próximo payroll";
+    passos = [["Fase da economia", FASES[f.fase]], ["Chance de o dado vir acima da média recente (pistas)", pct(pAcima)], [`Alta quando veio acima (${cA.escopo})`, `${pct(cA.p)} (${cA.k} de ${cA.n})`], [`Alta quando veio abaixo (${cB.escopo})`, `${pct(cB.p)} (${cB.k} de ${cB.n})`]];
+  }
+  const ac = acertoHistorico();
+  passos.push(["Acerto histórico da regra, sabendo o sinal da surpresa", `${ac.ok} de ${ac.n} (${pct(ac.ok / ac.n)})`]);
+  // principal
+  $("p-alta").textContent = pct(pAlta); $("p-alta").className = "p " + (pAlta >= 0.55 ? "verde" : pAlta <= 0.45 ? "verm" : "ouro");
+  $("n-alta").textContent = pct(pAlta); $("n-queda").textContent = pct(1 - pAlta); $("b-alta").style.width = pct(pAlta);
+  $("t-titulo").textContent = titulo;
+  const minN = Math.min(cA.n, cB.n);
+  $("selo").textContent = "índice de viés · não calibrado · confiança " + (minN < 6 ? "baixa" : minN < 12 ? "média-baixa" : "média");
+  $("passos").innerHTML = passos.map(([a, b]) => `<li><span>${a}</span><span>${b}</span></li>`).join("");
+  desenharGauge(pAlta);
+  // quando
+  const prox = d.proximaDivulgacao;
+  if (prox) { const alvo = new Date(prox + "T13:30:00Z"); const dias = Math.ceil((alvo - Date.now()) / 864e5); $("t-quando").textContent = `${new Date(prox + "T12:00:00Z").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "2-digit" })} às 8h30 de Nova York (${alvo.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })} no seu horário)` + (dias > 0 ? ` · faltam ${dias} dia(s)` : ""); }
+  // pistas
+  $("fase").textContent = FASES[f.fase]; $("fase").style.color = COR[f.fase];
+  $("fase-det").textContent = `Inflação (CPI) em 12 meses: ${fmt(f.cpi12, 1)}% · regra de Sahm: ${fmt(f.sahm, 2)} (dado até ${f.mesCpi?.slice(0, 7) || "—"})`;
+  for (const p of ps) { $(p.id).innerHTML = `<span class="seta ${p.sinal > 0 ? "verde" : p.sinal < 0 ? "verm" : "ouro"}">${p.sinal > 0 ? "▲ forte" : p.sinal < 0 ? "▼ fraco" : "■ neutro"}</span>`; $(p.id + "-det").textContent = p.texto; }
+  // contexto: o que o mercado já fez antes do dado (não entra no cálculo)
+  const tend = (s, n = 20) => (s && s.length > n ? [s.at(-1), s.at(-1 - n)] : null);
+  const t2 = tend(d.dgs2), tn = tend(d.ndx);
+  if (t2) { const pb = Math.round((t2[0][1] - t2[1][1]) * 100); $("ctx-2a").innerHTML = `<span class="${pb > 0 ? "verm" : "verde"}">${mais(pb)} pb</span>`; $("ctx-2a-det").textContent = `${fmt(t2[0][1], 2)}% em ${t2[0][0]} · ` + (pb > 10 ? "juros subindo antes do dado: pressão sobre o Nasdaq" : pb < -10 ? "juros caindo: o mercado já embute mais cortes do Fed" : "juros estáveis"); }
+  if (tn) { const v = (tn[0][1] / tn[1][1] - 1) * 100; $("ctx-ndx").innerHTML = `<span class="${v >= 0 ? "verde" : "verm"}">${mais(v, 1)}%</span>`; $("ctx-ndx-det").textContent = `fechamento de ${fmt(tn[0][1])} em ${tn[0][0]} · ` + (v > 4 ? "alta forte antes do dado: risco de realização" : v < -4 ? "queda forte antes do dado: espaço para repique, se o dado ajudar" : "sem movimento forte antes do dado"); }
+  // tabela por fase
+  $("tab-fase").querySelector("tbody").innerHTML = Object.keys(FASES).map((k) => {
+    const c = (s) => { const l = HIST.filter((r) => r.fase === k && r.reacaoNdx != null && Math.sign(r.surpresa) === s); const q = l.filter((r) => r.reacaoNdx > 0).length; return l.length ? `${pct(q / l.length)} (${l.length})` : "—"; };
+    return `<tr${k === f.fase ? ' style="background:rgba(245,179,1,.07)"' : ""}><td><span style="color:${COR[k]}">●</span> ${FASES[k]}${k === f.fase ? " · agora" : ""}</td><td>${c(1)}</td><td>${c(-1)}</td></tr>`;
+  }).join("");
+  // qualidade
+  const fs = Object.entries(d.fontes || {}), oks = fs.filter(([, v]) => v.ok).length;
+  $("q-resumo").innerHTML = `${oks} de ${fs.length} fontes respondendo · buscado em ${new Date(d.buscadoEm).toLocaleString("pt-BR")}`;
+  $("fontes").innerHTML = fs.map(([k, v]) => `<li><span>${k}<br><span class="sub">${v.tipo}</span></span><span class="${v.ok ? "ok" : "erro"}">${v.ok ? "ok · até " + (v.ate || "—") : "falhou"}</span></li>`).join("");
+  // status
+  const st = $("st-status"); st.className = "pill " + (d.janelaPayroll ? "vivo" : oks < fs.length ? "alerta" : "");
+  st.querySelector("span").textContent = d.janelaPayroll ? "janela do payroll · atualiza a cada 1 min" : "atualiza a cada 10 min";
+  $("st-hora").textContent = "Nova York " + String(Math.floor(d.horaNY.minutos / 60)).padStart(2, "0") + "h" + String(d.horaNY.minutos % 60).padStart(2, "0");
+  $("lim-n").textContent = HIST.length;
+}
+
+function desenharGauge(p) {
+  const dados = { datasets: [{ data: [p, 1 - p], backgroundColor: ["#22c55e", "#ef4444"], borderWidth: 0, circumference: 180, rotation: 270, cutout: "72%" }] };
+  if (graficos.gauge) { graficos.gauge.data = dados; graficos.gauge.update(); return; }
+  graficos.gauge = new Chart($("g-gauge"), { type: "doughnut", data: dados, options: { plugins: { legend: { display: false }, tooltip: { enabled: false } }, aspectRatio: 1.7 } });
+}
+
+function graficosHistorico() {
+  const rot = HIST.map((r) => r.data.slice(2, 7).replace("-", "/"));
+  const cores = HIST.map((r) => COR[r.fase]);
+  const base = { plugins: { legend: { display: false } }, scales: { x: { ticks: { maxRotation: 90, autoSkip: true, font: { size: 10 } } } } };
+  new Chart($("c-reacao"), { type: "bar", data: { labels: rot, datasets: [{ data: HIST.map((r) => r.reacaoNdx), backgroundColor: HIST.map((r) => (r.reacaoNdx >= 0 ? "#22c55e" : "#ef4444")) }] }, options: { ...base, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${mais(c.raw, 2)}% · ${FASES[HIST[c.dataIndex].fase]} · surpresa ${mais(HIST[c.dataIndex].surpresa)} mil` } } } } });
+  new Chart($("c-disp"), { type: "scatter", data: { datasets: Object.keys(FASES).map((k) => ({ label: FASES[k], data: HIST.filter((r) => r.fase === k && r.reacaoNdx != null).map((r) => ({ x: r.surpresa, y: r.reacaoNdx, d: r.data })), backgroundColor: COR[k], pointRadius: 5 })) }, options: { plugins: { legend: { display: true, labels: { boxWidth: 10 } }, tooltip: { callbacks: { label: (c) => `${c.raw.d}: surpresa ${mais(c.raw.x)} mil · Nasdaq ${mais(c.raw.y, 2)}%` } } }, scales: { x: { title: { display: true, text: "surpresa contra a média dos 3 anteriores (mil)" } }, y: { title: { display: true, text: "Nasdaq 100 no dia (%)" } } } } });
+  new Chart($("c-vagas"), { data: { labels: rot, datasets: [{ type: "bar", label: "vagas divulgadas", data: HIST.map((r) => r.vagas), backgroundColor: cores }, { type: "line", label: "revisões dos meses anteriores", data: HIST.map((r) => r.revisoes ?? null), borderColor: "#a78bfa", backgroundColor: "#a78bfa", pointRadius: 2, tension: 0.2 }] }, options: { ...base, plugins: { legend: { display: true, labels: { boxWidth: 10 } } } } });
+  new Chart($("c-2a"), { type: "bar", data: { labels: rot, datasets: [{ data: HIST.map((r) => r.reacao2a), backgroundColor: HIST.map((r) => (r.reacao2a >= 0 ? "#f5b301" : "#60a5fa")) }] }, options: { ...base, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${mais(c.raw)} pb (sobe = juros pressionando o Nasdaq)` } } } } });
+  new Chart($("c-vix"), { type: "bar", data: { labels: rot, datasets: [{ data: HIST.map((r) => r.reacaoVix), backgroundColor: HIST.map((r) => (r.reacaoVix >= 0 ? "#ef4444" : "#22c55e")) }] }, options: { ...base, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${mais(c.raw, 2)} pontos (sobe = mais medo)` } } } } });
+  new Chart($("c-dolar"), { type: "bar", data: { labels: rot, datasets: [{ data: HIST.map((r) => r.reacaoDolar), backgroundColor: HIST.map((r) => (r.reacaoDolar >= 0 ? "#f5b301" : "#60a5fa")) }] }, options: { ...base, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${mais(c.raw, 2)}%` } } } } });
+  // tendência sem olhar o futuro: em cada payroll, a frequência de alta só com os payrolls anteriores da mesma fase
+  const pontos = [], acertos = [];
+  HIST.forEach((r, i) => {
+    if (i < 6) return;
+    const antes = HIST.slice(0, i).filter((x) => x.reacaoNdx != null);
+    const mesmaFase = antes.filter((x) => x.fase === r.fase), uso = mesmaFase.length >= 5 ? mesmaFase : antes;
+    const p = freq(uso).p;
+    pontos.push({ r, p });
+    if (r.reacaoNdx != null) acertos.push((p > 0.5) === (r.reacaoNdx > 0));
+  });
+  new Chart($("c-tend"), { data: { labels: pontos.map((x) => x.r.data.slice(2, 7).replace("-", "/")), datasets: [
+    { type: "line", label: "índice antes do dado (% de alta)", data: pontos.map((x) => Math.round(x.p * 100)), borderColor: "#f5b301", backgroundColor: "#f5b301", tension: 0.25, pointRadius: 2, yAxisID: "y" },
+    { type: "bar", label: "Nasdaq 100 no dia (%)", data: pontos.map((x) => x.r.reacaoNdx), backgroundColor: pontos.map((x) => (x.r.reacaoNdx >= 0 ? "rgba(34,197,94,.6)" : "rgba(239,68,68,.6)")), yAxisID: "y2" },
+  ] }, options: { plugins: { legend: { display: true, labels: { boxWidth: 10 } } }, scales: { y: { min: 0, max: 100, title: { display: true, text: "índice (%)" } }, y2: { position: "right", grid: { display: false }, title: { display: true, text: "Nasdaq 100 (%)" } }, x: { ticks: { maxRotation: 90, autoSkip: true, font: { size: 10 } } } } } });
+  const ok = acertos.filter(Boolean).length;
+  const altas = pontos.filter((x) => x.r.reacaoNdx > 0).length, comDado = pontos.filter((x) => x.r.reacaoNdx != null).length;
+  const ganho = ok / acertos.length - altas / comDado;
+  $("tend-det").innerHTML = `Teste sem olhar o futuro (cada ponto usa só os payrolls anteriores): o índice acertou a direção do dia em <b>${ok} de ${acertos.length}</b> (${pct(ok / acertos.length)}). Para comparar, apostar sempre em alta acertaria <b>${altas} de ${comDado}</b> (${pct(altas / comDado)}). `
+    + (ganho > 0.05 ? "O índice ficou acima dessa referência." : `<b class="ouro">O índice ficou ${ganho >= 0 ? "praticamente igual a" : "abaixo de"} apostar sempre em alta: ainda não mostra vantagem.</b>`)
+    + " Antes do dado, o sinal da surpresa ainda não é conhecido. Por isso este teste é mais exigente que o acerto \"sabendo o sinal\".";
+  $("tab-hist").querySelector("tbody").innerHTML = HIST.slice().reverse().map((r) => `<tr><td>${new Date(r.data + "T12:00:00Z").toLocaleDateString("pt-BR")}</td><td>${mais(r.vagas)}</td><td>${mais(r.surpresa)}</td><td>${mais(r.revisoes)}</td><td>${fmt(r.desemprego, 1)}%</td><td>${mais(r.salarioMes, 2)}%</td><td style="color:${COR[r.fase]}">${FASES[r.fase]}</td><td class="${r.reacaoNdx > 0 ? "verde" : r.reacaoNdx < 0 ? "verm" : ""}">${r.reacaoNdx == null ? "fechado" : mais(r.reacaoNdx, 2) + "%"}</td><td>${mais(r.reacao2a)} pb</td><td>${mais(r.reacaoVix, 1)}</td><td>${mais(r.reacaoDolar, 2)}%</td></tr>`).join("");
+}
+
+function widget(el, simbolo, nome) {
+  const box = $(el); box.innerHTML = '<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
+  const s = document.createElement("script"); s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"; s.async = true;
+  s.textContent = JSON.stringify({ symbol: simbolo, width: "100%", height: 220, locale: "br", dateRange: "1D", colorTheme: "dark", isTransparent: true, autosize: true, largeChartUrl: "" });
+  box.firstChild.appendChild(s);
+  const leg = document.createElement("div"); leg.className = "sub"; leg.textContent = nome; box.appendChild(leg);
+}
+
+let intervalo = 10 * 60e3, timer;
+async function atualizar() {
+  try {
+    const r = await fetch(API, { cache: "no-store" }); const d = await r.json();
+    if (d.erro) throw new Error(d.erro);
+    render(d);
+    const novoIntervalo = d.janelaPayroll ? 60e3 : 10 * 60e3;
+    if (novoIntervalo !== intervalo) { intervalo = novoIntervalo; clearInterval(timer); timer = setInterval(atualizar, intervalo); }
+  } catch (e) {
+    const st = $("st-status"); st.className = "pill alerta"; st.querySelector("span").textContent = "falha ao buscar dados · tentando de novo";
+    console.error(e);
+  }
+}
+
+(async () => {
+  const c = $("consenso"); try { c.value = localStorage.getItem("payroll-consenso") || ""; } catch (e) {}
+  c.addEventListener("change", () => { try { c.value ? localStorage.setItem("payroll-consenso", c.value) : localStorage.removeItem("payroll-consenso"); } catch (e) {} atualizar(); });
+  HIST = (await (await fetch("historico.json", { cache: "no-store" })).json()).registros;
+  graficosHistorico();
+  widget("tv-ndx", "OANDA:NAS100USD", "Nasdaq 100 (CFD OANDA), não é o NQ da CME");
+  widget("tv-nq", "CME_MINI:NQ1!", "NQ (CME): no widget gratuito, costuma vir com atraso");
+  widget("tv-2a", "TVC:US02Y", "Rendimento do Treasury de 2 anos");
+  widget("tv-10a", "TVC:US10Y", "Rendimento do Treasury de 10 anos");
+  widget("tv-dxy", "TVC:DXY", "Índice do dólar (DXY)");
+  widget("tv-vix", "TVC:VIX", "VIX, a volatilidade esperada do S&P 500");
+  await atualizar();
+  timer = setInterval(atualizar, intervalo);
+})();
+</script>
+</body>
+</html>
