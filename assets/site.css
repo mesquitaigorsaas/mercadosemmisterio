@@ -14,7 +14,7 @@ h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; letter-spacing
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 .ouro { color: var(--gold); } .verde { color: var(--up); } .vermelho { color: var(--down); } .soft { color: var(--soft); }
 .eyebrow { font: 800 12.5px Inter; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 14px; font: 800 16px Inter; border: 0; cursor: pointer; transition: transform .15s, box-shadow .2s, background .2s; white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 14px; font: 800 16px Inter; border: 0; cursor: pointer; transition: transform .15s, box-shadow .2s, background .2s; white-space: normal; text-align: center; overflow-wrap: anywhere; } /* texto longo quebra linha dentro do botão em vez de vazar (12/11/2026) */
 .btn-ouro { background: linear-gradient(180deg, var(--gold2), var(--gold)); color: #241800; box-shadow: 0 10px 30px rgba(245,179,1,.25); }
 .btn-ouro:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(245,179,1,.35); }
 .btn-sec { background: rgba(255,255,255,.07); color: #fff; border: 1px solid var(--line); }
@@ -30,7 +30,7 @@ h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; letter-spacing
 .menu { display: flex; gap: 22px; margin-left: auto; }
 .menu a { color: var(--soft); font: 600 15px Inter; }
 .menu a:hover, .menu a.on { color: #fff; }
-.topo .btn { padding: 11px 18px; font-size: 14px; }
+.topo .btn { padding: 11px 18px; font-size: 14px; white-space: nowrap; }
 .burger { display: none; margin-left: auto; background: none; border: 0; color: #fff; font-size: 26px; cursor: pointer; }
 @media (max-width: 860px) {
   .menu { display: none; position: absolute; top: 84px; left: 0; right: 0; flex-direction: column; gap: 0; background: #071428; border-bottom: 1px solid var(--line); padding: 8px 20px 16px; }
