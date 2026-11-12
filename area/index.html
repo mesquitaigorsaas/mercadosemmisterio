@@ -47,7 +47,7 @@
   <div class="caixa" id="logado">
     <p id="logado-texto">Você já está conectado neste aparelho.</p>
     <div id="cursos"><a class="btn btn-ouro" id="continuar" href="curso/">Continuar o curso</a></div>
-    <button class="btn btn-sec" type="button" id="sair">Sair deste aparelho</button>
+    <a class="btn btn-sec" id="voltar" href="../">Voltar</a>
   </div>
 </main>
 <script>
@@ -112,11 +112,6 @@ const aviso = (txt, tipo) => { const a = document.getElementById("aviso"); a.tex
     if (!voltaValida) mostrarCursos(await meusCursos(s));
   }
 })();
-
-document.getElementById("sair").addEventListener("click", async () => {
-  await gravar(null);
-  location.replace("./");
-});
 
 document.getElementById("form-entrar").addEventListener("submit", async (e) => {
   e.preventDefault();
