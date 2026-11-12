@@ -57,11 +57,12 @@ const volta = new URLSearchParams(location.search).get("volta") || "";
 const voltaValida = /^[\w\-./]+$/.test(volta) && !volta.includes("..") ? volta : "";
 const destino = "curso/" + voltaValida;
 /* cada curso mora numa pasta de curso/ (o Forex fica na raiz) */
+/* a ordem aqui é a ordem dos botões na tela (decisão do usuário, 12/11/2026) */
 const CURSOS = {
-  "forex": { nome: "Forex do Zero — Entenda e Aprenda a Operar", titulo: "Forex do Zero", sub: "Entenda e aprenda a operar", pasta: "" },
   "bolsa-do-zero": { nome: "Aprenda Bolsa de Valores do Zero", titulo: "Aprenda Bolsa de Valores do Zero", sub: "", pasta: "bolsa-do-zero/" },
-  "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Mini Dólar", titulo: "Day Trade", sub: "Dominando o Mini Índice e o Mini Dólar", pasta: "day-trade/" },
+  "forex": { nome: "Forex do Zero — Entenda e Aprenda a Operar", titulo: "Forex do Zero", sub: "Entenda e aprenda a operar", pasta: "" },
   "price-action": { nome: "Price Action — Aprenda a Ler o Mercado", titulo: "Price Action", sub: "Aprenda a ler o mercado", pasta: "price-action/" },
+  "day-trade": { nome: "Day Trade — Dominando o Mini Índice e o Mini Dólar", titulo: "Day Trade", sub: "Dominando o Mini Índice e o Mini Dólar", pasta: "day-trade/" },
   "swing-trade": { nome: "Swing Trade — Estratégias para Operar Ações", titulo: "Swing Trade", sub: "Estratégias para operar ações", pasta: "swing-trade/" },
   "nasdaq": { nome: "Tudo sobre NASDAQ — Aprenda a operar com confiança", titulo: "Tudo sobre NASDAQ", sub: "Aprenda a operar com confiança", pasta: "nasdaq/" },
 };
@@ -80,7 +81,7 @@ function mostrarCursos(lista) {
   if (lista.length === 1) { document.getElementById("continuar").href = voltaValida ? destino : "curso/" + CURSOS[lista[0]].pasta; return; }
   document.getElementById("logado-texto").textContent = "Você está conectado. Escolha o curso:";
   caixa.innerHTML = "";
-  for (const c of lista) {
+  for (const c of Object.keys(CURSOS).filter((k) => lista.includes(k))) {
     const a = document.createElement("a");
     a.className = "btn btn-ouro"; a.href = "curso/" + CURSOS[c].pasta;
     // botão em duas linhas: nome principal e, embaixo, o complemento (sem o travessão)
