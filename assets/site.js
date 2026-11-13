@@ -35,7 +35,7 @@ function sessoes(el) {
 }
 document.querySelectorAll("[data-sessoes]").forEach(sessoes);
 
-/* notícias (Supabase, atualizadas a cada 15 min) */
+/* notícias (Supabase; a função coleta a cada 5 min e a página confere a cada 1 min) */
 const REGIOES = [["brasil", "Brasil"], ["eua", "EUA"], ["europa", "Europa"], ["asia", "Ásia"], ["bancos_centrais", "Bancos centrais"]];
 function haQuanto(iso) {
   const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000));
@@ -44,18 +44,32 @@ function haQuanto(iso) {
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 async function noticias(el) {
   const limite = +el.dataset.limite || 12;
-  el.insertAdjacentHTML("afterbegin", `<div class="abas">${REGIOES.map(([r, t], i) => `<button data-r="${r}" class="${i ? "" : "on"}">${t}</button>`).join("")}</div><div class="noticias"></div><div class="noticias-rodape"><span class="atual"></span><span>Manchetes com link para a fonte original. Atualização automática a cada 15 minutos.</span></div>`);
+  el.insertAdjacentHTML("afterbegin", `<div class="abas">${REGIOES.map(([r, t], i) => `<button data-r="${r}" class="${i ? "" : "on"}">${t}</button>`).join("")}</div><div class="noticias"></div><div class="noticias-rodape"><span class="atual"></span><span>Manchetes com link para a fonte original. Atualização automática a cada 5 minutos.</span></div>`);
   const lista = el.querySelector(".noticias"); let regiao = "brasil";
-  const carrega = async () => {
-    try {
-      const r = await fetch(`${CONFIG.supabaseUrl}/rest/v1/noticias?select=fonte,titulo,link,idioma,publicado_em&regiao=eq.${regiao}&order=publicado_em.desc&limit=${limite}`, { headers: { apikey: CONFIG.supabaseKey } });
-      const d = await r.json();
-      lista.innerHTML = d.length ? d.map((n) => `<a class="noticia" href="${esc(n.link)}" target="_blank" rel="noopener nofollow"><b>${esc(n.titulo)}</b><span class="meta">${esc(n.fonte)} · ${haQuanto(n.publicado_em)}${n.idioma === "en" ? ' <span class="en">EN</span>' : ""}</span></a>`).join("") : `<p class="soft">Sem manchetes no momento.</p>`;
-      el.querySelector(".atual").textContent = "Atualizado às " + new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-    } catch (e) { lista.innerHTML = `<p class="soft">Não foi possível carregar as notícias agora. Tente de novo em instantes.</p>`; }
+  /* guarda as manchetes de todas as regiões: a página abre com a última cópia (na hora) e troca de aba sem esperar */
+  const CHAVE = "msm-noticias-v1";
+  let dados = {}; try { dados = JSON.parse(localStorage.getItem(CHAVE)) || {}; } catch (e) {}
+  const mostra = () => {
+    const d = dados[regiao];
+    if (!d) { lista.innerHTML = `<p class="soft">Carregando manchetes…</p>`; return; }
+    lista.innerHTML = d.length ? d.map((n) => `<a class="noticia" href="${esc(n.link)}" target="_blank" rel="noopener nofollow"><b>${esc(n.titulo)}</b><span class="meta">${esc(n.fonte)} · ${haQuanto(n.publicado_em)}${n.idioma === "en" ? ' <span class="en">EN</span>' : ""}</span></a>`).join("") : `<p class="soft">Sem manchetes no momento.</p>`;
   };
-  el.querySelectorAll(".abas button").forEach((b) => b.onclick = () => { regiao = b.dataset.r; el.querySelectorAll(".abas button").forEach((x) => x.classList.toggle("on", x === b)); carrega(); });
-  carrega(); setInterval(carrega, 5 * 60000);
+  const busca = (r) => fetch(`${CONFIG.supabaseUrl}/rest/v1/noticias?select=fonte,titulo,link,idioma,publicado_em&regiao=eq.${r}&order=publicado_em.desc&limit=${limite}`, { headers: { apikey: CONFIG.supabaseKey } }).then((x) => { if (!x.ok) throw new Error(x.status); return x.json(); });
+  const carrega = async () => {
+    const res = await Promise.allSettled(REGIOES.map(([r]) => busca(r)));
+    let algum = false;
+    res.forEach((x, i) => { if (x.status === "fulfilled") { dados[REGIOES[i][0]] = x.value; algum = true; } });
+    if (algum) {
+      try { localStorage.setItem(CHAVE, JSON.stringify(dados)); } catch (e) {}
+      el.querySelector(".atual").textContent = "Atualizado às " + new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+      mostra();
+    } else if (!dados[regiao]) lista.innerHTML = `<p class="soft">Não foi possível carregar as notícias agora. Tente de novo em instantes.</p>`;
+  };
+  el.querySelectorAll(".abas button").forEach((b) => b.onclick = () => { regiao = b.dataset.r; el.querySelectorAll(".abas button").forEach((x) => x.classList.toggle("on", x === b)); mostra(); });
+  mostra(); carrega();
+  /* procura manchetes novas a cada minuto com a aba visível, e na hora em que a pessoa volta para a aba */
+  setInterval(() => { if (!document.hidden) carrega(); }, 60000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) carrega(); });
 }
 document.querySelectorAll("[data-noticias]").forEach(noticias);
 

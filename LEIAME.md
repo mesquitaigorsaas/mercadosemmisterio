@@ -16,7 +16,7 @@ Site estático (HTML, CSS e JS), sem build. Para ver localmente: `node ../aulas/
 ## Supabase — projeto "Mercado Sem Mistério" (kgyhgfxkhrdeucvsvehk, São Paulo, plano grátis)
 - Tabela `noticias`: manchete, fonte, link e data; leitura pública; só a função escreve. Limpeza automática acima de 15 dias.
 - Tabela `contatos`: o site só cadastra (com consentimento); ninguém lê pela API pública. Ver os contatos: painel do Supabase → Table Editor → contatos.
-- Edge Function `atualizar-noticias`: 19 feeds RSS (Brasil, EUA, Europa, Ásia, bancos centrais), respeita a codificação de cada feed. Agendada pelo pg_cron a cada 15 min (`atualizar-noticias-15min`).
+- Edge Function `atualizar-noticias`: 19 feeds RSS (Brasil, EUA, Europa, Ásia, bancos centrais), respeita a codificação de cada feed. Agendada pelo pg_cron a cada 5 min (o job continua com o nome `atualizar-noticias-15min`). A página guarda a última cópia no navegador (abre na hora) e confere manchetes novas a cada minuto.
 - Para pausar o projeto "Nuestro Impasto" foi preciso liberar a vaga do plano grátis (limite de 2 projetos ativos).
 
 ## Animações (`assets/anim.js`)
