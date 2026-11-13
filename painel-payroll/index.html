@@ -85,6 +85,8 @@ label{font-size:13px;color:var(--soft)}
 .voto{font-weight:800;white-space:nowrap}.voto.v{color:var(--verde)}.voto.r{color:var(--verm)}.voto.n{color:var(--soft2)}
 .manchetes .porque{display:block;color:var(--soft);font-size:12.5px;margin-top:2px}
 .resumo{margin-top:6px}
+.resumo #r-texto p,.resumo #r-espera p{line-height:1.75}
+.resumo .card{max-width:none}
 #r-numeros td{white-space:normal;vertical-align:top}#r-numeros td:first-child{min-width:220px}#r-numeros td:nth-child(2){white-space:nowrap}
 .resumo #r-texto p,.resumo #r-espera p{margin:0 0 10px;color:var(--txt)}
 .resumo .r-sub{font:700 14px Inter;color:var(--ouro);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.04em}
@@ -214,10 +216,8 @@ canvas{max-width:100%}
     <div class="pl-barra"><span id="pl-marca"></span></div><div class="pl-escala sub"><span>−1 desfavorável</span><span>0</span><span>+1 favorável</span></div>
     <div class="sub" id="pl-porque" style="margin-top:10px"></div>
   </div>
-  <div class="grid g2 resumo">
+  <div class="resumo">
     <div class="card"><h3 id="r-titulo">Carregando o resumo…</h3><div class="sub" id="r-data"></div><div id="r-texto"></div><h4 class="r-sub">O que esperar do próximo payroll</h4><div id="r-espera"></div><div class="sub" id="r-aviso" style="margin-top:12px"></div></div>
-    <div class="card"><h3>Números oficiais agora</h3><div class="tabela"><table id="r-numeros"><thead><tr><th>Dado</th><th>Último valor</th><th>Referência</th><th>Fonte</th></tr></thead><tbody><tr><td colspan="4">—</td></tr></tbody></table></div>
-      </div>
   </div>
   <div class="card" style="margin-top:16px"><h3>Todas as notícias do dia e o voto de cada uma</h3><div class="sub" style="margin-bottom:6px">Manchetes das últimas 36 horas sobre emprego, Fed, inflação, juros e bolsas americanas. Notícias sem relação com o Nasdaq (Brasil, outros países, empresas pequenas) ficam de fora do placar.</div><ul class="manchetes" id="r-manchetes"></ul></div>
 
@@ -395,7 +395,7 @@ const selo = (v) => v == null ? "" : `<span class="voto ${VOTO[v][1]}" title="${
 let votosDados = null, votosNoticias = null;
 function numerosDoDia(d) {
   const L = fatosDoDia(d);
-  $("r-numeros").querySelector("tbody").innerHTML = L.map((r) => `<tr><td>${selo(r.voto)} ${r.dado}${r.porque ? `<div class="sub">${r.porque}</div>` : ""}</td><td><b>${r.valor}</b></td><td class="sub">${r.referencia}</td><td class="sub">${r.fonte}</td></tr>`).join("") || '<tr><td colspan="4">—</td></tr>';
+  if ($("r-numeros")) $("r-numeros").querySelector("tbody").innerHTML = L.map((r) => `<tr><td>${selo(r.voto)} ${r.dado}${r.porque ? `<div class="sub">${r.porque}</div>` : ""}</td><td><b>${r.valor}</b></td><td class="sub">${r.referencia}</td><td class="sub">${r.fonte}</td></tr>`).join("") || '<tr><td colspan="4">—</td></tr>';
   votosDados = L.filter((r) => r.voto != null).map((r) => r.voto);
   placar();
 }
@@ -413,9 +413,11 @@ function placar() {
   ver.className = "pl-veredito " + cls;
   ver.textContent = cls === "pos" ? "Favorável ao Nasdaq" : cls === "neg" ? "Desfavorável ao Nasdaq" : "Equilibrado";
   $("pl-porque").textContent = `${T.v} votos favoráveis e ${T.r} desfavoráveis em ${T.total} (${N.total} notícias e ${D.total} dados oficiais). `
-    + (cls === "neg" ? "Predominam sinais de juros altos por mais tempo; o porquê de cada voto está ao lado de cada notícia e de cada dado." : cls === "pos" ? "Predominam sinais de alívio nos juros e economia saudável; o porquê de cada voto está ao lado de cada notícia e de cada dado." : "Os sinais se equilibram; o porquê de cada voto está ao lado de cada notícia e de cada dado.")
+    + (cls === "neg" ? "Predominam sinais de juros altos por mais tempo; o porquê de cada voto está ao lado de cada notícia, e os números oficiais estão explicados no texto." : cls === "pos" ? "Predominam sinais de alívio nos juros e economia saudável; o porquê de cada voto está ao lado de cada notícia, e os números oficiais estão explicados no texto." : "Os sinais se equilibram; o porquê de cada voto está ao lado de cada notícia, e os números oficiais estão explicados no texto.")
     + " É uma leitura do dia, não uma previsão nem recomendação.";
 }
+/* uma frase por linha quando o parágrafo traz números (fica mais fácil de ler cada dado) */
+const porLinha = (html) => { const fr = html.split(/(?<=[.!?:])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ"«(])/); return fr.filter((f) => /\d/.test(f.replace(/<[^>]+>/g, "").replace(/\[\d+\]/g, ""))).length >= 2 ? fr.join("<br>") : html; };
 let ultimaResumo = 0;
 async function carregarResumo() {
   try {
@@ -424,8 +426,8 @@ async function carregarResumo() {
     const ref = (t) => esc(t).replace(/\[(\d+)\]/g, (m, n) => x.manchetes[n - 1] ? `<sup><a href="${esc(x.manchetes[n - 1].link)}" target="_blank" rel="noopener nofollow" title="${esc(x.manchetes[n - 1].fonte)}">[${n}]</a></sup>` : m);
     $("r-titulo").textContent = x.titulo;
     $("r-data").textContent = "Resumo de " + new Date(x.data + "T12:00:00Z").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" }) + " · escrito às " + new Date(x.escritoEm).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) + " (Brasília)";
-    $("r-texto").innerHTML = x.paragrafos.map((p) => `<p>${ref(p)}</p>`).join("");
-    $("r-espera").innerHTML = x.espera.map((p) => `<p>${ref(p)}</p>`).join("");
+    $("r-texto").innerHTML = x.paragrafos.map((p) => `<p>${porLinha(ref(p))}</p>`).join("");
+    $("r-espera").innerHTML = x.espera.map((p) => `<p>${porLinha(ref(p))}</p>`).join("");
     $("r-manchetes").innerHTML = x.manchetes.map((m, i) => `<li>${selo(m.sinal)} <span class="n">[${i + 1}]</span><a href="${esc(m.link)}" target="_blank" rel="noopener nofollow">${esc(m.titulo)}</a> <span class="sub">· ${esc(m.fonte)}, ${new Date(m.publicado_em).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}</span>${m.porque ? `<span class="porque">${esc(m.porque)}</span>` : ""}</li>`).join("");
     votosNoticias = x.manchetes.filter((m) => [1, 0, -1].includes(m.sinal)).map((m) => m.sinal); placar();
     const dias = Math.floor((Date.now() - Date.parse(x.escritoEm)) / 864e5);
