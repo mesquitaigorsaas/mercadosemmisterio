@@ -211,3 +211,17 @@ html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o 
 .dica .cat { filter: brightness(.78) saturate(1.2); }
 .hero canvas[data-velas] { opacity: .5; }
 ::selection { background: rgba(245,179,1,.35); }
+
+/* gráficos do TradingView: aviso de carregamento até o gráfico abrir (13/11/2026) */
+[data-fita], [data-mini], [data-painel], [data-hotlists], [data-bolsas], [data-agenda] { position: relative; }
+[data-fita]:not(.tv-pronto)::before, [data-mini]:not(.tv-pronto)::before, [data-painel]:not(.tv-pronto)::before, [data-hotlists]:not(.tv-pronto)::before, [data-bolsas]:not(.tv-pronto)::before, [data-agenda]:not(.tv-pronto)::before {
+  content: "Carregando cotações ao vivo…"; position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none;
+  font: 600 14px Inter, sans-serif; color: var(--soft2);
+  background: linear-gradient(100deg, transparent 30%, rgba(15,23,42,.05) 50%, transparent 70%); background-size: 220% 100%; animation: carregando 1.3s linear infinite;
+}
+[data-fita]:not(.tv-pronto)::before { font-size: 12.5px; }
+@keyframes carregando { from { background-position: 120% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) { [data-fita]::before, [data-mini]::before, [data-painel]::before, [data-hotlists]::before, [data-bolsas]::before, [data-agenda]::before { animation: none; } }
+/* card do Radar do Payroll: o nome em destaque, a chamada em cima e menor */
+.ferr h3 .chamada-curta { display: block; font: 700 13px/1.35 Inter, sans-serif; letter-spacing: .02em; color: var(--soft); margin-bottom: 6px; }
+.ferr h3.destaque-payroll { font-size: 26px; line-height: 1.12; }

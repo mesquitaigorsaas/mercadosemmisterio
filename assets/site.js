@@ -66,10 +66,12 @@ async function noticias(el) {
     } else if (!dados[regiao]) lista.innerHTML = `<p class="soft">Não foi possível carregar as notícias agora. Tente de novo em instantes.</p>`;
   };
   el.querySelectorAll(".abas button").forEach((b) => b.onclick = () => { regiao = b.dataset.r; el.querySelectorAll(".abas button").forEach((x) => x.classList.toggle("on", x === b)); mostra(); });
-  mostra(); carrega();
-  /* procura manchetes novas a cada minuto com a aba visível, e na hora em que a pessoa volta para a aba */
-  setInterval(() => { if (!document.hidden) carrega(); }, 60000);
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) carrega(); });
+  let ultima = 0;
+  const confere = () => { if (!document.hidden && Date.now() - ultima > 30000) { ultima = Date.now(); carrega(); } };
+  mostra(); confere();
+  /* procura manchetes novas a cada minuto com a aba visível, e na hora em que a pessoa volta para a aba (sem repetir a busca em menos de 30 s) */
+  setInterval(confere, 60000);
+  document.addEventListener("visibilitychange", confere);
 }
 document.querySelectorAll("[data-noticias]").forEach(noticias);
 
@@ -100,11 +102,25 @@ document.querySelectorAll("form[data-contato]").forEach((f) => f.addEventListene
 }));
 
 /* widgets do TradingView (cotações e agenda) */
-function tradingview(el, tipo, cfg) {
+/* Cada widget é um iframe do TradingView que baixa o próprio programa e abre uma conexão ao vivo.
+   Carregar os 6 juntos fazia todos disputarem a internet (o último terminava em ~7,5 s).
+   Agora a faixa rotativa, o gráfico do dólar e o painel do mercado (os primeiros da página) carregam na hora; os outros, quando faltam ~900 px para aparecer na tela. */
+const pertoDaTela = (el, fn) => {
+  if (!("IntersectionObserver" in window)) return fn();
+  const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); fn(); } }, { rootMargin: "900px 0px" });
+  io.observe(el);
+};
+function tradingview(el, tipo, cfg, jaNaTela) {
+  if (!jaNaTela && !el.matches("[data-fita], [data-mini], [data-painel]")) return pertoDaTela(el, () => tradingview(el, tipo, cfg, true));
   const s = document.createElement("script");
   s.src = `https://s3.tradingview.com/external-embedding/embed-widget-${tipo}.js`; s.async = true;
   s.textContent = JSON.stringify(Object.assign({ colorTheme: "light", isTransparent: true, locale: "br" }, cfg));
   el.innerHTML = '<div class="tradingview-widget-container__widget"></div>'; el.classList.add("tradingview-widget-container"); el.appendChild(s);
+  /* o aviso "carregando" some quando o gráfico termina de abrir (ou, no máximo, em 15 s) */
+  const pronto = () => el.classList.add("tv-pronto");
+  const mo = new MutationObserver(() => { const f = el.querySelector("iframe"); if (f) { mo.disconnect(); f.addEventListener("load", () => setTimeout(pronto, 400)); } });
+  mo.observe(el, { childList: true, subtree: true });
+  setTimeout(pronto, 15000);
 }
 const ATIVOS = [["FX_IDC:USDBRL", "Dólar"], ["FX_IDC:EURBRL", "Euro"], ["BMFBOVESPA:IBOV", "Ibovespa"], ["FX:EURUSD", "EUR/USD"], ["FX:GBPUSD", "GBP/USD"], ["FX:USDJPY", "USD/JPY"], ["OANDA:XAUUSD", "Ouro"], ["TVC:UKOIL", "Petróleo Brent"], ["FOREXCOM:SPXUSD", "S&P 500"], ["BITSTAMP:BTCUSD", "Bitcoin"]];
 document.querySelectorAll("[data-fita]").forEach((el) => tradingview(el, "ticker-tape", { symbols: ATIVOS.map(([proName, title]) => ({ proName, title })), showSymbolLogo: true, displayMode: "adaptive" }));
