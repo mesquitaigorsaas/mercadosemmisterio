@@ -17,11 +17,35 @@
 body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 Inter,system-ui,sans-serif}
 a{color:var(--ouro)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);box-shadow:0 4px 18px rgba(15,23,42,.05);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
-header .wrap{display:flex;align-items:center;gap:14px;min-height:64px;flex-wrap:wrap}
-header img{width:38px;height:38px}
-header b{font:800 18px "Plus Jakarta Sans"}header small{display:block;color:var(--soft2);font-size:12px}
-header .dir{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+/* menu do site (igual ao da página inicial) */
+header.topo{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 4px 18px rgba(15,23,42,.05)}
+header.topo .wrap{display:flex;align-items:center;gap:22px;height:84px}
+.topo .marca{display:flex;align-items:center;gap:12px;color:var(--txt);font:800 20px "Plus Jakarta Sans";text-decoration:none}
+.topo .marca img{width:62px;height:62px;filter:drop-shadow(0 4px 14px rgba(245,179,1,.35))}
+.topo .marca small{display:block;font:600 11px Inter;color:var(--soft);letter-spacing:.04em}
+.topo .menu{display:flex;gap:22px;margin-left:auto}
+.topo .menu a{color:var(--soft);font:600 15px Inter;text-decoration:none}
+.topo .menu a:hover{color:var(--ouro)}
+.topo .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:14px;font:800 14px Inter;white-space:nowrap;text-decoration:none;background:linear-gradient(180deg,#ffcd4a,#f5b301);color:#241800;box-shadow:0 10px 26px rgba(214,150,0,.30);transition:transform .15s}
+.topo .btn:hover{transform:translateY(-2px)}
+.topo .insta{display:inline-flex;flex:none;width:40px;height:40px;border-radius:12px}
+.topo .insta svg{display:block;width:40px;height:40px}
+.topo .burger{display:none;margin-left:auto;background:none;border:0;color:var(--txt);font-size:26px;cursor:pointer}
+@media (min-width:1280px){.topo .insta{position:absolute;top:22px;right:calc((100% - 1180px) / 4 - 10px)}}
+@media (max-width:860px){
+  .topo .menu{display:none;position:absolute;top:84px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  .topo .menu.aberto{display:flex}.topo .menu a{padding:12px 0;border-bottom:1px solid var(--line)}
+  .topo .burger{display:block}.topo .btn{display:none}
+  .topo .insta{margin-left:auto;width:36px;height:36px}.topo .insta svg{width:36px;height:36px}.topo .insta + .burger{margin-left:8px}
+}
+@media (max-width:640px){.topo .marca{font-size:17px;gap:10px;line-height:1.15}.topo .marca img{width:50px;height:50px}header.topo .wrap{height:72px}.topo .menu{top:72px}}
+/* barra do Radar, logo abaixo do menu */
+.radar-barra{border-bottom:1px solid var(--line);background:var(--card2)}
+.radar-barra .wrap{display:flex;align-items:center;gap:16px;min-height:56px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.radar-barra .voltar{font:700 14px Inter;color:var(--ouro);text-decoration:none;white-space:nowrap;padding:7px 12px;border-radius:10px;border:1px solid rgba(214,150,0,.45);background:#fff}
+.radar-barra .voltar:hover{background:#fff8e6}
+.radar-nome b{font:800 17px "Plus Jakarta Sans"}.radar-nome small{display:block;color:var(--soft2);font-size:12px}
+.radar-barra .dir{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--soft)}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12.5px;white-space:nowrap}
 .pill i{width:8px;height:8px;border-radius:50%;background:var(--soft2);display:inline-block}
 .pill.vivo i{background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.18)}
@@ -101,6 +125,19 @@ html{scroll-behavior:smooth}
 #r-titulo{font:800 clamp(20px,3vw,26px)/1.25 "Plus Jakarta Sans",Inter;color:var(--txt);margin:0 0 6px}
 .placar .pl-topo h3{font:800 clamp(20px,3vw,26px)/1.25 "Plus Jakarta Sans",Inter;color:var(--txt);margin:0 0 6px}
 .resumo sup a{color:var(--ouro);text-decoration:none;font-weight:700}
+.curso-nasdaq{display:grid;grid-template-columns:minmax(0,440px) 1fr;margin-top:22px;border-radius:22px;overflow:hidden;text-decoration:none;color:var(--txt);background:linear-gradient(120deg,#ffffff,#fff6dc);border:2px solid rgba(214,150,0,.5);box-shadow:0 22px 50px rgba(15,23,42,.12);transition:transform .2s,box-shadow .2s}
+.curso-nasdaq:hover{transform:translateY(-3px);box-shadow:0 28px 60px rgba(15,23,42,.16)}
+.curso-nasdaq img{width:100%;height:100%;object-fit:cover;display:block}
+.cn-corpo{padding:26px 28px}
+.cn-selo{display:inline-block;padding:5px 12px;border-radius:999px;background:#fff0c2;color:var(--ouro);font:800 12px Inter;letter-spacing:.06em;text-transform:uppercase}
+.curso-nasdaq h2{font:800 clamp(22px,2.6vw,28px)/1.2 "Plus Jakarta Sans";margin:12px 0 8px}
+.curso-nasdaq p{color:var(--soft);margin:0 0 12px}
+.curso-nasdaq ul{margin:0 0 16px;padding:0}.curso-nasdaq li{list-style:none;padding:4px 0 4px 26px;position:relative;color:#26334d}
+.curso-nasdaq li::before{content:"✓";position:absolute;left:0;color:#047857;font-weight:800}
+.cn-pe{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line)}
+.cn-preco b{display:block;font:800 30px/1 "Plus Jakarta Sans"}.cn-preco span{color:var(--soft);font-size:13px}
+.cn-btn{display:inline-flex;padding:13px 22px;border-radius:14px;font:800 16px Inter;background:linear-gradient(180deg,#ffcd4a,#f5b301);color:#241800;box-shadow:0 10px 26px rgba(214,150,0,.30)}
+@media (max-width:860px){.curso-nasdaq{grid-template-columns:1fr}.curso-nasdaq img{aspect-ratio:1/1;height:auto;max-height:420px}}
 .manchetes{list-style:none;margin:0;padding:0;font-size:13.5px;columns:2 420px;column-gap:28px}
 .manchetes li{padding:7px 0;border-top:1px solid var(--line);break-inside:avoid}
 .manchetes a{color:var(--txt);text-decoration:none}.manchetes a:hover{text-decoration:underline}
@@ -111,14 +148,20 @@ canvas{max-width:100%}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <img src="../assets/img/emblema-160.png" alt="">
-  <div><b>Radar do Payroll</b><small>NASDAQ × relatório de emprego dos EUA</small></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="../"><img src="../assets/img/emblema-160.png" alt=""><span>Mercado Sem Mistério<small>o mercado, explicado</small></span></a>
+  <nav class="menu"><a href="../#mercado">Mercado</a><a href="../#sobe-desce">Sobe e desce</a><a href="../#noticias">Notícias</a><a href="../dicas.html">Dicas</a><a href="../#agenda">Agenda</a><a href="../#cursos">Cursos</a><a href="../#ferramentas">Ferramentas</a></nav>
+  <a class="btn btn-ouro" href="../#cursos">Conheça os cursos</a>
+  <a class="insta" href="https://www.instagram.com/traderomercadosemmisterio" target="_blank" rel="noopener" aria-label="Instagram do Mercado Sem Mistério" title="Siga no Instagram"><svg viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><defs><radialGradient id="ig-grad" cx="0.3" cy="1.07" r="1.3"><stop offset="0" stop-color="#fdf497"/><stop offset=".08" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="48" height="48" rx="12" fill="url(#ig-grad)"/><rect x="11" y="11" width="26" height="26" rx="8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6.3" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.6" cy="16.4" r="1.9" fill="#fff"/></svg></a><button class="burger" aria-label="Menu">☰</button>
+</div></header>
+<div class="radar-barra"><div class="wrap">
+  <a class="voltar" href="../">← Voltar para a página inicial</a>
+  <div class="radar-nome"><b>Radar do Payroll</b><small>NASDAQ × relatório de emprego dos EUA</small></div>
   <div class="dir">
     <span class="pill" id="st-status"><i></i><span>carregando…</span></span>
     <span class="pill" id="st-hora">—</span>
   </div>
-</div></header>
+</div></div>
 
 <main class="wrap">
   <h1>Para que lado o Nasdaq tende a ir <em>no dia do payroll</em>?</h1>
@@ -231,6 +274,18 @@ canvas{max-width:100%}
     <div class="card"><h3 id="r-titulo">Carregando o resumo…</h3><div class="sub" id="r-data"></div><div id="r-texto"></div><h4 class="r-sub">O que esperar do próximo payroll</h4><div id="r-espera"></div><div class="sub" id="r-aviso" style="margin-top:12px"></div></div>
   </div>
   <div class="card" style="margin-top:16px"><h3>Todas as notícias do dia e o voto de cada uma</h3><div class="sub" style="margin-bottom:6px">Manchetes das últimas 36 horas sobre emprego, Fed, inflação, juros e bolsas americanas. Notícias sem relação com o Nasdaq (Brasil, outros países, empresas pequenas) ficam de fora do placar.</div><ul class="manchetes" id="r-manchetes"></ul></div>
+
+  <!-- CURSO NASDAQ -->
+  <a class="curso-nasdaq" href="../curso-nasdaq.html">
+    <img src="../assets/img/produtos/nasdaq-capa-1080x1080.png" alt="Curso Tudo sobre NASDAQ — Aprenda a operar com confiança" loading="lazy" width="1080" height="1080">
+    <div class="cn-corpo">
+      <span class="cn-selo">Curso completo · do básico ao avançado</span>
+      <h2>Quer entender o Nasdaq de verdade, e não só no dia do payroll?</h2>
+      <p>O curso <b>Tudo sobre NASDAQ — Aprenda a operar com confiança</b> explica o índice, os horários de Nova York em Brasília, as notícias que mexem com o mercado e como montar suas operações com gestão de risco.</p>
+      <ul><li>114 aulas animadas e interativas em 21 módulos</li><li>Nasdaq-100, horários de Nova York em Brasília e notícias</li><li>5 estratégias de day trade e 3 de swing trade</li><li>Prova prática, estudo de caso e certificado</li></ul>
+      <div class="cn-pe"><div class="cn-preco"><b>R$ 119,90</b><span>à vista no Pix ou em até 12x no cartão</span></div><span class="cn-btn">Conhecer o curso NASDAQ →</span></div>
+    </div>
+  </a>
 
   <p class="risco"><b>Aviso de risco.</b> Conteúdo educacional. Não é recomendação de investimento nem sinal de compra ou venda. Futuros e CFDs são alavancados e podem gerar perdas maiores que o capital. Resultados passados não garantem resultados futuros. Fontes: U.S. Bureau of Labor Statistics; Federal Reserve Bank of St. Louis (FRED/ALFRED); TradingView.</p>
 </main>
@@ -454,6 +509,11 @@ function relogio() {
   $("st-hora").textContent = `Nova York ${ny} · aqui ${aqui}`;
 }
 relogio(); setInterval(relogio, 15e3);
+/* menu do site no celular */
+document.addEventListener("click", (e) => {
+  const m = document.querySelector(".topo .menu"); if (!m) return;
+  if (e.target.closest(".burger")) m.classList.toggle("aberto"); else if (e.target.closest(".topo .menu a")) m.classList.remove("aberto");
+});
 
 /* atualização: a função tem cache de 10 min (1 min na janela do payroll); a página confere a idade dos dados a cada 30 s
    e busca de novo assim que passam do prazo, e também na hora em que a aba volta a ficar visível
