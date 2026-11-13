@@ -69,6 +69,12 @@ th{color:var(--soft2);font-weight:600}
 input{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font:600 15px Inter;width:100%}
 label{font-size:13px;color:var(--soft)}
 .tv{min-height:220px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#resumo{scroll-margin-top:90px}
+.btn-resumo{display:inline-flex;align-items:center;gap:8px;margin:4px 0 22px;padding:13px 26px;border-radius:999px;background:linear-gradient(180deg,#ffd34d,var(--ouro));color:#1a1200;font:800 16px Inter;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 24px rgba(245,179,1,.25);transition:transform .15s,box-shadow .15s}
+.btn-resumo:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(245,179,1,.35)}
+.btn-resumo:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .placar{margin:6px 0 16px}
 .pl-topo{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
 .pl-veredito{font:800 20px "Plus Jakarta Sans",Inter;padding:8px 16px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
@@ -115,6 +121,7 @@ canvas{max-width:100%}
 <main class="wrap">
   <h1>Para que lado o Nasdaq tende a ir <em>no dia do payroll</em>?</h1>
   <p class="lead">Índice calculado com dados oficiais (BLS e Fed de St. Louis) e com a reação real do Nasdaq 100 nos últimos payrolls. Ele mostra um <b>viés histórico condicionado</b>, não uma previsão.</p>
+  <a class="btn-resumo" href="#resumo">VEJA O RESUMO <span aria-hidden="true">↓</span></a>
 
   <!-- PRINCIPAL -->
   <div class="card">
@@ -207,7 +214,7 @@ canvas{max-width:100%}
   </div>
 
   <!-- RESUMO DO DIA -->
-  <div class="sec" id="resumo"><h2>Resumo do dia: o que está acontecendo e o que esperar do próximo payroll</h2><p>O texto é escrito uma vez por dia útil a partir de todas as manchetes do dia sobre emprego, Fed, inflação, juros e bolsas americanas (cada uma com link para a fonte) e dos dados oficiais. Os números vêm direto do BLS e do FRED na hora em que você abre a página, e o placar é calculado sozinho a partir dos votos.</p></div>
+  <div class="sec" id="resumo"><h2>Resumo do dia: o que está acontecendo e o que esperar do próximo payroll</h2><p>O texto é escrito todos os dias a partir de todas as manchetes do dia sobre emprego, Fed, inflação, juros e bolsas americanas (cada uma com link para a fonte) e dos dados oficiais. Os números vêm direto do BLS e do FRED na hora em que você abre a página, e o placar é calculado sozinho a partir dos votos.</p></div>
   <div class="card placar" id="placar">
     <div class="pl-topo"><div><h3>Placar do dia para o Nasdaq</h3><div class="sub">Cada notícia e cada dado oficial vale um voto: ▲ favorável (+1), ▼ desfavorável (−1) ou ● neutro (0). A média dos votos vai de −1 a +1.</div></div><div class="pl-veredito" id="pl-veredito">—</div></div>
     <div class="grid g3 pl-blocos">
