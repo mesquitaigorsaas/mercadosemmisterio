@@ -14,14 +14,29 @@ const TEMAS = ["payroll", "nonfarm", "jobs", "job ", "jobless", "labor", "labour
   " fed ", "fed's", "fomc", "powell", "warsh", "rate cut", "rate hike", "interest rate", "inflation", "cpi", "pce", "treasury", "yields", "bond", "nasdaq", "wall street", "stocks", "s&p",
   "emprego", "desemprego", "trabalho", "juros", "inflação", "treasuries", "títulos", "bolsas de nova york", "dólar"];
 
+/* busca JSON: tenta o fetch do Node e, se falhar (na nuvem o fetch nem sempre usa o proxy de rede), tenta pelo curl, que respeita https_proxy */
+async function json(url, headers = {}) {
+  try {
+    const r = await fetch(url, { headers, cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return await r.json();
+  } catch (e1) {
+    try {
+      const { execFileSync } = require("child_process");
+      const args = ["-sS", "--fail", "-m", "90", ...Object.entries(headers).flatMap(([k, v]) => ["-H", `${k}: ${v}`]), url];
+      return JSON.parse(execFileSync("curl", args, { encoding: "utf8", maxBuffer: 50e6 }));
+    } catch (e2) { throw new Error(`fetch: ${e1.message} | curl: ${String(e2.stderr || e2.message).trim().slice(0, 200)}`); }
+  }
+}
+
 (async () => {
-  const d = await (await fetch(`${SB}/functions/v1/dados-payroll`, { cache: "no-store" })).json();
+  const d = await json(`${SB}/functions/v1/dados-payroll`);
   if (d.erro) throw new Error("dados-payroll: " + d.erro);
   const falhas = Object.entries(d.fontes || {}).filter(([, v]) => !v.ok).map(([k]) => k);
 
   const desde = new Date(Date.now() - 36 * 3600e3).toISOString();
   const url = `${SB}/rest/v1/noticias?select=regiao,fonte,titulo,link,idioma,publicado_em&publicado_em=gte.${desde}&regiao=in.(eua,brasil,europa,bancos_centrais)&order=publicado_em.desc&limit=1000`;
-  const todas = await (await fetch(url, { headers: { apikey: CHAVE } })).json();
+  const todas = await json(url, { apikey: CHAVE });
   const soFatos = process.argv.includes("--so-fatos") && fs.existsSync(path.join(__dirname, "entrada-resumo.json"));
   const vistos = new Set();
   const manchetes = todas.filter((n) => {
