@@ -1,0 +1,321 @@
+{
+  "data": "2026-11-13",
+  "escritoEm": "2026-11-13T15:41:13.885Z",
+  "titulo": "Fed mais duro, juros em alta e susto com a Nvidia: o dia pesa contra o Nasdaq",
+  "paragrafos": [
+    "O tema que domina as notícias é um Fed mais preocupado com a inflação. Goolsbee, do Fed de Chicago, disse que é preciso se precaver contra o superaquecimento da demanda [2] e que ainda há trabalho a fazer contra a inflação [4]. Na véspera, Daly, do Fed, defendeu mais altas de juros [20]. O mercado reagiu reforçando as apostas em alta de juros [11]: os juros dos títulos americanos tiveram o maior salto desde 2022 [16] e o dólar ganhou força no mundo [9][13]. Por que isso importa: juro mais alto deixa o dinheiro mais caro e reduz o valor que o investidor paga pelas empresas de tecnologia, que são a base do Nasdaq.",
+    "O segundo tema é a Nvidia. A saída do CEO lançou dúvida sobre os investimentos em inteligência artificial [26], e as bolsas de Nova York fecharam em queda na quinta [17]. Nesta sexta, os futuros começaram em queda [12], e Wall Street opera sem direção única [1]. Houve alívios: a inflação ao produtor (PPI) de outubro veio abaixo do esperado [5], e o resto do mercado resistiu à queda da Nvidia [24].",
+    "Nos dados oficiais, o último payroll (out/2026, divulgado em 06/11) mostrou +165 mil vagas, acima da média de +79 mil dos 3 meses anteriores. O desemprego caiu para 4,1% (antes 4,2%), e o salário médio por hora subiu +0,37% no mês e +3,12% em 12 meses. Com a inflação ao consumidor em 4,08% em 12 meses, a economia está na fase \"inflação\". Nessa fase, emprego forte é lido como motivo para mais juros, e por isso os dados de emprego votam contra o Nasdaq no placar. O juro do Treasury de 2 anos foi a 4,73% em 10/11 (no dia anterior, 4,56%), e o de 10 anos a 4,98%. O Nasdaq 100 fechou 12/11 em 28.289,19 pontos (-0,30% no dia)."
+  ],
+  "espera": [
+    "O próximo payroll sai em 04/12/2026, às 8h30 de Nova York. As pistas oficiais mostram um mercado de trabalho firme. O ADP subiu +86 mil em out/2026, acima da média de +55 mil dos 3 meses anteriores. As vagas abertas (JOLTS) subiram para 7,52 milhões em set/2026, de 7,19 milhões. O seguro-desemprego ficou em 200 mil na semana até 07/11, perto da média de 4 semanas de 195,3 mil, e os pedidos contínuos ficaram em 1,697 milhão. Ou seja, por enquanto o quadro aponta para outro payroll sólido.",
+    "Pelo quadro de hoje, um payroll forte com salário acelerando tenderia a empurrar os juros para cima e pesar no Nasdaq. Já um payroll mais fraco ou um salário mais contido aliviaria os juros. Um ponto de atenção para as próximas semanas: um diretor do Fed alertou para uma perturbação grave no mercado de trabalho causada pela IA [27]. Até 04/12 saem novos pedidos de seguro-desemprego toda quinta-feira, além do ADP e do JOLTS seguintes, e cada um muda o placar. Este resumo é refeito a cada dia útil."
+  ],
+  "manchetes": [
+    {
+      "regiao": "brasil",
+      "fonte": "Money Times",
+      "titulo": "Wall Street opera sem direção única com crise da Nvidia e PPI abaixo do esperado",
+      "link": "https://www.moneytimes.com.br/wall-street-opera-sem-direcao-unica-com-crise-da-nvidia-e-ppi-abaixo-do-esperado-davs/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T15:11:17+00:00",
+      "sinal": 0,
+      "porque": "Mistura um alívio (inflação ao produtor abaixo do esperado) com um peso (a crise na Nvidia): saldo neutro."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "InfoMoney",
+      "titulo": "Goolsbee diz na CNBC que Fed precisa se precaver contra superaquecimento da demanda",
+      "link": "https://www.infomoney.com.br/mundo/goolsbee-diz-na-cnbc-que-fed-precisa-se-precaver-contra-superaquecimento-da-demanda/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T14:56:06+00:00",
+      "sinal": -1,
+      "porque": "Um dirigente do Fed preocupado com demanda forte sinaliza juros altos por mais tempo, o que pesa nas ações de tecnologia."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "Investing.com",
+      "titulo": "Canadian dollar holds near one-month low as U.S. producer inflation keeps Fed bets",
+      "link": "https://www.investing.com/news/forex-news/canadian-dollar-holds-near-onemonth-low-as-us-producer-inflation-keeps-fed-bets-5025909",
+      "idioma": "en",
+      "publicado_em": "2026-11-13T14:38:09+00:00",
+      "sinal": -1,
+      "porque": "A inflação ao produtor manteve vivas as apostas em juros mais altos nos EUA."
+    },
+    {
+      "regiao": "europa",
+      "fonte": "CNBC Europe",
+      "titulo": "Chicago Fed's Goolsbee says central bank 'has definitely got work to do' on inflation",
+      "link": "https://www.cnbc.com/2026/11/13/chicago-feds-goolsbee-says-central-bank-has-definitely-got-work-to-do-on-inflation.html",
+      "idioma": "en",
+      "publicado_em": "2026-11-13T14:22:07+00:00",
+      "sinal": -1,
+      "porque": "Dizer que ainda há trabalho a fazer contra a inflação significa juros altos por mais tempo."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "InfoMoney",
+      "titulo": "PPI: inflação ao produtor nos EUA sobe em outubro abaixo da expectativa",
+      "link": "https://www.infomoney.com.br/economia/ppi-inflacao-ao-produtor-nos-eua-sobe-em-outubro-abaixo-da-expectativa/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T13:43:00+00:00",
+      "sinal": 1,
+      "porque": "Inflação ao produtor abaixo do esperado alivia a pressão sobre o Fed e sobre os juros."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Money Times",
+      "titulo": "Warsh, do Fed, vai avaliar revolução da IA em meio à cautela crescente da população dos EUA",
+      "link": "https://www.moneytimes.com.br/warsh-do-fed-vai-avaliar-revolucao-da-ia-em-meio-a-cautela-crescente-da-populacao-dos-eua-jcav/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T12:59:20+00:00",
+      "sinal": 0,
+      "porque": "Avaliação da IA pelo Fed: tema de longo prazo, sem efeito claro nos juros de agora."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Investing.com Brasil",
+      "titulo": "Goldman Sachs prevê S&P 500 em 8.700 pontos em 2027",
+      "link": "https://br.investing.com/news/stock-market-news/goldman-sachs-preve-sp-500-em-8700-pontos-em-2027-2126545",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T12:35:28+00:00",
+      "sinal": 1,
+      "porque": "Um grande banco projetando alta da bolsa americana reforça o otimismo com as ações."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Money Times",
+      "titulo": "Agenda econômica desta sexta-feira (13) conta com PIB da zona do euro, varejo no Brasil e inflação nos EUA",
+      "link": "https://www.moneytimes.com.br/agenda-economica-sexta-feira-13-pib-da-zona-do-euro-varejo-brasil-inflacao-eua-mlem/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T09:30:00+00:00",
+      "sinal": 0,
+      "porque": "É só a agenda do dia: ainda não diz se o dado veio bom ou ruim."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "Investing.com",
+      "titulo": "Sterling today: Pound steady as hawkish Fed keeps dollar bid",
+      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-steady-as-hawkish-fed-keeps-dollar-bid-5024553",
+      "idioma": "en",
+      "publicado_em": "2026-11-13T09:08:09+00:00",
+      "sinal": -1,
+      "porque": "Fed com tom duro mantém o dólar forte, sinal de juros altos nos EUA."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "Investing.com",
+      "titulo": "Euro yields hit multi-week highs as hawkish Fed shatters global bond rally",
+      "link": "https://www.investing.com/news/forex-news/euro-yields-hit-multiweek-highs-as-hawkish-fed-shatters-global-bond-rally-5024281",
+      "idioma": "en",
+      "publicado_em": "2026-11-13T08:58:22+00:00",
+      "sinal": -1,
+      "porque": "Um Fed duro derrubou a alta dos títulos no mundo todo: juros subindo, ruim para o Nasdaq."
+    },
+    {
+      "regiao": "europa",
+      "fonte": "CNBC Europe",
+      "titulo": "Treasury yields rise as traders strengthen Fed rate hike bets",
+      "link": "https://www.cnbc.com/2026/11/13/treasury-yields-fed-rates.html",
+      "idioma": "en",
+      "publicado_em": "2026-11-13T08:50:43+00:00",
+      "sinal": -1,
+      "porque": "Juros dos Treasuries subindo com mais apostas de alta do Fed: o custo do dinheiro aumenta."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "InfoMoney",
+      "titulo": "Futuros de NY caem com incertezas sobre a Nvidia e inflação ao produtor no radar",
+      "link": "https://www.infomoney.com.br/mercados/futuros-de-ny-caem-com-incertezas-sobre-a-nvidia-e-inflacao-ao-produtor-no-radar/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T08:45:11+00:00",
+      "sinal": -1,
+      "porque": "Futuros de Nova York em queda mostram o humor negativo antes da abertura."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "Investing.com",
+      "titulo": "Asia FX: yen intervention in focus as rate hike bets put dollar near 19-mth high",
+      "link": "https://www.investing.com/news/forex-news/asia-fx-yen-intervention-in-focus-as-rate-hike-bets-put-dollar-near-19mth-high-5024024",
+      "idioma": "en",
+      "publicado_em": "2026-11-13T03:25:27+00:00",
+      "sinal": -1,
+      "porque": "Apostas em alta de juros levaram o dólar perto da máxima do período: sinal de aperto monetário."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Investing.com Brasil",
+      "titulo": "Ouro permanece perto da mínima de 13 meses com petróleo a US$ 96 elevando apostas em altas maiores do Fed",
+      "link": "https://br.investing.com/news/commodities-news/ouro-permanece-perto-da-minima-de-13-meses-com-petroleo-a-us-96-elevando-apostas-em-altas-maiores-do-fed-2125999",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T01:03:44+00:00",
+      "sinal": -1,
+      "porque": "Petróleo caro aumenta as apostas em altas maiores do Fed, o que pesa nas ações de tecnologia."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Investing.com Brasil",
+      "titulo": "Futuros das bolsas americanas sobem após saída de CEO da Nvidia assustar Wall Street",
+      "link": "https://br.investing.com/news/stock-market-news/futuros-das-bolsas-americanas-sobem-apos-saida-de-ceo-da-nvidia-assustar-wall-street-2125962",
+      "idioma": "pt",
+      "publicado_em": "2026-11-13T00:09:52+00:00",
+      "sinal": 1,
+      "porque": "Os futuros reagiram com alta depois do susto com a Nvidia: alívio de curto prazo."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "MarketWatch",
+      "titulo": "Bond yields just saw their biggest surge since 2022 as expectations grow for more Fed rate hikes",
+      "link": "https://www.marketwatch.com/story/bond-yields-just-saw-their-biggest-surge-since-2022-as-expectations-grow-for-more-fed-rate-hikes-d0a4f195?mod=mw_rss_topstories",
+      "idioma": "en",
+      "publicado_em": "2026-11-12T22:16:00+00:00",
+      "sinal": -1,
+      "porque": "O maior salto dos juros dos títulos desde 2022 é um dos sinais mais negativos para o Nasdaq."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Money Times",
+      "titulo": "Bolsas de Nova York fecham em queda com crise da Nvidia e ataques ao Irã",
+      "link": "https://www.moneytimes.com.br/bolsas-de-nova-york-fecham-em-queda-com-crise-da-nvidia-e-ataques-ao-ira-davs/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-12T22:09:44+00:00",
+      "sinal": -1,
+      "porque": "As bolsas de Nova York fecharam em queda com a Nvidia e a tensão geopolítica."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Investing.com Brasil",
+      "titulo": "Fed tem tempo para calibrar aumentos dos juros, afirma Daly",
+      "link": "https://br.investing.com/news/economy-news/fed-tem-tempo-para-calibrar-aumentos-dos-juros-afirma-daly-2125793",
+      "idioma": "pt",
+      "publicado_em": "2026-11-12T21:35:21+00:00",
+      "sinal": 0,
+      "porque": "Falar em calibrar as altas com tempo indica cautela, nem mais duro nem mais brando."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Money Times",
+      "titulo": "Ouro fecha abaixo dos US$ 4 mil com alta do dólar e tensões entre EUA e Irã",
+      "link": "https://www.moneytimes.com.br/ouro-fecha-abaixo-dos-us-4-mil-com-alta-do-dolar-e-tensoes-entre-eua-e-ira-davs/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-12T19:15:56+00:00",
+      "sinal": -1,
+      "porque": "Dólar em alta e tensão entre EUA e Irã aumentam a aversão a risco."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Investing.com Brasil",
+      "titulo": "Daly, do Fed, diz que mais altas de juros serão necessárias para combater a inflação",
+      "link": "https://br.investing.com/news/economy-news/daly-do-fed-diz-que-mais-altas-de-juros-serao-necessarias-para-combater-a-inflacao-2125631",
+      "idioma": "pt",
+      "publicado_em": "2026-11-12T18:54:23+00:00",
+      "sinal": -1,
+      "porque": "Um dirigente do Fed defendendo mais altas de juros é diretamente ruim para o Nasdaq."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Investing.com Brasil",
+      "titulo": "Fed vai pular votação de juros na reunião de outubro de 2027",
+      "link": "https://br.investing.com/news/economy-news/fed-vai-pular-votacao-de-juros-na-reuniao-de-outubro-de-2027-2125626",
+      "idioma": "pt",
+      "publicado_em": "2026-11-12T18:43:29+00:00",
+      "sinal": 0,
+      "porque": "Mudança de calendário do Fed em 2027: não afeta os juros de agora."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "MarketWatch",
+      "titulo": "U.S. inflation is already bad enough. It might get worse.",
+      "link": "https://www.marketwatch.com/story/u-s-inflation-is-already-bad-enough-it-might-get-worse-bae54da9?mod=mw_rss_topstories",
+      "idioma": "en",
+      "publicado_em": "2026-11-12T18:39:00+00:00",
+      "sinal": -1,
+      "porque": "Inflação que pode piorar mantém o Fed duro por mais tempo."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "MarketWatch",
+      "titulo": "The scandal at Nvidia is exactly what’s wrong with the S&P 500",
+      "link": "https://www.marketwatch.com/story/the-scandal-at-nvidia-is-exactly-whats-wrong-with-the-s-p-500-7307457e?mod=mw_rss_topstories",
+      "idioma": "en",
+      "publicado_em": "2026-11-12T17:42:00+00:00",
+      "sinal": -1,
+      "porque": "O escândalo na Nvidia atinge a maior empresa do índice e pesa no setor de tecnologia."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "MarketWatch",
+      "titulo": "The S&P 500 is shrugging off Nvidia’s selloff. Here’s what’s keeping the rest of the market afloat.",
+      "link": "https://www.marketwatch.com/story/the-s-p-500-is-shrugging-off-nvidias-selloff-heres-whats-keeping-the-rest-of-the-market-afloat-7cdf2f05?mod=mw_rss_topstories",
+      "idioma": "en",
+      "publicado_em": "2026-11-12T17:38:00+00:00",
+      "sinal": 1,
+      "porque": "O resto do mercado resistiu à queda da Nvidia: sinal de força fora dela."
+    },
+    {
+      "regiao": "eua",
+      "fonte": "MarketWatch",
+      "titulo": "The bond market now has an even bigger fear than the AI fallout",
+      "link": "https://www.marketwatch.com/story/the-bond-market-now-has-an-even-bigger-fear-than-the-ai-fallout-b6401b54?mod=mw_rss_topstories",
+      "idioma": "en",
+      "publicado_em": "2026-11-12T17:11:00+00:00",
+      "sinal": -1,
+      "porque": "O mercado de títulos teme algo maior que a IA, ou seja, juros e inflação: ruim para o Nasdaq."
+    },
+    {
+      "regiao": "europa",
+      "fonte": "CNBC Europe",
+      "titulo": "Jensen Huang's Nvidia exit casts shadow over Wall Street’s $500 billion AI financing bet",
+      "link": "https://www.cnbc.com/2026/11/12/nvidia-ceo-exit-ai-financing.html",
+      "idioma": "en",
+      "publicado_em": "2026-11-12T17:06:18+00:00",
+      "sinal": -1,
+      "porque": "A saída do CEO da Nvidia lança dúvida sobre os investimentos em IA, motor do Nasdaq."
+    },
+    {
+      "regiao": "brasil",
+      "fonte": "Money Times",
+      "titulo": "EUA devem se preparar para “grave” perturbação no mercado de trabalho causada pela IA, diz diretor do Fed",
+      "link": "https://www.moneytimes.com.br/eua-devem-se-preparar-para-grave-perturbacao-no-mercado-de-trabalho-causada-pela-ia-diz-diretor-do-fed-jcav/",
+      "idioma": "pt",
+      "publicado_em": "2026-11-12T16:33:05+00:00",
+      "sinal": 0,
+      "porque": "A IA pode afetar o emprego no futuro, mas o efeito sobre os juros e o índice ainda é incerto."
+    }
+  ],
+  "descartadas": [
+    "https://www.infomoney.com.br/economia/galipolo-diz-que-premio-da-curva-de-juros-depende-da-credibilidade-do-pais/",
+    "https://br.investing.com/news/forex-news/dolar-canadense-perto-de-minima-de-um-mes-com-inflacao-nos-eua-2126798",
+    "https://br.investing.com/news/company-news/onfolio-recupera-conformidade-com-o-nasdaq-e-elimina-divida-conversivel-93CH-2126751",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://www1.folha.uol.com.br/mercado/2026/11/dolar-abre-perto-da-estabilidade-com-aprovacao-de-plano-fiscal-no-radar.shtml",
+    "https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-13112026/",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://c-level.folha.uol.com.br/agro/2026/11/juros-altos-eventos-climaticos-e-preco-de-graos-elevaram-dividas-do-agro-dizem-produtores.shtml",
+    "https://www.infomoney.com.br/mercados/ibovespa-hoje-bolsa-de-valores-ao-vivo-13112026/",
+    "https://www.moneytimes.com.br/mercado-reage-a-texto-do-ajuste-fiscal-no-congresso-e-balancos-ibovespa-em-dolar-sobe-nesta-sexta-feira-13-rens/",
+    "https://www.infomoney.com.br/mercados/minidolar-hoje-futuro-do-dolar-wdoz26-13112026/",
+    "https://br.investing.com/news/forex-news/libra-esterlina-estavel-enquanto-fed-hawkish-mantem-dolar-firme-2126257",
+    "https://www.infomoney.com.br/mercados/varejo-brasileiro-inflacao-eua-pib-europa-agenda-13112026/",
+    "https://br.investing.com/news/forex-news/rendimentos-europeus-atingem-maximas-de-semanas-com-fed-hawkish-2126248",
+    "https://br.investing.com/news/economic-indicators/inflacao-na-espanha-permanece-estavel-em-49-em-outubro-93CH-2126230",
+    "https://br.investing.com/news/economic-indicators/inflacao-da-finlandia-acelera-para-31-em-outubro-de-2026-93CH-2126160",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://www1.folha.uol.com.br/mercado/2026/11/gilmar-mendes-sinaliza-que-reconhecera-justica-do-trabalho-como-competente-para-julgar-acoes-de-pejotizacao.shtml",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://c-level.folha.uol.com.br/economia-sustentavel/2026/11/credito-climatico-com-juros-de-1-bancado-pelo-governo-financia-apartamentos-de-luxo.shtml",
+    "https://br.investing.com/news/stock-market-news/australia--acoes-fecharam-o-pregao-em-queda-e-o-indice-spasx-200-recuou-071-2126109",
+    "https://br.investing.com/news/forex-news/cambio-asiatico-iene-em-foco-com-dolar-perto-de-maxima-em-19-meses-2126056",
+    "https://br.investing.com/news/insider-trading-news/coo-da-radnet-vende-us-35-milhoes-em-acoes-rdnt-na-nasdaq-93CH-2126001",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://www1.folha.uol.com.br/colunas/viniciustorres/2026/11/qual-e-o-preco-do-dolar-que-vai-fazer-governo-e-politicos-acordarem-r-6.shtml",
+    "https://br.investing.com/news/sec-filings/nasdaq-vai-retirar-shf-holdings-da-bolsa-por-violacao-de-preco-minimo-93CH-2125891",
+    "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-dispara-158-e-fecha-r-565-maior-nivel-em-17-meses",
+    "https://www.marketwatch.com/story/the-10-best-stocks-for-a-year-end-momentum-trade-8d4cf8f7?mod=mw_rss_topstories",
+    "https://br.investing.com/news/sec-filings/beneficient-recebe-notificacao-da-nasdaq-por-nao-conformidade-com-valor-de-mercado-minimo-93CH-2125790",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://www1.folha.uol.com.br/mercado/2026/11/inflacao-sobe-pelo-segundo-mes-consecutivo-na-argentina.shtml",
+    "https://br.investing.com/news/company-news/prf-technologies-enfrenta-risco-de-exclusao-da-nasdaq-por-preco-de-acoes-93CH-2125743",
+    "https://www.moneytimes.com.br/dolar-12-11-2026-davs/",
+    "https://br.investing.com/news/forex-news/dolar-a-vista-fecha-em-alta-de-158-a-r56507-na-venda-2125679",
+    "https://www.marketwatch.com/story/trump-administration-is-hiring-debt-collectors-for-first-time-in-6-years-to-go-after-defaulted-student-loan-borrowers-8bae13ad?mod=mw_rss_topstories",
+    "https://www.infomoney.com.br/politica/motta-anuncia-grupo-de-trabalho-para-discutir-propaganda-eleitoral-nas-redes-sociais/",
+    "https://redir.folha.com.br/redir/online/mercado/rss091/*https://www1.folha.uol.com.br/mercado/2026/11/uber-e-proibida-pela-justica-do-trabalho-de-cobrar-taxa-de-motorista-no-brasil-entenda.shtml",
+    "https://www.infomoney.com.br/mercados/alem-da-bolsa-como-dolar-juros-altos-podem-ameacar-investimentos-empregos/",
+    "https://br.investing.com/news/stock-market-news/td-cowen-aponta-as-melhores-acoes-de-varejo-especializado-em-meio-a-inflacao-2125499"
+  ]
+}

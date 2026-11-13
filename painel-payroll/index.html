@@ -69,6 +69,30 @@ th{color:var(--soft2);font-weight:600}
 input{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font:600 15px Inter;width:100%}
 label{font-size:13px;color:var(--soft)}
 .tv{min-height:220px}
+.placar{margin:6px 0 16px}
+.pl-topo{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.pl-veredito{font:800 20px "Plus Jakarta Sans",Inter;padding:8px 16px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.pl-veredito.pos{color:var(--verde);border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.08)}
+.pl-veredito.neg{color:var(--verm);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.pl-veredito.neu{color:var(--ouro);border-color:rgba(245,179,1,.45);background:rgba(245,179,1,.08)}
+.pl-blocos{margin-top:14px}
+.pl-bloco{background:var(--card2);border-radius:14px;padding:12px 14px}
+.pl-cont{font:700 15px Inter;margin-top:4px}
+.pl-cont .v{color:var(--verde)}.pl-cont .r{color:var(--verm)}.pl-cont .n{color:var(--soft)}
+.pl-barra{position:relative;height:10px;border-radius:99px;margin-top:16px;background:linear-gradient(90deg,var(--verm),#334155 50%,var(--verde))}
+.pl-barra span{position:absolute;top:-5px;width:4px;height:20px;border-radius:3px;background:#fff;box-shadow:0 0 0 2px var(--bg);transform:translateX(-2px);left:50%;transition:left .4s}
+.pl-escala{display:flex;justify-content:space-between;margin-top:4px}
+.voto{font-weight:800;white-space:nowrap}.voto.v{color:var(--verde)}.voto.r{color:var(--verm)}.voto.n{color:var(--soft2)}
+.manchetes .porque{display:block;color:var(--soft);font-size:12.5px;margin-top:2px}
+.resumo{margin-top:6px}
+#r-numeros td{white-space:normal;vertical-align:top}#r-numeros td:first-child{min-width:220px}#r-numeros td:nth-child(2){white-space:nowrap}
+.resumo #r-texto p,.resumo #r-espera p{margin:0 0 10px;color:var(--txt)}
+.resumo .r-sub{font:700 14px Inter;color:var(--ouro);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+.resumo sup a{color:var(--ouro);text-decoration:none;font-weight:700}
+.manchetes{list-style:none;margin:0;padding:0;font-size:13.5px;columns:2 420px;column-gap:28px}
+.manchetes li{padding:7px 0;border-top:1px solid var(--line);break-inside:avoid}
+.manchetes a{color:var(--txt);text-decoration:none}.manchetes a:hover{text-decoration:underline}
+.manchetes .n{color:var(--ouro);font-weight:700;margin-right:6px}
 .risco{color:var(--soft2);font-size:13px;margin:30px 0 40px;border-top:1px solid var(--line);padding-top:16px}
 canvas{max-width:100%}
 .carregando{color:var(--soft2)}
@@ -175,13 +199,33 @@ canvas{max-width:100%}
   <div class="grid g2" style="margin-top:34px">
     <div class="card"><h3>Payrolls do histórico</h3><div class="tabela"><table id="tab-hist"><thead><tr><th>Divulgação</th><th>Vagas</th><th>Surpresa</th><th>Revisões</th><th>Desemp.</th><th>Salário m/m</th><th>Fase</th><th>Nasdaq 100</th><th>2 anos</th><th>VIX</th><th>Dólar</th></tr></thead><tbody></tbody></table></div></div>
     <div class="card"><h3>Qualidade dos dados</h3><div class="sub" id="q-resumo" style="margin-bottom:8px">—</div><ul class="fontes" id="fontes"></ul>
-      <div class="sub" style="margin-top:10px">Busca automática a cada 10 minutos. No dia do payroll, entre 8h25 e 9h30 de Nova York, a cada 1 minuto.</div></div>
+      <div class="sub" style="margin-top:10px">A página confere a cada 5 minutos e sempre que você volta para a aba (a fonte guarda os dados por até 10 minutos). No dia do payroll, a cada 1 minuto.</div></div>
   </div>
+
+  <!-- RESUMO DO DIA -->
+  <div class="sec" id="resumo"><h2>Resumo do dia: o que está acontecendo e o que esperar do próximo payroll</h2><p>O texto é escrito uma vez por dia útil a partir de todas as manchetes do dia sobre emprego, Fed, inflação, juros e bolsas americanas (cada uma com link para a fonte) e dos dados oficiais. Os números vêm direto do BLS e do FRED na hora em que você abre a página, e o placar é calculado sozinho a partir dos votos.</p></div>
+  <div class="card placar" id="placar">
+    <div class="pl-topo"><div><h3>Placar do dia para o Nasdaq</h3><div class="sub">Cada notícia e cada dado oficial vale um voto: ▲ favorável (+1), ▼ desfavorável (−1) ou ● neutro (0). A média dos votos vai de −1 a +1.</div></div><div class="pl-veredito" id="pl-veredito">—</div></div>
+    <div class="grid g3 pl-blocos">
+      <div class="pl-bloco"><div class="sub">Notícias do dia</div><div class="pl-cont" id="pl-noticias">—</div></div>
+      <div class="pl-bloco"><div class="sub">Dados oficiais</div><div class="pl-cont" id="pl-dados">—</div></div>
+      <div class="pl-bloco"><div class="sub">Total somado</div><div class="pl-cont" id="pl-total">—</div></div>
+    </div>
+    <div class="pl-barra"><span id="pl-marca"></span></div><div class="pl-escala sub"><span>−1 desfavorável</span><span>0</span><span>+1 favorável</span></div>
+    <div class="sub" id="pl-porque" style="margin-top:10px"></div>
+  </div>
+  <div class="grid g2 resumo">
+    <div class="card"><h3 id="r-titulo">Carregando o resumo…</h3><div class="sub" id="r-data"></div><div id="r-texto"></div><h4 class="r-sub">O que esperar do próximo payroll</h4><div id="r-espera"></div><div class="sub" id="r-aviso" style="margin-top:12px"></div></div>
+    <div class="card"><h3>Números oficiais agora</h3><div class="tabela"><table id="r-numeros"><thead><tr><th>Dado</th><th>Último valor</th><th>Referência</th><th>Fonte</th></tr></thead><tbody><tr><td colspan="4">—</td></tr></tbody></table></div>
+      </div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>Todas as notícias do dia e o voto de cada uma</h3><div class="sub" style="margin-bottom:6px">Manchetes das últimas 36 horas sobre emprego, Fed, inflação, juros e bolsas americanas. Notícias sem relação com o Nasdaq (Brasil, outros países, empresas pequenas) ficam de fora do placar.</div><ul class="manchetes" id="r-manchetes"></ul></div>
 
   <p class="risco"><b>Aviso de risco.</b> Conteúdo educacional. Não é recomendação de investimento nem sinal de compra ou venda. Futuros e CFDs são alavancados e podem gerar perdas maiores que o capital. Resultados passados não garantem resultados futuros. Fontes: U.S. Bureau of Labor Statistics; Federal Reserve Bank of St. Louis (FRED/ALFRED); TradingView.</p>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="numeros.js?v=1"></script>
 <script>
 const API = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/dados-payroll";
 const FASES = { inflacao: "Inflação", recessao: "Medo de recessão", neutra: "Neutra" };
@@ -291,7 +335,7 @@ function render(d) {
   $("fontes").innerHTML = fs.map(([k, v]) => `<li><span>${k}<br><span class="sub">${v.tipo}</span></span><span class="${v.ok ? "ok" : "erro"}">${v.ok ? "ok · até " + (v.ate || "—") : "falhou"}</span></li>`).join("");
   // status
   const st = $("st-status"); st.className = "pill " + (d.janelaPayroll ? "vivo" : oks < fs.length ? "alerta" : "");
-  st.querySelector("span").textContent = d.janelaPayroll ? "janela do payroll · atualiza a cada 1 min" : "atualiza a cada 10 min";
+  st.querySelector("span").textContent = d.janelaPayroll ? "janela do payroll · atualiza a cada 1 min" : "confere a cada 5 min";
   st.querySelector("span").textContent += " · dados de " + new Date(d.buscadoEm).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
   $("lim-n").textContent = HIST.length;
 }
@@ -343,6 +387,53 @@ function widget(el, simbolo, nome) {
   const leg = document.createElement("div"); leg.className = "sub"; leg.textContent = nome; box.appendChild(leg);
 }
 
+/* ---------- resumo do dia ----------
+   números: calculados aqui, direto do JSON oficial (BLS/FRED), nunca digitados à mão.
+   texto: resumo.json, escrito uma vez por dia útil; o gerador só aceita números que estão nos dados ou nas manchetes. */
+const VOTO = { 1: ["▲", "v", "favorável"], "-1": ["▼", "r", "desfavorável"], 0: ["●", "n", "neutro"] };
+const selo = (v) => v == null ? "" : `<span class="voto ${VOTO[v][1]}" title="${VOTO[v][2]}">${VOTO[v][0]}</span>`;
+let votosDados = null, votosNoticias = null;
+function numerosDoDia(d) {
+  const L = fatosDoDia(d);
+  $("r-numeros").querySelector("tbody").innerHTML = L.map((r) => `<tr><td>${selo(r.voto)} ${r.dado}${r.porque ? `<div class="sub">${r.porque}</div>` : ""}</td><td><b>${r.valor}</b></td><td class="sub">${r.referencia}</td><td class="sub">${r.fonte}</td></tr>`).join("") || '<tr><td colspan="4">—</td></tr>';
+  votosDados = L.filter((r) => r.voto != null).map((r) => r.voto);
+  placar();
+}
+/* placar: soma e média dos votos (notícias do resumo + dados oficiais); calculado aqui, nunca escrito à mão */
+function placar() {
+  const conta = (a) => ({ v: a.filter((x) => x > 0).length, r: a.filter((x) => x < 0).length, n: a.filter((x) => x === 0).length, soma: a.reduce((s, x) => s + x, 0), total: a.length });
+  const txt = (c) => c.total ? `<span class="v">▲ ${c.v}</span> · <span class="r">▼ ${c.r}</span> · <span class="n">● ${c.n}</span> <span class="sub">(saldo ${mais(c.soma)})</span>` : "—";
+  const N = conta(votosNoticias || []), D = conta(votosDados || []), T = conta([...(votosNoticias || []), ...(votosDados || [])]);
+  $("pl-noticias").innerHTML = txt(N); $("pl-dados").innerHTML = txt(D);
+  if (!T.total) return;
+  const m = T.soma / T.total;
+  $("pl-total").innerHTML = txt(T) + `<div class="sub">média ${mais(m, 2)}</div>`;
+  $("pl-marca").style.left = ((m + 1) / 2 * 100) + "%";
+  const ver = $("pl-veredito"), cls = m >= 0.2 ? "pos" : m <= -0.2 ? "neg" : "neu";
+  ver.className = "pl-veredito " + cls;
+  ver.textContent = cls === "pos" ? "Favorável ao Nasdaq" : cls === "neg" ? "Desfavorável ao Nasdaq" : "Equilibrado";
+  $("pl-porque").textContent = `${T.v} votos favoráveis e ${T.r} desfavoráveis em ${T.total} (${N.total} notícias e ${D.total} dados oficiais). `
+    + (cls === "neg" ? "Predominam sinais de juros altos por mais tempo; o porquê de cada voto está ao lado de cada notícia e de cada dado." : cls === "pos" ? "Predominam sinais de alívio nos juros e economia saudável; o porquê de cada voto está ao lado de cada notícia e de cada dado." : "Os sinais se equilibram; o porquê de cada voto está ao lado de cada notícia e de cada dado.")
+    + " É uma leitura do dia, não uma previsão nem recomendação.";
+}
+let ultimaResumo = 0;
+async function carregarResumo() {
+  try {
+    const r = await fetch("resumo.json", { cache: "no-store" }); if (!r.ok) throw new Error(r.status);
+    const x = await r.json(); ultimaResumo = Date.now();
+    const ref = (t) => esc(t).replace(/\[(\d+)\]/g, (m, n) => x.manchetes[n - 1] ? `<sup><a href="${esc(x.manchetes[n - 1].link)}" target="_blank" rel="noopener nofollow" title="${esc(x.manchetes[n - 1].fonte)}">[${n}]</a></sup>` : m);
+    $("r-titulo").textContent = x.titulo;
+    $("r-data").textContent = "Resumo de " + new Date(x.data + "T12:00:00Z").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" }) + " · escrito às " + new Date(x.escritoEm).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) + " (Brasília)";
+    $("r-texto").innerHTML = x.paragrafos.map((p) => `<p>${ref(p)}</p>`).join("");
+    $("r-espera").innerHTML = x.espera.map((p) => `<p>${ref(p)}</p>`).join("");
+    $("r-manchetes").innerHTML = x.manchetes.map((m, i) => `<li>${selo(m.sinal)} <span class="n">[${i + 1}]</span><a href="${esc(m.link)}" target="_blank" rel="noopener nofollow">${esc(m.titulo)}</a> <span class="sub">· ${esc(m.fonte)}, ${new Date(m.publicado_em).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}</span>${m.porque ? `<span class="porque">${esc(m.porque)}</span>` : ""}</li>`).join("");
+    votosNoticias = x.manchetes.filter((m) => [1, 0, -1].includes(m.sinal)).map((m) => m.sinal); placar();
+    const dias = Math.floor((Date.now() - Date.parse(x.escritoEm)) / 864e5);
+    $("r-aviso").textContent = (dias >= 2 ? `Atenção: este resumo é de ${dias} dias atrás; o de hoje ainda não foi publicado. ` : "") + "Consenso de mercado não é citado como número porque não há fonte gratuita e oficial; quando uma manchete traz a expectativa, ela aparece com o link.";
+  } catch (e) { $("r-titulo").textContent = "Resumo do dia indisponível no momento"; }
+}
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
 /* relógio de Nova York ao vivo (o horário de verão dos EUA é tratado pelo próprio navegador) */
 function relogio() {
   const ny = new Date().toLocaleTimeString("pt-BR", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit" });
@@ -351,15 +442,19 @@ function relogio() {
 }
 relogio(); setInterval(relogio, 15e3);
 
-let intervalo = 10 * 60e3, timer;
+/* atualização: a função tem cache de 10 min (1 min na janela do payroll); a página confere a idade dos dados a cada 30 s
+   e busca de novo assim que passam do prazo, e também na hora em que a aba volta a ficar visível
+   (o navegador congela abas escondidas e o computador pode ter dormido: antes, o painel ficava com dados de horas atrás) */
+let intervalo = 5 * 60e3, ultimaBusca = 0, buscando = false;
 async function atualizar() {
+  if (buscando) return; buscando = true;
   try {
     const r = await fetch(API, { cache: "no-store" }); const d = await r.json();
     if (d.erro) throw new Error(d.erro);
-    render(d);
-    const novoIntervalo = d.janelaPayroll ? 60e3 : 10 * 60e3;
-    if (novoIntervalo !== intervalo) { intervalo = novoIntervalo; clearInterval(timer); timer = setInterval(atualizar, intervalo); }
+    render(d); numerosDoDia(d); ultimaBusca = Date.now();
+    intervalo = d.janelaPayroll || d.hojeEPayroll ? 60e3 : 5 * 60e3;
   } catch (e) {
+    ultimaBusca = Date.now() - intervalo + 30e3; /* falhou: tenta de novo em 30 s */
     const st = $("st-status"); st.className = "pill alerta"; st.querySelector("span").textContent = "falha ao buscar dados · tentando de novo";
     console.error(e);
   }
@@ -376,8 +471,15 @@ async function atualizar() {
   widget("tv-10a", "TVC:US10Y", "Rendimento do Treasury de 10 anos");
   widget("tv-dxy", "TVC:DXY", "Índice do dólar (DXY)");
   widget("tv-vix", "TVC:VIX", "VIX, a volatilidade esperada do S&P 500");
+  carregarResumo();
   await atualizar();
-  timer = setInterval(atualizar, intervalo);
+  const seVencido = () => { if (!document.hidden && Date.now() - ultimaBusca >= intervalo) atualizar(); };
+  setInterval(seVencido, 30e3);
+  const aoVoltar = () => { if (!document.hidden) { seVencido(); if (Date.now() - ultimaResumo > 30 * 60e3) carregarResumo(); } };
+  document.addEventListener("visibilitychange", aoVoltar);
+  addEventListener("focus", aoVoltar);
+  addEventListener("pageshow", (e) => { if (e.persisted) { ultimaBusca = 0; aoVoltar(); } });
+  setInterval(() => { if (!document.hidden) carregarResumo(); }, 30 * 60e3);
 })();
 </script>
 </body>
