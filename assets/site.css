@@ -34,7 +34,7 @@ h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; letter-spacing
 .menu a:hover, .menu a.on { color: var(--gold-t); }
 .topo .btn { padding: 11px 18px; font-size: 14px; white-space: nowrap; }
 .burger { display: none; margin-left: auto; background: none; border: 0; color: var(--txt); font-size: 26px; cursor: pointer; }
-@media (max-width: 860px) {
+@media (max-width: 1100px) { /* menu vira ☰ até 1100 px: os 7 itens não cabem em telas de notebook pequeno e tablet deitado */
   .menu { display: none; position: absolute; top: 84px; left: 0; right: 0; flex-direction: column; gap: 0; background: #fff; border-bottom: 1px solid var(--line); padding: 8px 20px 16px; }
   .menu.aberto { display: flex; } .menu a { padding: 12px 0; border-bottom: 1px solid var(--line); }
   .burger { display: block; } .topo .btn { display: none; }
@@ -195,7 +195,7 @@ html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o 
 .insta:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 22px rgba(214,36,159,.35); }
 .insta svg { display: block; width: 40px; height: 40px; }
 @media (min-width: 1280px) { .topo .insta { position: absolute; top: 22px; right: calc((100% - var(--max)) / 4 - 10px); } .topo .insta:hover { transform: scale(1.06); } }
-@media (max-width: 860px) { .insta { margin-left: auto; width: 36px; height: 36px; } .insta svg { width: 36px; height: 36px; } .insta + .burger { margin-left: 8px; } }
+@media (max-width: 1100px) { .insta { margin-left: auto; width: 36px; height: 36px; } .insta svg { width: 36px; height: 36px; } .insta + .burger { margin-left: 8px; } }
 
 /* rodapé: linha final com Instagram e crédito */
 .rodape-fim { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; font-size: 13px; }
@@ -227,3 +227,12 @@ html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o 
 .ferr h3.destaque-payroll { font-size: clamp(17px, 1.9vw, 24px); line-height: 1.12; white-space: nowrap; } /* "Payroll — NASDAQ" sempre numa linha só */
 .ferr h3.destaque-payroll .chamada-curta { white-space: normal; }
 @media (max-width: 960px) { .ferr h3.destaque-payroll { font-size: 24px; } } /* com 2 ou 1 card por linha há espaço de sobra */
+
+/* celular: o botão do menu (☰) com mais destaque que o Instagram (13/11/2026) */
+@media (max-width: 1100px) {
+  .topo .insta { width: 30px; height: 30px; border-radius: 9px; opacity: .9; }
+  .topo .insta svg { width: 30px; height: 30px; }
+  .burger { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 12px; background: var(--txt); color: #fff; font-size: 24px; line-height: 1; box-shadow: 0 6px 16px rgba(15,23,42,.22); }
+  .burger:active { transform: scale(.96); }
+  .insta + .burger { margin-left: 12px; }
+}

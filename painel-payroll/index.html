@@ -32,13 +32,14 @@ header.topo .wrap{display:flex;align-items:center;gap:22px;height:84px}
 .topo .insta svg{display:block;width:40px;height:40px}
 .topo .burger{display:none;margin-left:auto;background:none;border:0;color:var(--txt);font-size:26px;cursor:pointer}
 @media (min-width:1280px){.topo .insta{position:absolute;top:22px;right:calc((100% - 1180px) / 4 - 10px)}}
-@media (max-width:860px){
+@media (max-width:1100px){
   .topo .menu{display:none;position:absolute;top:84px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 20px 16px}
   .topo .menu.aberto{display:flex}.topo .menu a{padding:12px 0;border-bottom:1px solid var(--line)}
   .topo .burger{display:block}.topo .btn{display:none}
   .topo .insta{margin-left:auto;width:36px;height:36px}.topo .insta svg{width:36px;height:36px}.topo .insta + .burger{margin-left:8px}
 }
 @media (max-width:640px){.topo .marca{font-size:17px;gap:10px;line-height:1.15}.topo .marca img{width:50px;height:50px}header.topo .wrap{height:72px}.topo .menu{top:72px}}
+@media (max-width:1100px){.topo .insta{width:30px;height:30px;border-radius:9px;opacity:.9}.topo .insta svg{width:30px;height:30px}.topo .burger{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:var(--txt);color:#fff;font-size:24px;line-height:1;box-shadow:0 6px 16px rgba(15,23,42,.22)}.topo .insta + .burger{margin-left:12px}} /* celular: menu com mais destaque que o Instagram */
 /* barra do Radar, logo abaixo do menu */
 .radar-barra{border-bottom:1px solid var(--line);background:var(--card2)}
 .radar-barra .wrap{display:flex;align-items:center;gap:16px;min-height:56px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
@@ -241,7 +242,7 @@ canvas{max-width:100%}
   </div>
 
   <!-- AO VIVO -->
-  <div class="sec"><h2>Mercado agora</h2><p>Widgets gratuitos do TradingView. O Nasdaq 100 aparece como CFD (OANDA), com o preço próximo do NQ, mas não igual. No dia do payroll, olhe os três juntos às 8h30 de Nova York.</p></div>
+  <div class="sec"><h2>Mercado agora</h2><p>Widgets gratuitos do TradingView. Nesse tipo de widget o TradingView não libera o NQ da CME nem os juros do Tesouro; por isso aparecem CFDs, que seguem de perto esses mercados. Nos títulos do Tesouro o gráfico mostra o <b>preço</b>: preço subindo significa juro caindo. Os juros exatos estão nos números oficiais acima. No dia do payroll, olhe o Nasdaq, o título de 2 anos e o dólar juntos às 8h30 de Nova York.</p></div>
   <div class="grid g3">
     <div class="card tv" id="tv-ndx"></div>
     <div class="card tv" id="tv-nq"></div>
@@ -540,12 +541,13 @@ async function atualizar() {
   c.addEventListener("change", () => { try { c.value ? localStorage.setItem("payroll-consenso", c.value) : localStorage.removeItem("payroll-consenso"); } catch (e) {} atualizar(); });
   HIST = (await (await fetch("historico.json", { cache: "no-store" })).json()).registros;
   graficosHistorico();
-  widget("tv-ndx", "OANDA:NAS100USD", "Nasdaq 100 (CFD OANDA), não é o NQ da CME");
-  widget("tv-nq", "CME_MINI:NQ1!", "NQ (CME): no widget gratuito, costuma vir com atraso");
-  widget("tv-2a", "TVC:US02Y", "Rendimento do Treasury de 2 anos");
-  widget("tv-10a", "TVC:US10Y", "Rendimento do Treasury de 10 anos");
-  widget("tv-dxy", "TVC:DXY", "Índice do dólar (DXY)");
-  widget("tv-vix", "TVC:VIX", "VIX, a volatilidade esperada do S&P 500");
+  /* o TradingView bloqueia em widgets gratuitos ("Permissão negada") o NQ da CME e os símbolos TVC (juros, DXY, VIX); por isso os CFDs abaixo (testados em 13/11/2026) */
+  widget("tv-ndx", "OANDA:NAS100USD", "Nasdaq 100 (CFD OANDA): preço próximo do NQ, mas não igual");
+  widget("tv-nq", "FOREXCOM:SPXUSD", "S&P 500 (CFD FOREX.com): mostra se a queda ou a alta é só do Nasdaq ou da bolsa toda");
+  widget("tv-2a", "OANDA:USB02YUSD", "Título do Tesouro de 2 anos (preço, CFD OANDA): preço sobe = juro cai");
+  widget("tv-10a", "OANDA:USB10YUSD", "Título do Tesouro de 10 anos (preço, CFD OANDA): preço sobe = juro cai");
+  widget("tv-dxy", "CAPITALCOM:DXY", "Índice do dólar (DXY, CFD Capital.com)");
+  widget("tv-vix", "CAPITALCOM:VIX", "VIX, a volatilidade esperada do S&P 500 (CFD Capital.com)");
   carregarResumo();
   await atualizar();
   const seVencido = () => { if (!document.hidden && Date.now() - ultimaBusca >= intervalo) atualizar(); };
