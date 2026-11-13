@@ -89,7 +89,9 @@ label{font-size:13px;color:var(--soft)}
 .resumo .card{max-width:none}
 #r-numeros td{white-space:normal;vertical-align:top}#r-numeros td:first-child{min-width:220px}#r-numeros td:nth-child(2){white-space:nowrap}
 .resumo #r-texto p,.resumo #r-espera p{margin:0 0 10px;color:var(--txt)}
-.resumo .r-sub{font:700 14px Inter;color:var(--ouro);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+.resumo .r-sub{font:800 clamp(24px,4vw,32px)/1.2 "Plus Jakarta Sans",Inter;color:var(--ouro);margin:30px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
+#r-titulo{font:800 clamp(20px,3vw,26px)/1.25 "Plus Jakarta Sans",Inter;color:var(--txt);margin:0 0 6px}
+.placar .pl-topo h3{font:800 clamp(20px,3vw,26px)/1.25 "Plus Jakarta Sans",Inter;color:var(--txt);margin:0 0 6px}
 .resumo sup a{color:var(--ouro);text-decoration:none;font-weight:700}
 .manchetes{list-style:none;margin:0;padding:0;font-size:13.5px;columns:2 420px;column-gap:28px}
 .manchetes li{padding:7px 0;border-top:1px solid var(--line);break-inside:avoid}
@@ -416,8 +418,8 @@ function placar() {
     + (cls === "neg" ? "Predominam sinais de juros altos por mais tempo; o porquê de cada voto está ao lado de cada notícia, e os números oficiais estão explicados no texto." : cls === "pos" ? "Predominam sinais de alívio nos juros e economia saudável; o porquê de cada voto está ao lado de cada notícia, e os números oficiais estão explicados no texto." : "Os sinais se equilibram; o porquê de cada voto está ao lado de cada notícia, e os números oficiais estão explicados no texto.")
     + " É uma leitura do dia, não uma previsão nem recomendação.";
 }
-/* uma frase por linha quando o parágrafo traz números (fica mais fácil de ler cada dado) */
-const porLinha = (html) => { const fr = html.split(/(?<=[.!?:])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ"«(])/); return fr.filter((f) => /\d/.test(f.replace(/<[^>]+>/g, "").replace(/\[\d+\]/g, ""))).length >= 2 ? fr.join("<br>") : html; };
+/* uma frase por linha (fica mais fácil de ler cada dado e cada notícia) */
+const porLinha = (html) => { const fr = html.split(/(?<=[.!?:])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ"«(])/); return fr.join("<br>"); };
 let ultimaResumo = 0;
 async function carregarResumo() {
   try {
