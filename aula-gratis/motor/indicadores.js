@@ -61,7 +61,7 @@
     const pad = (mx - mn) * 0.06; mx += pad; mn -= pad;
     const y = (p) => 14 + (mx - p) / (mx - mn) * (Hp - 28), X = (i) => (i - de) * w + w / 2;
     let g = "";
-    for (let k = 1; k < 5; k++) g += `<line x1="0" x2="${W}" y1="${(Hp / 5) * k}" y2="${(Hp / 5) * k}" stroke="rgba(255,255,255,.05)"/>`;
+    for (let k = 1; k < 5; k++) g += `<line x1="0" x2="${W}" y1="${(Hp / 5) * k}" y2="${(Hp / 5) * k}" stroke="rgba(15,23,42,.07)"/>`;
     (o.faixas || []).forEach((f) => { let up = "", dn = ""; for (let i = de; i < ate; i++) if (f.sup[i] != null) { up += `${X(i)},${y(f.sup[i])} `; dn = `${X(i)},${y(f.inf[i])} ` + dn; } if (up) g += `<polygon points="${up}${dn}" fill="${f.cor || "rgba(41,98,255,.10)"}"/>`; });
     (o.hlinhas || []).forEach((hl) => { g += `<line x1="0" x2="${W}" y1="${y(hl.preco)}" y2="${y(hl.preco)}" stroke="${hl.cor}" stroke-width="2.5" stroke-dasharray="10 7"/>`; if (hl.txt) g += `<text x="${W - 12}" y="${y(hl.preco) - 8}" text-anchor="end" fill="${hl.cor}" style="font:800 22px Inter">${hl.txt}</text>`; });
     if (!o.semVelas) vis.forEach((q, j) => { const i = j + de, x = X(i), c = q.c >= q.o ? "#10b981" : "#ef4444", op = o.apagar ? 0.35 : 1; g += `<line x1="${x}" x2="${x}" y1="${y(q.h)}" y2="${y(q.l)}" stroke="${c}" stroke-width="2" opacity="${op}"/><rect x="${x - w * .32}" y="${y(Math.max(q.o, q.c))}" width="${w * .64}" height="${Math.max(2, Math.abs(y(q.o) - y(q.c)))}" fill="${c}" opacity="${op}"/>`; });
@@ -71,12 +71,12 @@
     let topo = Hp;
     paineis.forEach((p) => {
       const Y = (val) => topo + 10 + (p.max - val) / (p.max - p.min) * (p.altura - 20);
-      g += `<rect x="0" y="${topo}" width="${W}" height="${p.altura}" fill="rgba(255,255,255,.025)"/><line x1="0" x2="${W}" y1="${topo}" y2="${topo}" stroke="rgba(255,255,255,.15)"/>`;
+      g += `<rect x="0" y="${topo}" width="${W}" height="${p.altura}" fill="rgba(15,23,42,.03)"/><line x1="0" x2="${W}" y1="${topo}" y2="${topo}" stroke="rgba(15,23,42,.18)"/>`;
       (p.niveis || []).forEach((nv) => { g += `<line x1="0" x2="${W}" y1="${Y(nv.y)}" y2="${Y(nv.y)}" stroke="${nv.cor}" stroke-dasharray="6 6"/>`; if (nv.txt) g += `<text x="8" y="${Y(nv.y) - 6}" fill="${nv.cor}" style="font:700 18px Inter">${nv.txt}</text>`; });
       if (p.barras) for (let i = de; i < ate; i++) { const b = p.barras.v[i]; if (b == null) continue; const y0 = Y(0), y1 = Y(b); g += `<rect x="${X(i) - w * .3}" y="${Math.min(y0, y1)}" width="${w * .6}" height="${Math.abs(y1 - y0)}" fill="${b >= 0 ? p.barras.corPos || "#10b981" : p.barras.corNeg || "#ef4444"}" opacity=".7"/>`; }
       (p.linhas || []).forEach((ln) => (g += linha(ln.v, Y, ln.cor, ln.w, ln.tracejado)));
       (p.marcas || []).forEach((m) => { g += `<circle cx="${X(m.i)}" cy="${Y(m.y)}" r="14" fill="none" stroke="${m.cor}" stroke-width="4"/>`; });
-      if (p.nome) g += `<text x="${W - 12}" y="${topo + 28}" text-anchor="end" fill="#9fb0c6" style="font:800 20px Inter">${p.nome}</text>`;
+      if (p.nome) g += `<text x="${W - 12}" y="${topo + 28}" text-anchor="end" fill="#56647d" style="font:800 20px Inter">${p.nome}</text>`;
       topo += p.altura;
     });
     if (o.extra) g += o.extra({ X, y, W, H, Hp });

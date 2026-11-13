@@ -200,7 +200,7 @@ const Motor = (() => {
       const y = (v) => H - ((v - mn) / (mx - mn)) * H;
       ctx.globalAlpha = op.alpha;
       if (op.grade) {
-        ctx.strokeStyle = "rgba(255,255,255,.06)"; ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(15,23,42,.08)"; ctx.lineWidth = 1;
         for (let i = 1; i < 5; i++) { ctx.beginPath(); ctx.moveTo(0, (H / 5) * i); ctx.lineTo(W, (H / 5) * i); ctx.stroke(); }
       }
       const cw = op.largura * 0.62;
@@ -213,7 +213,7 @@ const Motor = (() => {
         ctx.fillRect(x - cw / 2, a, cw, Math.max(2, b - a));
       });
       if (op.media) {
-        ctx.strokeStyle = "#f5b301"; ctx.lineWidth = 3; ctx.beginPath();
+        ctx.strokeStyle = "#d08a00"; ctx.lineWidth = 3; ctx.beginPath();
         todas.forEach((v, i) => {
           const fat = todas.slice(Math.max(0, i - 9), i + 1), m = fat.reduce((s, q) => s + q.c, 0) / fat.length;
           const x = i * op.largura + op.largura / 2;
