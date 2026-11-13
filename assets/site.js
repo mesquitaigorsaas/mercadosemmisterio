@@ -88,14 +88,14 @@ document.querySelectorAll("form[data-contato]").forEach((f) => f.addEventListene
   e.preventDefault();
   const v = (n) => (f.elements[n] ? f.elements[n].value.trim() : ""), msg = f.querySelector(".msg-form");
   const email = v("email") || null, whats = v("whatsapp") || null;
-  if (!email && !whats) { msg.textContent = "Informe o e-mail ou o WhatsApp."; msg.style.color = "#fca5a5"; return; }
-  if (!f.elements.consentimento.checked) { msg.textContent = "Marque a autorização para receber os conteúdos."; msg.style.color = "#fca5a5"; return; }
+  if (!email && !whats) { msg.textContent = "Informe o e-mail ou o WhatsApp."; msg.style.color = "#b91c1c"; return; }
+  if (!f.elements.consentimento.checked) { msg.textContent = "Marque a autorização para receber os conteúdos."; msg.style.color = "#b91c1c"; return; }
   const btn = f.querySelector("button"); btn.disabled = true;
   try {
     const r = await fetch(`${CONFIG.supabaseUrl}/rest/v1/contatos`, { method: "POST", headers: { apikey: CONFIG.supabaseKey, "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify({ nome: v("nome") || null, email, whatsapp: whats, origem: f.dataset.contato, consentimento: true }) });
     if (!r.ok) throw new Error(await r.text());
-    f.reset(); msg.textContent = "Pronto! Você está na lista. Obrigado."; msg.style.color = "#6ee7b7";
-  } catch (err) { msg.textContent = "Não deu certo agora. Confira o e-mail e tente de novo."; msg.style.color = "#fca5a5"; }
+    f.reset(); msg.textContent = "Pronto! Você está na lista. Obrigado."; msg.style.color = "#047857";
+  } catch (err) { msg.textContent = "Não deu certo agora. Confira o e-mail e tente de novo."; msg.style.color = "#b91c1c"; }
   btn.disabled = false;
 }));
 
@@ -103,7 +103,7 @@ document.querySelectorAll("form[data-contato]").forEach((f) => f.addEventListene
 function tradingview(el, tipo, cfg) {
   const s = document.createElement("script");
   s.src = `https://s3.tradingview.com/external-embedding/embed-widget-${tipo}.js`; s.async = true;
-  s.textContent = JSON.stringify(Object.assign({ colorTheme: "dark", isTransparent: true, locale: "br" }, cfg));
+  s.textContent = JSON.stringify(Object.assign({ colorTheme: "light", isTransparent: true, locale: "br" }, cfg));
   el.innerHTML = '<div class="tradingview-widget-container__widget"></div>'; el.classList.add("tradingview-widget-container"); el.appendChild(s);
 }
 const ATIVOS = [["FX_IDC:USDBRL", "Dólar"], ["FX_IDC:EURBRL", "Euro"], ["BMFBOVESPA:IBOV", "Ibovespa"], ["FX:EURUSD", "EUR/USD"], ["FX:GBPUSD", "GBP/USD"], ["FX:USDJPY", "USD/JPY"], ["OANDA:XAUUSD", "Ouro"], ["TVC:UKOIL", "Petróleo Brent"], ["FOREXCOM:SPXUSD", "S&P 500"], ["BITSTAMP:BTCUSD", "Bitcoin"]];

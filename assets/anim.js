@@ -83,7 +83,7 @@
       const x = (i) => 30 + i * (940 / N), y = (v) => 330 - (v / mx) * 300;
       const path = (c, k) => c.slice(0, k + 1).map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join(" ");
       let k = 0;
-      const des = () => { svg.innerHTML = `<line x1="30" x2="970" y1="${y(10000)}" y2="${y(10000)}" stroke="rgba(255,255,255,.25)" stroke-dasharray="6 6"/><text x="966" y="${y(10000) + 20}" text-anchor="end" fill="#7d93b3" font-size="14" font-family="Inter">capital inicial: US$ 10.000</text><path d="${path(B, k)}" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linejoin="round"/><path d="${path(A, k)}" fill="none" stroke="#10b981" stroke-width="3.5" stroke-linejoin="round"/>`; out("a").textContent = "US$ " + Math.round(A[k]).toLocaleString("pt-BR"); out("b").textContent = "US$ " + Math.round(B[k]).toLocaleString("pt-BR"); };
+      const des = () => { svg.innerHTML = `<line x1="30" x2="970" y1="${y(10000)}" y2="${y(10000)}" stroke="rgba(15,23,42,.3)" stroke-dasharray="6 6"/><text x="966" y="${y(10000) + 20}" text-anchor="end" fill="#56647d" font-size="14" font-family="Inter">capital inicial: US$ 10.000</text><path d="${path(B, k)}" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linejoin="round"/><path d="${path(A, k)}" fill="none" stroke="#10b981" stroke-width="3.5" stroke-linejoin="round"/>`; out("a").textContent = "US$ " + Math.round(A[k]).toLocaleString("pt-BR"); out("b").textContent = "US$ " + Math.round(B[k]).toLocaleString("pt-BR"); };
       if (calmo) { k = N; des(); return; }
       tm = setInterval(() => { k = Math.min(N, k + 2); des(); if (k >= N) clearInterval(tm); }, 35);
     };

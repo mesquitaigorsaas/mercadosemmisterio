@@ -8,19 +8,19 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/img/emblema-128.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=9">
+<link rel="stylesheet" href="../assets/site.css?v=10">
 <style>
 .entrada{max-width:460px;margin:0 auto;padding:56px 20px 80px}
 .entrada h1{font-size:clamp(30px,6vw,40px);margin:10px 0 8px}
-.entrada p{color:#cbd5e1}
-.caixa{margin-top:26px;padding:26px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.03)}
+.entrada p{color:var(--txt2)}
+.caixa{margin-top:26px;padding:26px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:var(--sombra)}
 .caixa .campo{margin-bottom:16px}
 .caixa .btn{display:flex;width:100%;margin-top:8px}
 .aviso{margin-top:14px;font:600 14px Inter;min-height:20px}
-.aviso.erro{color:#fca5a5}
-.aviso.ok{color:#86efac}
+.aviso.erro{color:var(--down-t)}
+.aviso.ok{color:var(--up-t)}
 .ajuda{margin-top:22px;font-size:14px;color:var(--soft2)}
-.ajuda b{color:#e2e8f0}
+.ajuda b{color:var(--txt)}
 #logado{display:none}
 #logado .btn-sec{margin-top:10px}
 #cursos .btn{flex-direction:column;justify-content:center;gap:2px;text-align:center;padding:12px 16px;font-size:16px;line-height:1.25}
@@ -161,6 +161,6 @@ document.getElementById("form-entrar").addEventListener("submit", async (e) => {
   }
 });
 </script>
-<script src="../assets/site.js?v=14"></script>
+<script src="../assets/site.js?v=15"></script>
 </body>
 </html>

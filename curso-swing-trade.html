@@ -8,38 +8,38 @@
 <meta property="og:title" content="Swing Trade — Estratégias para Operar Ações">
 <meta property="og:description" content="Swing trade em ações da B3 com método: seleção de ações sem dica, tendência semanal, médias, indicadores, 3 estratégias com stop e alvo, risco da carteira e backtest real. 58 aulas.">
 <meta property="og:image" content="https://mesquitaigorsaas.github.io/mercadosemmisterio/assets/img/produtos/swing-trade-banner-1920x1080.png">
-<meta name="theme-color" content="#050e1f">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="assets/img/emblema-128.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=9">
+<link rel="stylesheet" href="assets/site.css?v=10">
 <!-- gerada por cursos-b3/publicacao/gerar-paginas-venda.js: edite lá e gere de novo -->
 <style>
   .hero-curso { display: grid; grid-template-columns: 1.05fr 1fr; gap: 46px; align-items: center; }
   @media (max-width: 960px) { .hero-curso { grid-template-columns: 1fr; } }
-  .tela-mock { position: relative; border-radius: 18px; padding: 10px; background: linear-gradient(160deg, #1b3460, #0b1730); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(245,179,1,.08); transform: perspective(1400px) rotateY(-7deg) rotateX(3deg); transition: transform .6s; }
+  .tela-mock { position: relative; border-radius: 18px; padding: 10px; background: linear-gradient(160deg, #dbe7fb, #c4d5f3); border: 1px solid rgba(15,23,42,.12); box-shadow: 0 34px 80px rgba(15,23,42,.20), 0 0 0 1px rgba(214,150,0,.15); transform: perspective(1400px) rotateY(-7deg) rotateX(3deg); transition: transform .6s; }
   .tela-mock:hover { transform: none; }
   .tela-mock img { border-radius: 10px; width: 100%; height: auto; }
   .tela-mock { margin-bottom: 26px; }
-  .tela-mock .pill { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); text-align: center; color: #d1fae5; padding: 11px 18px; border-radius: 14px; background: #0b1f3a; border: 1px solid rgba(16,185,129,.4); font: 700 14px Inter; box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .tela-mock .pill { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); text-align: center; color: #065f46; padding: 11px 18px; border-radius: 14px; background: #ecfdf5; border: 1px solid rgba(5,150,105,.45); font: 700 14px Inter; box-shadow: 0 14px 34px rgba(15,23,42,.16); }
   .preco-hero { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 6px 0 22px; }
-  .preco-hero s { color: var(--soft2); font-size: 20px; } .preco-hero b { font: 800 44px "Plus Jakarta Sans"; color: #fff; } .preco-hero span { color: var(--soft); }
-  .selos { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: #cbd5e1; font: 600 14px Inter; }
+  .preco-hero s { color: var(--soft2); font-size: 20px; } .preco-hero b { font: 800 44px "Plus Jakarta Sans"; color: var(--txt); } .preco-hero span { color: var(--soft); }
+  .selos { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: var(--soft); font: 600 14px Inter; }
   .barra-num { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border-radius: 18px; overflow: hidden; border: 1px solid var(--line); }
   .barra-num div { background: var(--card); padding: 22px 14px; text-align: center; }
-  .barra-num b { display: block; font: 800 30px "Plus Jakarta Sans"; color: var(--gold); } .barra-num span { color: var(--soft); font-size: 14px; }
+  .barra-num b { display: block; font: 800 30px "Plus Jakarta Sans"; color: var(--gold-t); } .barra-num span { color: var(--soft); font-size: 14px; }
   @media (max-width: 760px) { .barra-num { grid-template-columns: repeat(2, 1fr); } .barra-num div:last-child { grid-column: 1 / -1; } }
-  .dado { padding: 26px; } .dado b { display: block; font: 800 54px/1 "Plus Jakarta Sans"; color: var(--down); margin-bottom: 10px; } .dado p { margin: 0; color: #cbd5e1; } .dado small { display: block; color: var(--soft2); margin-top: 10px; font-size: 12.5px; }
+  .dado { padding: 26px; } .dado b { display: block; font: 800 54px/1 "Plus Jakarta Sans"; color: var(--down); margin-bottom: 10px; } .dado p { margin: 0; color: var(--txt2); } .dado small { display: block; color: var(--soft2); margin-top: 10px; font-size: 12.5px; }
   .pilar { padding: 26px; } .pilar .ic { font-size: 30px; } .pilar h3 { font-size: 20px; margin: 10px 0 6px; } .pilar p { color: var(--soft); margin: 0; font-size: 15.5px; }
   .nivel-bloco { margin-bottom: 26px; } .nivel-bloco > h3 { display: flex; align-items: center; gap: 10px; font-size: 22px; margin-bottom: 12px; }
   .nivel-bloco > h3 i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
   details.mod { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
   details.mod summary { list-style: none; cursor: pointer; padding: 16px 18px; display: grid; grid-template-columns: 100px 1fr auto; gap: 12px; align-items: center; font: 700 16px Inter; }
   details.mod summary::-webkit-details-marker { display: none; }
-  details.mod summary .n { white-space: nowrap; color: var(--gold); font: 800 13px Inter; letter-spacing: .1em; text-transform: uppercase; }
+  details.mod summary .n { white-space: nowrap; color: var(--gold-t); font: 800 13px Inter; letter-spacing: .1em; text-transform: uppercase; }
   details.mod summary .q { color: var(--soft); font-size: 13.5px; font-weight: 600; }
   details.mod[open] summary { border-bottom: 1px solid var(--line); }
-  details.mod ol { margin: 0; padding: 12px 18px 16px 18px; color: #cbd5e1; columns: 2; column-gap: 30px; } details.mod li { list-style: none; padding: 4px 0; break-inside: avoid; font-size: 15px; }
+  details.mod ol { margin: 0; padding: 12px 18px 16px 18px; color: var(--txt2); columns: 2; column-gap: 30px; } details.mod li { list-style: none; padding: 4px 0; break-inside: avoid; font-size: 15px; }
   @media (max-width: 640px) { details.mod ol { columns: 1; } details.mod summary { grid-template-columns: 1fr auto; } details.mod summary .n { grid-column: 1 / -1; } }
   .galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .galeria figure { margin: 0; } .galeria img { border-radius: 14px; border: 1px solid var(--line); cursor: zoom-in; transition: transform .25s; } .galeria img:hover { transform: scale(1.02); }
@@ -49,19 +49,19 @@
   .inclui { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } .inclui > div { display: flex; gap: 14px; padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
   .inclui .ic { font-size: 26px; } .inclui b { display: block; } .inclui span { color: var(--soft); font-size: 14.5px; }
   @media (max-width: 760px) { .inclui { grid-template-columns: 1fr; } }
-  .para li { list-style: none; padding: 10px 0 10px 34px; position: relative; border-bottom: 1px solid var(--line); color: #dbe4f0; } .para ul { padding: 0; margin: 10px 0 0; }
+  .para li { list-style: none; padding: 10px 0 10px 34px; position: relative; border-bottom: 1px solid var(--line); color: var(--txt2); } .para ul { padding: 0; margin: 10px 0 0; }
   .para li::before { position: absolute; left: 0; top: 9px; font-size: 18px; } .para.sim li::before { content: "✅"; } .para.nao li::before { content: "⛔"; }
   .instrutor { display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: center; padding: 34px; }
-  .instrutor img { width: 200px; border-radius: 50%; border: 3px solid var(--gold); padding: 10px; background: #0b1f3a; }
+  .instrutor img { width: 200px; border-radius: 50%; border: 3px solid var(--gold); padding: 10px; background: #fff; }
   @media (max-width: 760px) { .instrutor { grid-template-columns: 1fr; text-align: center; } .instrutor img { margin: 0 auto; } }
-  .oferta { max-width: 640px; margin: 0 auto; padding: 38px; text-align: center; border: 2px solid rgba(245,179,1,.5); border-radius: 26px; background: linear-gradient(180deg, #102a52, #0b1730); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
-  .oferta .tag { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(245,179,1,.15); color: var(--gold); font: 800 13px Inter; letter-spacing: .08em; text-transform: uppercase; }
+  .oferta { max-width: 640px; margin: 0 auto; padding: 38px; text-align: center; border: 2px solid rgba(214,150,0,.55); border-radius: 26px; background: linear-gradient(180deg, #ffffff, #fff7df); box-shadow: 0 26px 70px rgba(15,23,42,.14); }
+  .oferta .tag { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(245,179,1,.2); color: var(--gold-t); font: 800 13px Inter; letter-spacing: .08em; text-transform: uppercase; }
   .oferta s { display: block; color: var(--soft2); font-size: 20px; margin-top: 18px; } .oferta .valor { font: 800 72px/1 "Plus Jakarta Sans"; margin: 6px 0; } .oferta .valor small { font-size: 26px; vertical-align: top; margin-right: 6px; }
-  .oferta ul { text-align: left; margin: 24px 0; padding: 0; } .oferta li { list-style: none; padding: 7px 0 7px 30px; position: relative; color: #dbe4f0; } .oferta li::before { content: "✓"; position: absolute; left: 0; color: var(--up); font-weight: 800; }
-  .garantia { display: flex; gap: 14px; align-items: center; text-align: left; margin-top: 22px; padding: 16px; border-radius: 14px; background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.3); font-size: 14.5px; color: #cbd5e1; } .garantia b { color: #6ee7b7; }
+  .oferta ul { text-align: left; margin: 24px 0; padding: 0; } .oferta li { list-style: none; padding: 7px 0 7px 30px; position: relative; color: var(--txt2); } .oferta li::before { content: "✓"; position: absolute; left: 0; color: var(--up); font-weight: 800; }
+  .garantia { display: flex; gap: 14px; align-items: center; text-align: left; margin-top: 22px; padding: 16px; border-radius: 14px; background: #ecfdf5; border: 1px solid rgba(5,150,105,.35); font-size: 14.5px; color: var(--txt2); } .garantia b { color: var(--up-t); }
   @media (max-width: 640px) { .oferta { padding: 26px 18px; border-radius: 20px; } .oferta h2 { font-size: 24px !important; } .oferta .valor { font-size: 58px; } .garantia { padding: 14px; gap: 12px; } .garantia span { font-size: 26px !important; } }
-  details.faq { border-bottom: 1px solid var(--line); } details.faq summary { cursor: pointer; padding: 18px 0; font: 700 17px Inter; list-style: none; display: flex; justify-content: space-between; gap: 14px; } details.faq summary::after { content: "+"; color: var(--gold); font-size: 22px; } details.faq[open] summary::after { content: "−"; } details.faq p { margin: 0 0 18px; color: var(--soft); }
-  .cta-fixo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: rgba(5,14,31,.95); border-top: 1px solid var(--line); padding: 10px 16px; display: none; align-items: center; justify-content: space-between; gap: 10px; backdrop-filter: blur(10px); }
+  details.faq { border-bottom: 1px solid var(--line); } details.faq summary { cursor: pointer; padding: 18px 0; font: 700 17px Inter; list-style: none; display: flex; justify-content: space-between; gap: 14px; } details.faq summary::after { content: "+"; color: var(--gold-t); font-size: 22px; } details.faq[open] summary::after { content: "−"; } details.faq p { margin: 0 0 18px; color: var(--soft); }
+  .cta-fixo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: rgba(255,255,255,.96); border-top: 1px solid var(--line); box-shadow: 0 -6px 20px rgba(15,23,42,.08); padding: 10px 16px; display: none; align-items: center; justify-content: space-between; gap: 10px; backdrop-filter: blur(10px); }
   .cta-fixo b { font: 800 18px "Plus Jakarta Sans"; } .cta-fixo .btn { padding: 12px 18px; }
   @media (max-width: 760px) { .cta-fixo.on { display: flex; } body { padding-bottom: 70px; } }
 </style>
@@ -95,7 +95,7 @@
   <div class="grade3">
     <div class="card dado surge"><b>233</b><p>operações reais das 3 estratégias do curso, em 20 ações da B3, de 2024 a 2026, com custos e gaps.</p><small>Backtest do curso · aula 8.7</small></div>
     <div class="card dado surge"><b>1 de 3</b><p>estratégias teve resultado negativo no período, depois dos custos. O curso mostra qual, e como perceber isso antes de arriscar.</p><small>Aulas 8.6 e 8.7</small></div>
-    <div class="card dado surge"><b style="color:var(--gold)">0 dicas</b><p>de ação. Você aprende um método de seleção com filtros escritos e decide sozinho.</p><small>Recomendar ativos exige credenciamento na CVM</small></div>
+    <div class="card dado surge"><b style="color:var(--gold-t)">0 dicas</b><p>de ação. Você aprende um método de seleção com filtros escritos e decide sozinho.</p><small>Recomendar ativos exige credenciamento na CVM</small></div>
   </div>
 </div></section>
 
@@ -145,7 +145,7 @@
 <section id="instrutor"><div class="wrap">
   <div class="card instrutor surge"><img src="assets/img/logo-800.png" alt="Trader — O Mercado Sem Mistério">
     <div><span class="eyebrow">Quem conduz o curso</span><h2 style="font-size:clamp(28px,4vw,40px);margin:8px 0 14px">Igor Mesquita</h2>
-      <p style="color:#cbd5e1;font-size:17.5px;margin:0">Tenho 45 anos e acompanho e estudo o mercado financeiro todos os dias. Há 8 anos opero day trade, no Brasil e no exterior. Nesse tempo, aprendi na prática que o mercado não perdoa improviso: o que sustenta um trader é método, gestão de risco e disciplina — e não promessa de ganho rápido. É isso que eu ensino aqui, do jeito que eu gostaria de ter aprendido quando comecei.</p></div></div>
+      <p style="color:var(--txt2);font-size:17.5px;margin:0">Tenho 45 anos e acompanho e estudo o mercado financeiro todos os dias. Há 8 anos opero day trade, no Brasil e no exterior. Nesse tempo, aprendi na prática que o mercado não perdoa improviso: o que sustenta um trader é método, gestão de risco e disciplina — e não promessa de ganho rápido. É isso que eu ensino aqui, do jeito que eu gostaria de ter aprendido quando comecei.</p></div></div>
 </div></section>
 
 <section id="oferta" style="background:var(--bg2)"><div class="wrap">
@@ -189,8 +189,8 @@
 <script>
 addEventListener("scroll", () => document.getElementById("ctaFixo").classList.toggle("on", scrollY > 700 && document.getElementById("oferta").getBoundingClientRect().top > innerHeight), { passive: true });
 </script>
-<script src="assets/site.js?v=14"></script>
-<script src="assets/anim.js?v=8"></script>
+<script src="assets/site.js?v=15"></script>
+<script src="assets/anim.js?v=9"></script>
 <script src="assets/comprar.js?v=10"></script>
 </body>
 </html>

@@ -10,19 +10,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- página oculta: não tem link no site e pede aos buscadores para não indexar -->
 <style>
-:root{--bg:#050e1f;--card:#0b1a33;--card2:#0f2342;--line:rgba(255,255,255,.09);--txt:#eef3fb;--soft:#a9b8cf;--soft2:#7d8fab;--ouro:#f5b301;--verde:#22c55e;--verm:#ef4444;--azul:#60a5fa;--roxo:#a78bfa}
+/* tema claro (13/11/2026): --ouro é o dourado escuro para texto; --ouro-cheio para fundos e barras */
+:root{--bg:#f4f7fc;--card:#ffffff;--card2:#f1f5fb;--line:rgba(15,23,42,.12);--txt:#0f1b33;--soft:#3d4b63;--soft2:#56647d;--ouro:#a35f00;--ouro-cheio:#f5b301;--verde:#047857;--verm:#b91c1c;--azul:#1d4ed8;--roxo:#6d28d9}
+.card{box-shadow:0 1px 2px rgba(15,23,42,.05),0 10px 28px rgba(15,23,42,.07)}
 *{box-sizing:border-box}html{overflow-x:clip}
 body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 Inter,system-ui,sans-serif}
 a{color:var(--ouro)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid var(--line);background:rgba(5,14,31,.9);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
+header{border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);box-shadow:0 4px 18px rgba(15,23,42,.05);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
 header .wrap{display:flex;align-items:center;gap:14px;min-height:64px;flex-wrap:wrap}
 header img{width:38px;height:38px}
 header b{font:800 18px "Plus Jakarta Sans"}header small{display:block;color:var(--soft2);font-size:12px}
 header .dir{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--soft)}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:12.5px;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12.5px;white-space:nowrap}
 .pill i{width:8px;height:8px;border-radius:50%;background:var(--soft2);display:inline-block}
-.pill.vivo i{background:var(--verde);box-shadow:0 0 0 4px rgba(34,197,94,.15)}
+.pill.vivo i{background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.18)}
 .pill.alerta i{background:var(--ouro)}
 h1{font:800 clamp(28px,4.4vw,44px)/1.1 "Plus Jakarta Sans";margin:26px 0 6px}
 h1 em{font-style:normal;color:var(--ouro)}
@@ -48,14 +50,14 @@ h2{font:800 22px "Plus Jakarta Sans";margin:0 0 4px}
 .gauge .meio .l{color:var(--soft);font-size:13px}
 .barra{height:14px;border-radius:999px;background:var(--verm);overflow:hidden;margin:10px 0 6px}
 .barra span{display:block;height:100%;background:var(--verde)}
-.selo{display:inline-block;padding:4px 10px;border-radius:8px;font:700 12px Inter;letter-spacing:.02em;background:rgba(245,179,1,.12);color:var(--ouro);border:1px solid rgba(245,179,1,.35)}
+.selo{display:inline-block;padding:4px 10px;border-radius:8px;font:700 12px Inter;letter-spacing:.02em;background:#fff4d6;color:var(--ouro);border:1px solid rgba(214,150,0,.45)}
 .passos{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
 .passos li{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed var(--line);padding-top:8px;font-size:14px}
 .passos li span:last-child{font-weight:700;white-space:nowrap}
 .sinal{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
 .sinal b{font-size:22px}
 .seta{font-weight:800}
-.lim{border:1px solid rgba(245,179,1,.4);background:rgba(245,179,1,.06)}
+.lim{border:1px solid rgba(214,150,0,.45);background:#fff8e6}
 .lim ol{margin:6px 0 0;padding-left:20px;color:var(--soft)}
 .lim li{margin:6px 0}
 table{width:100%;border-collapse:collapse;font-size:13.5px}
@@ -72,21 +74,21 @@ label{font-size:13px;color:var(--soft)}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 #resumo{scroll-margin-top:90px}
-.btn-resumo{display:inline-flex;align-items:center;gap:8px;margin:4px 0 22px;padding:13px 26px;border-radius:999px;background:linear-gradient(180deg,#ffd34d,var(--ouro));color:#1a1200;font:800 16px Inter;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 24px rgba(245,179,1,.25);transition:transform .15s,box-shadow .15s}
+.btn-resumo{display:inline-flex;align-items:center;gap:8px;margin:4px 0 22px;padding:13px 26px;border-radius:999px;background:linear-gradient(180deg,#ffd34d,var(--ouro-cheio));color:#1a1200;font:800 16px Inter;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 24px rgba(245,179,1,.25);transition:transform .15s,box-shadow .15s}
 .btn-resumo:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(245,179,1,.35)}
-.btn-resumo:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn-resumo:focus-visible{outline:3px solid var(--txt);outline-offset:3px}
 .placar{margin:6px 0 16px}
 .pl-topo{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
 .pl-veredito{font:800 20px "Plus Jakarta Sans",Inter;padding:8px 16px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
-.pl-veredito.pos{color:var(--verde);border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.08)}
-.pl-veredito.neg{color:var(--verm);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
-.pl-veredito.neu{color:var(--ouro);border-color:rgba(245,179,1,.45);background:rgba(245,179,1,.08)}
+.pl-veredito.pos{color:var(--verde);border-color:rgba(4,120,87,.4);background:#ecfdf5}
+.pl-veredito.neg{color:var(--verm);border-color:rgba(185,28,28,.4);background:#fef2f2}
+.pl-veredito.neu{color:var(--ouro);border-color:rgba(214,150,0,.45);background:#fff8e6}
 .pl-blocos{margin-top:14px}
 .pl-bloco{background:var(--card2);border-radius:14px;padding:12px 14px}
 .pl-cont{font:700 15px Inter;margin-top:4px}
 .pl-cont .v{color:var(--verde)}.pl-cont .r{color:var(--verm)}.pl-cont .n{color:var(--soft)}
-.pl-barra{position:relative;height:10px;border-radius:99px;margin-top:16px;background:linear-gradient(90deg,var(--verm),#334155 50%,var(--verde))}
-.pl-barra span{position:absolute;top:-5px;width:4px;height:20px;border-radius:3px;background:#fff;box-shadow:0 0 0 2px var(--bg);transform:translateX(-2px);left:50%;transition:left .4s}
+.pl-barra{position:relative;height:10px;border-radius:99px;margin-top:16px;background:linear-gradient(90deg,#ef4444,#cbd5e1 50%,#22c55e)}
+.pl-barra span{position:absolute;top:-5px;width:4px;height:20px;border-radius:3px;background:var(--txt);box-shadow:0 0 0 2px #fff;transform:translateX(-2px);left:50%;transition:left .4s}
 .pl-escala{display:flex;justify-content:space-between;margin-top:4px}
 .voto{font-weight:800;white-space:nowrap}.voto.v{color:var(--verde)}.voto.r{color:var(--verm)}.voto.n{color:var(--soft2)}
 .manchetes .porque{display:block;color:var(--soft);font-size:12.5px;margin-top:2px}
@@ -238,12 +240,12 @@ canvas{max-width:100%}
 <script>
 const API = "https://kgyhgfxkhrdeucvsvehk.supabase.co/functions/v1/dados-payroll";
 const FASES = { inflacao: "Inflação", recessao: "Medo de recessão", neutra: "Neutra" };
-const COR = { inflacao: "#f5b301", recessao: "#ef4444", neutra: "#60a5fa" };
+const COR = { inflacao: "#c98500", recessao: "#dc2626", neutra: "#2563eb" };
 const $ = (id) => document.getElementById(id);
 const fmt = (n, c = 0) => n == null || isNaN(n) ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: c, maximumFractionDigits: c });
 const mais = (n, c = 0) => n == null || isNaN(n) ? "—" : (n > 0 ? "+" : "") + fmt(n, c);
 const pct = (p) => Math.round(p * 100) + "%";
-Chart.defaults.color = "#a9b8cf"; Chart.defaults.borderColor = "rgba(255,255,255,.08)"; Chart.defaults.font.family = "Inter";
+Chart.defaults.color = "#3d4b63"; Chart.defaults.borderColor = "rgba(15,23,42,.10)"; Chart.defaults.font.family = "Inter";
 
 let HIST = [], graficos = {};
 
@@ -391,7 +393,7 @@ function graficosHistorico() {
 function widget(el, simbolo, nome) {
   const box = $(el); box.innerHTML = '<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
   const s = document.createElement("script"); s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"; s.async = true;
-  s.textContent = JSON.stringify({ symbol: simbolo, width: "100%", height: 220, locale: "br", dateRange: "1D", colorTheme: "dark", isTransparent: true, autosize: true, largeChartUrl: "" });
+  s.textContent = JSON.stringify({ symbol: simbolo, width: "100%", height: 220, locale: "br", dateRange: "1D", colorTheme: "light", isTransparent: true, autosize: true, largeChartUrl: "" });
   box.firstChild.appendChild(s);
   const leg = document.createElement("div"); leg.className = "sub"; leg.textContent = nome; box.appendChild(leg);
 }
