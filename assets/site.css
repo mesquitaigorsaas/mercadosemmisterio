@@ -224,4 +224,6 @@ html { overflow-x: clip; } /* rede de segurança: nada empurra a página para o 
 @media (prefers-reduced-motion: reduce) { [data-fita]::before, [data-mini]::before, [data-painel]::before, [data-hotlists]::before, [data-bolsas]::before, [data-agenda]::before { animation: none; } }
 /* card do Radar do Payroll: o nome em destaque, a chamada em cima e menor */
 .ferr h3 .chamada-curta { display: block; font: 700 13px/1.35 Inter, sans-serif; letter-spacing: .02em; color: var(--soft); margin-bottom: 6px; }
-.ferr h3.destaque-payroll { font-size: 26px; line-height: 1.12; }
+.ferr h3.destaque-payroll { font-size: clamp(17px, 1.9vw, 24px); line-height: 1.12; white-space: nowrap; } /* "Payroll — NASDAQ" sempre numa linha só */
+.ferr h3.destaque-payroll .chamada-curta { white-space: normal; }
+@media (max-width: 960px) { .ferr h3.destaque-payroll { font-size: 24px; } } /* com 2 ou 1 card por linha há espaço de sobra */
