@@ -2,7 +2,7 @@
 const CONFIG = {
   supabaseUrl: "https://kgyhgfxkhrdeucvsvehk.supabase.co",
   supabaseKey: "sb_publishable_tqDOSHFcYthq7tHKzpHp-A_9Lstfpqz", // chave pública (só lê notícias e cadastra contatos)
-  precoPor: "R$ 97", parcelas: "ou em até 12x no cartão", // o valor da parcela depende da plataforma
+  precoPor: "R$ 19,90", parcelas: "ou em até 6x no cartão", // o valor da parcela depende da plataforma
 };
 
 /* menu do celular */
